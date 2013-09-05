@@ -145,11 +145,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
-<<<<<<< HEAD
-=======
-  compass-rails
   factory_girl_rails
->>>>>>> 31ccbe8fb54944d1410d85bf2c376d441389a951
   jbuilder (~> 1.2)
   jquery-rails
   pg
