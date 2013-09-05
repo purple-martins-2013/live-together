@@ -1,6 +1,6 @@
 ##LiveTogether
 
 ###Built By:
-*Clay
-*Fabian
-*Colleen
+* Clay
+* Fabian
+* Colleen
