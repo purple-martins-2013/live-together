@@ -28,6 +28,7 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda'
   gem 'factory_girl_rails'
+  gem 'simplecov'
 end
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
