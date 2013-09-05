@@ -26,6 +26,7 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
