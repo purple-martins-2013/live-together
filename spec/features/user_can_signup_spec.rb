@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "user can sign up" do
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.build(:user) }
 
   before do
     visit new_user_registration_path
@@ -25,7 +25,7 @@ feature "user can sign up" do
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
     click_button 'Sign up'
-    expect(page).to have_content 'Error'
+    expect(page).to have_content 'error'
   end
 
 end
