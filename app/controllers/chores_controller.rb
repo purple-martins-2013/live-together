@@ -14,13 +14,15 @@ class ChoresController < ApplicationController
   end
 
   def create
-    @chore = Chore.new(params[:chore].permit(:title, :frequency))
+    @chore = Chore.new(chore_params)
     if @chore.save
       redirect_to chores_path
     else
       render "chores/new"
     end
   end
+
+  private
 
   def chore_params
     params.require(:chore).permit(:title, :frequency)
