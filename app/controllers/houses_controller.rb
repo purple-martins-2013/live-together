@@ -3,7 +3,8 @@ class HousesController < ApplicationController
   before_filter :ensure_user_has_house, only: [:show]
 
   def show
-    @house = House.find(current_user.house.id)
+    @house = current_house
+    @invitation = Invitation.new
   end
 
   def new
