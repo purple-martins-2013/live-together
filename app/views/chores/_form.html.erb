@@ -1,0 +1,24 @@
+<%= form_for [current_user.house, @chore] do |f| %>
+
+  <% if @chore.errors.any? %>
+    <div>
+      <h2><%= pluralize(@chore.errors.count, 'error') %> prevented the from from being saved..</h2>
+      <ul>
+      <% @chore.errors.full_messages.each do |error_msg| %>
+        <li><%= error_msg %></li>
+      <% end %>
+      </ul>
+
+    </div>
+  <% end %>
+
+
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <%= f.label :frequency %><br>
+    <%= f.text_area :frequency %><br>
+
+    <%= f.submit %>
+
+
+<% end %>
