@@ -13,6 +13,7 @@ FactoryGirl.define do
   factory :chore do
     sequence(:title) {|n| "Title #{n}"}
     sequence(:frequency) {|n| "Every #{n} days"}
+    house
   end
 
   factory :house do
