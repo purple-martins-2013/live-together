@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   sequence :email do |n|
-    "email#{n}@factory.com"
+    "email#{n}#{rand(2000)}@factory.com"
   end
 
   factory :user do
@@ -12,6 +12,12 @@ FactoryGirl.define do
 
   factory :chore do
     sequence(:title) {|n| "Title #{n}"}
-    sequence(:frequency) {|n| "Every #{n} days"} 
+    sequence(:frequency) {|n| "Every #{n} days"}
+  end
+
+  factory :house do
+    name "House"
+    address "22 test st."
   end
 end
+
