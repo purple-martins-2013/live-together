@@ -1,4 +1,5 @@
 class InvitationsController < ApplicationController
+  before_filter :authenticate_user!
 
   def create
     @invitation = current_house.invitations.create(invitation_params)
@@ -6,10 +7,10 @@ class InvitationsController < ApplicationController
   end
 
   def accept
-    invitation = Invitation.find(params[:id])
-    current_user.house = invitation.house
+    @invitation = Invitation.find(params[:id])
+    current_user.house = @invitation.house
     current_user.save
-    redirect_to house_path(invitation.house)
+    redirect_to house_path(@invitation.house_id)
   end
 
   private
