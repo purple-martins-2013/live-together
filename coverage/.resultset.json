@@ -1,21 +1,33 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/apprentice/Desktop/LiveTogether/app/models/chore.rb": [
+      "/Users/fabian/Google Drive/Dev BootCamp/Excercises/Portofolio/phase_tree/live-together/app/models/chore.rb": [
+        1,
+        null,
         1,
         null,
         1,
         null,
         null
       ],
-      "/Users/apprentice/Desktop/LiveTogether/app/controllers/application_controller.rb": [
+      "/Users/fabian/Google Drive/Dev BootCamp/Excercises/Portofolio/phase_tree/live-together/app/models/house.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/fabian/Google Drive/Dev BootCamp/Excercises/Portofolio/phase_tree/live-together/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
         null
       ],
-      "/Users/apprentice/Desktop/LiveTogether/app/controllers/houses_controller.rb": [
+      "/Users/fabian/Google Drive/Dev BootCamp/Excercises/Portofolio/phase_tree/live-together/app/controllers/houses_controller.rb": [
         1,
         1,
         null,
@@ -25,6 +37,6 @@
         null
       ]
     },
-    "timestamp": 1378421734
+    "timestamp": 1378425346
   }
 }
