@@ -1,3 +1,18 @@
 <%= form_for @house do |f| %>
-  <%= f.text_field
+
+  <% if @house.errors.any? %>
+    <div>
+      <h2><%= pluralize(@house.errors.count, 'error') %> prevented the house from being saved..</h2>
+      <ul>
+      <% @house.errors.full_messages.each do |error_msg| %>
+        <li><%= error_msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :name %>
+  <%= f.text_field :address %>
+
+  <%= f.submit "Create house" %>
 <% end %>
