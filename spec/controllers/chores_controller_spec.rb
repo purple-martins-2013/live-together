@@ -1,14 +1,16 @@
 require 'spec_helper'
 
 describe ChoresController do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:chore) { FactoryGirl.create(:chore)}
+
+  before(:all) do
+    @user = FactoryGirl.create(:user)
+    @house = FactoryGirl.create(:house)
+    @chore = @house.chores.create(title: 'fizz', frequency: 'buzz')
+    @user.house = @house
+    @user.save
+  end
 
   describe "#index" do
-    before(:each) do
-        @user = FactoryGirl.create(:user)
-    end
-
     it { should route(:get, '/chores').to(action: :index) }
 
     it "should list all chores" do
@@ -16,16 +18,11 @@ describe ChoresController do
       sign_in @user
       get :index
 
-      assigns(:chores).should eq([chore])
+      assigns(:chores).should eq(@house.chores.load)
     end
   end
 
   describe "#show" do
-
-    before do
-      @user = FactoryGirl.create(:user)
-    end
-
     context "when logged in" do
 
       before do
@@ -33,26 +30,21 @@ describe ChoresController do
       end
 
       it "should show the individual chore" do
-        get :show, id: chore.id
-        expect(assigns(:chore)).to eq chore
+        get :show, id: @chore.id
+        expect(assigns(:chore)).to eq @chore
         expect(response).to render_template "chores/show"
       end
     end
 
     context "when not logged in" do
       it "should redirect to the sign in page" do
-        get :show, id: chore.id
+        get :show, id: @chore.id
         expect(response).to redirect_to(new_user_session_path)
       end
     end
   end
 
   describe "#new" do
-
-    before do
-      @user = FactoryGirl.create(:user)
-    end
-
     it { should route(:get, 'chores/new').to(action: :new)}
 
     context "when logged in" do
@@ -77,9 +69,6 @@ describe ChoresController do
   end
 
   describe "#create" do
-    before(:each) do
-        @user = FactoryGirl.create(:user)
-    end
     it { should route(:post, 'chores').to(action: :create)}
 
     context "when user logged in" do

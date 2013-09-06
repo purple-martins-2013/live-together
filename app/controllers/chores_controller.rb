@@ -2,7 +2,7 @@ class ChoresController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @chores = Chore.all
+    @chores = current_house.chores.load
   end
 
   def show
@@ -10,11 +10,11 @@ class ChoresController < ApplicationController
   end
 
   def new
-    @chore = Chore.new
+    @chore = current_house.chores.new
   end
 
   def create
-    @chore = Chore.new(chore_params)
+    @chore = current_house.chores.new(chore_params)
     if @chore.save
       redirect_to chores_path
     else
