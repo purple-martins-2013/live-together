@@ -27,14 +27,15 @@ describe HousesController do
         before do
           @user.house = house
           @user.save
-          get :show, id: house.id
         end
 
         it "should render the show house view" do
+          get :show, id: house.id
           expect(response).to render_template 'houses/show'
         end
 
         it "should assign the correct instance variables" do
+          get :show, id: house.id
           expect(assigns(:house)).not_to eq nil
           expect(assigns(:invitation)).not_to eq nil
         end
