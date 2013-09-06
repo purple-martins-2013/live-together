@@ -13,9 +13,7 @@ feature "user can login" do
   end
 
   it "successfully logs in a user with valid info" do
-    fill_in 'user_email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_button 'Sign in'
+    sign_in_through_view(user)
     expect(page).to have_content 'Logout'
     expect(page).to have_content 'Signed in successfully'
   end
@@ -26,5 +24,4 @@ feature "user can login" do
     click_button 'Sign in'
     expect(page).to have_content 'Invalid'
   end
-
 end
