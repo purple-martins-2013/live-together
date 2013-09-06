@@ -9,4 +9,9 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
+
+  factory :chore do
+    sequence(:title) {|n| "Title #{n}"}
+    sequence(:fequency) {|n| "Every #{n} days"} 
+  end
 end
