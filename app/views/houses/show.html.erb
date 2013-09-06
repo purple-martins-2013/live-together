@@ -2,3 +2,12 @@
   <h1>Welcome to the app!</h1>
   <p>This is the main house page for: <%= @house.name %> at address: <%= @house.address %></p>
 </div>
+
+<div class="large-12 columns">
+  <h3>Invite roommates to join this house:</h3>
+  <%= form_for @invitation, url: invitations_path, html: {class: 'invitation-form'} do |f| %>
+    <%= f.text_field :email %>
+
+    <%= f.submit "Send invitation" %>
+  <% end %>
+</div>
