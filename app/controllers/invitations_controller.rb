@@ -5,6 +5,13 @@ class InvitationsController < ApplicationController
     redirect_to :back
   end
 
+  def accept
+    invitation = Invitation.find(params[:id])
+    current_user.house = invitation.house
+    current_user.save
+    redirect_to house_path(invitation.house)
+  end
+
   private
 
   def invitation_params

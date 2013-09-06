@@ -18,3 +18,18 @@
 
   <%= f.submit "Create house" %>
 <% end %>
+
+<% if @invitations.any? %>
+  <div class="large-12 columns">
+    <h3>Your invitations</h3>
+    <ul>
+      <% @invitations.each do |invitation| %>
+        <li>
+          <%= invitation.house.name %>
+          <br>
+          <%= link_to "Accept", accept_invitation_path(invitation) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

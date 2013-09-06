@@ -9,6 +9,7 @@ class HousesController < ApplicationController
 
   def new
     @house = House.new
+    @invitations = Invitation.where(email: current_user.email)
   end
 
   def create
