@@ -11,5 +11,6 @@ describe User do
     it { should allow_value('example@example.com').for(:email) }
     it { should_not allow_value('test').for(:email) }
     it { should belong_to :house }
+    it { should have_and_belong_to_many :grocery_lists }
   end
 end

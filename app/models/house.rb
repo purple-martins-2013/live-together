@@ -1,8 +1,9 @@
 class House < ActiveRecord::Base
 
-  validates_presence_of :name, :address
-
   has_many :users
   has_many :chores
+  has_many :grocery_lists
+
+  validates_presence_of :name, :address
 
 end
