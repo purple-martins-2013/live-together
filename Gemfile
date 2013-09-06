@@ -31,6 +31,10 @@ group :development, :test do
   gem 'simplecov'
 end
 
+group :test do
+  gem 'launchy'
+end
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 

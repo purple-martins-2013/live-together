@@ -12,6 +12,6 @@ FactoryGirl.define do
 
   factory :chore do
     sequence(:title) {|n| "Title #{n}"}
-    sequence(:fequency) {|n| "Every #{n} days"} 
+    sequence(:frequency) {|n| "Every #{n} days"} 
   end
 end

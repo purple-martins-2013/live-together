@@ -8,8 +8,10 @@ describe ChoresController do
     it { should route(:get, '/chores').to(action: :index) }
 
     it "should list all chores" do
-      get 'index'
-      assigns(:chores).should eq Chore.all
+      get :index
+      save_and_open_page
+      assigns(:chores).should eq([chore])
+      # response.should render_template :index
     end
   end
 
