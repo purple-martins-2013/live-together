@@ -5,7 +5,7 @@ describe ChoresController do
   before(:all) do
     @user = FactoryGirl.create(:user)
     @house = FactoryGirl.create(:house)
-    @chore = @house.chores.create(title: 'fizz', frequency: 'buzz')
+    @chore = @house.chores.create(title: 'fizz', frequency: 7, points: 20)
     @user.house = @house
     @user.save
   end
@@ -79,7 +79,7 @@ describe ChoresController do
 
       context "with chore and frequency filled out" do
         it "should create a chore" do
-          expect { post :create, {chore: attributes_for(:chore) } }.to change{Chore.all.last}
+          expect { post :create, {chore: attributes_for(:chore) } }.to change{Chore.count}.by(1)
         end
       end
 
