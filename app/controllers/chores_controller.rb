@@ -24,9 +24,7 @@ class ChoresController < ApplicationController
 
   def update
     @chore = Chore.find(params[:id])
-    if params[:chore][:last_completed]
-      @chore.complete!(current_user)
-    end
+    @chore.complete!(current_user) if params[:chore][:last_completed]
     redirect_to :back
   end
 
