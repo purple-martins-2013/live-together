@@ -10,4 +10,5 @@ LiveTogether::Application.routes.draw do
       get 'accept'
     end
   end
+  resources :completed_chores, only: [:index]
 end
