@@ -7,6 +7,13 @@
 <% end %>
 </ul>
 
+<% if GroceryItem.where(grocery_list_id = @grocery_list_id) %>
+  <%= GroceryItem.where(grocery_list_id = @grocery_list_id).pluck(:name).join("\n") %>
+  <% end %>
+
+<p><%= link_to 'Add an item to the list', new_grocery_list_grocery_item_path(@grocery_list) %></p>
+
+
 <hr>
 
 <p><%= link_to 'Delete', grocery_list_path(@grocery_list), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></p>

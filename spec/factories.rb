@@ -29,6 +29,11 @@ FactoryGirl.define do
     name "List"
   end
 
+  factory :grocery_item do
+    name "peanut butter"
+    grocery_list
+  end
+
   factory :invalid_grocery_list, parent: :grocery_list do
     name nil
   end
