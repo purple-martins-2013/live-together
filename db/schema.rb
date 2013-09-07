@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20130907211929) do
     t.date     "last_completed"
     t.integer  "points"
     t.integer  "frequency"
-    t.date     "due_date",       default: '2013-09-07'
+    t.date     "due_date"
   end
 
   create_table "completed_chores", force: true do |t|
