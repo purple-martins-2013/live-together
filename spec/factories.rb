@@ -14,4 +14,14 @@ FactoryGirl.define do
     name "House"
     address "22 test st."
   end
+
+
+  factory :user_with_house, parent: :user do
+    house
+  end
+
+
+  factory :grocery_list do
+    name "List"
+  end
 end
