@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Chore do
 
-  let(:chore) { FactoryGirl.build(:chore, last_completed: Date.today) }
+  let(:chore) { FactoryGirl.build(:chore) }
+  let(:user) { FactoryGirl.create(:user) }
 
   context "validations" do
     it { should validate_presence_of :title }
@@ -10,11 +11,19 @@ describe Chore do
     it { should belong_to :house }
   end
 
-  describe "due_date method" do
-    it { should respond_to(:due_date) }
+  describe "complete! method" do
+    it { should respond_to(:complete!) }
 
-    it "should correctly add the frequency and last_completed" do
-      expect(chore.due_date).to eq Date.today + 7.days
+    it "should create a new CompletedChore" do
+      expect { chore.complete!(user) }.to change { CompletedChore.count }.by(1)
+    end
+
+    it "should update the due date of the chore" do
+      expect { chore.complete!(user) }.to change { chore.due_date }
+    end
+
+    it "should update the last_completed field of the chore" do
+      expect { chore.complete!(user) }.to change { chore.last_completed }
     end
   end
 

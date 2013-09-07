@@ -18,7 +18,7 @@ describe ChoresController do
       sign_in @user
       get :index
 
-      assigns(:chores).should eq(@house.chores.load)
+      assigns(:chores).should eq(@house.chores.load.order('due_date ASC'))
     end
   end
 
