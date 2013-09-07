@@ -1,1 +1,13 @@
-<h1><%= @grocery_list.name %> </h1>
+<h1><%= @grocery_list.name %></h1>
+
+<h3>items</h3>
+<ul>
+<% @grocery_list.grocery_items.each do |item| %>
+  <li><%= item.name %></li>
+<% end %>
+</ul>
+
+<hr>
+
+<p><%= link_to 'Delete', grocery_list_path(@grocery_list), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></p>
+<p><%= link_to 'Edit', edit_grocery_list_path(@grocery_list)%></p>

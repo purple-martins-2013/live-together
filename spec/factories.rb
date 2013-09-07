@@ -29,6 +29,10 @@ FactoryGirl.define do
     name "List"
   end
 
+  factory :invalid_grocery_list, parent: :grocery_list do
+    name nil
+  end
+
   factory :invitation do
     email "test@factory.com"
     house_id 1
