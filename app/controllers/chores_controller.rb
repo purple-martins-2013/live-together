@@ -22,6 +22,12 @@ class ChoresController < ApplicationController
     end
   end
 
+  def update
+    @chore = Chore.find(params[:id])
+    @chore.update_attributes(chore_params)
+    redirect_to :back
+  end
+
   private
 
   def chore_params

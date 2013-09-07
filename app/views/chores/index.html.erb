@@ -6,7 +6,10 @@
     <br>
     Due date: <%= chore.due_date %>
     <br>
-    <a href>Complete!</a>
+    <%= form_for chore do |f| %>
+      <%= f.hidden_field :last_completed, value: Date.today %>
+      <%= f.submit "Complete!" %>
+    <% end %>
 
   </li>
 <% end %>

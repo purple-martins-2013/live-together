@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20130907032935) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "house_id"
-    t.datetime "last_completed"
+    t.date     "last_completed"
     t.integer  "points"
     t.integer  "frequency"
   end
