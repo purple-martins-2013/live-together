@@ -20,5 +20,10 @@ FactoryGirl.define do
     name "House"
     address "22 test st."
   end
+
+  factory :invitation do
+    email "test@factory.com"
+    house_id 1
+  end
 end
 

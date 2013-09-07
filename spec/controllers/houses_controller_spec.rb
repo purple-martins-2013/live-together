@@ -33,6 +33,12 @@ describe HousesController do
           get :show, id: house.id
           expect(response).to render_template 'houses/show'
         end
+
+        it "should assign the correct instance variables" do
+          get :show, id: house.id
+          expect(assigns(:house)).not_to eq nil
+          expect(assigns(:invitation)).not_to eq nil
+        end
       end
     end
 
