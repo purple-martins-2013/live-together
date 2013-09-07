@@ -6,6 +6,8 @@
     <br>
     Due date: <%= chore.due_date.to_formatted_s(:short) %>
     <br>
+    Points: <%= chore.points %>
+    <br>
     <%= form_for chore do |f| %>
       <%= f.hidden_field :last_completed, value: Date.today %>
       <%= f.submit "Complete!" %>

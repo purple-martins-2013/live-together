@@ -1,6 +1,6 @@
 class Chore < ActiveRecord::Base
 
-  validates_presence_of :title, :frequency
+  validates_presence_of :title, :frequency, :points
 
   belongs_to :house
 
