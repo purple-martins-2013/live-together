@@ -2,7 +2,7 @@ class ChoresController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @chores = current_house.chores.load
+    @chores = current_house.chores.load.order("due_date ASC")
   end
 
   def show
@@ -22,9 +22,15 @@ class ChoresController < ApplicationController
     end
   end
 
+  def update
+    @chore = Chore.find(params[:id])
+    @chore.complete!(current_user) if params[:chore][:last_completed]
+    redirect_to :back
+  end
+
   private
 
   def chore_params
-    params.require(:chore).permit(:title, :frequency)
+    params.require(:chore).permit(:title, :frequency, :last_completed, :points)
   end
 end

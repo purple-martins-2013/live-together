@@ -20,3 +20,5 @@
 
 /coverage
 /public/assets
+/config/initializers/app_env_vars.rb
+*.DS_Store

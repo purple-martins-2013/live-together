@@ -2,7 +2,7 @@
 
   <% if @chore.errors.any? %>
     <div>
-      <h2><%= pluralize(@chore.errors.count, 'error') %> prevented the from from being saved..</h2>
+      <h2><%= pluralize(@chore.errors.count, 'error') %> prevented the form from being saved..</h2>
       <ul>
       <% @chore.errors.full_messages.each do |error_msg| %>
         <li><%= error_msg %></li>
@@ -16,7 +16,16 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %><br>
     <%= f.label :frequency %><br>
-    <%= f.text_area :frequency %><br>
+    <%= f.label :frequency, "Daily", value: 1 %>
+    <%= f.radio_button :frequency, 1, checked: true %>
+    <%= f.label :frequency, "Weekly", value: 7 %>
+    <%= f.radio_button :frequency, 7 %>
+    <%= f.label :frequency, "Bi-weekly", value: 14 %>
+    <%= f.radio_button :frequency, 14 %>
+    <%= f.label :frequency, "Monthly", value: 30 %>
+    <%= f.radio_button :frequency, 30 %><br>
+    <%= f.label :points %>
+    <%= f.number_field :points %>
 
     <%= f.submit %>
 
