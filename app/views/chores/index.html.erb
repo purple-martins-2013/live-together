@@ -1,7 +1,14 @@
 <h1>Chore List</h1>
 <ul>
 <% @chores.each do |chore| %>
-  <li><%= link_to chore.title, chore_path(chore) %></li>
+  <li>
+    <%= link_to chore.title, chore_path(chore) %>
+    <br>
+    Due date: <%= chore.due_date %>
+    <br>
+    <a href>Complete!</a>
+
+  </li>
 <% end %>
 </ul>
 
