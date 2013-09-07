@@ -4,6 +4,7 @@ LiveTogether::Application.routes.draw do
 
   resources :chores, only: [:index, :show, :new, :create]
   resources :houses, only: [:show, :new, :create]
+  resources :grocery_lists
   resources :invitations, only: [:create] do
     member do
       get 'accept'
