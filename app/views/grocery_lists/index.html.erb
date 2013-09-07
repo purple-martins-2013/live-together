@@ -1,1 +1,8 @@
 <h1>Gorcery Lists</h1>
+<%= link_to 'New list', new_grocery_list_path %>
+<hr>
+<ul>
+<% @grocery_lists.each do |list| %>
+  <li> <%= link_to list.name, grocery_list_path(list) %> </li>
+<% end %>
+</ul>
