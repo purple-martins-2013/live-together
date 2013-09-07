@@ -18,6 +18,11 @@
     <ul class="left">
       <% if user_signed_in? %>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% if current_house %>
+          <li>
+            <%= link_to "Chores", chores_path %>
+          </li>
+        <% end %>
       <% else %>
         <li><%= link_to "Sign up", new_user_registration_path %></li>
         <li><%= link_to "Login", new_user_session_path %></li>

@@ -5,7 +5,7 @@ describe ChoresController do
   before(:all) do
     @user = FactoryGirl.create(:user)
     @house = FactoryGirl.create(:house)
-    @chore = @house.chores.create(title: 'fizz', frequency: 'buzz')
+    @chore = @house.chores.create(title: 'fizz', frequency: 7, points: 20)
     @user.house = @house
     @user.save
   end
@@ -18,7 +18,7 @@ describe ChoresController do
       sign_in @user
       get :index
 
-      assigns(:chores).should eq(@house.chores.load)
+      assigns(:chores).should eq(@house.chores.load.order('due_date ASC'))
     end
   end
 
@@ -79,7 +79,7 @@ describe ChoresController do
 
       context "with chore and frequency filled out" do
         it "should create a chore" do
-          expect { post :create, {chore: attributes_for(:chore) } }.to change{Chore.all.last}
+          expect { post :create, {chore: attributes_for(:chore) } }.to change{Chore.count}.by(1)
         end
       end
 
@@ -101,6 +101,27 @@ describe ChoresController do
       it "should not create a chore" do
         # sign_out user
         expect { post :create, {chore: attributes_for(:chore) } }.not_to change{Chore.count}
+      end
+    end
+  end
+
+  describe "#update" do
+    context "when user is logged in" do
+
+      before do
+        sign_in @user
+        request.env["HTTP_REFERER"] = chores_path
+      end
+
+      it "should update the last_completed attribute of chore" do
+        patch :update, id: @chore.id, chore: {last_completed: Date.today }
+        expect(@chore.reload.last_completed).to eq Date.today
+      end
+
+      it "should create a new completed chore" do
+        expect do
+          patch :update, id: @chore.id, chore: {last_completed: Date.today }
+        end.to change {CompletedChore.count}.by(1)
       end
     end
   end
