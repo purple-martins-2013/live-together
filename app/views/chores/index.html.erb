@@ -1,8 +1,22 @@
 <h1>Chore List</h1>
 <ul>
 <% @chores.each do |chore| %>
-  <li><%= link_to chore.title, chore_path(chore) %></li>
+  <li>
+    <%= link_to chore.title, chore_path(chore) %>
+    <br>
+    Due date: <%= chore.due_date.to_formatted_s(:short) %>
+    <br>
+    Points: <%= chore.points %>
+    <br>
+    <%= form_for chore do |f| %>
+      <%= f.hidden_field :last_completed, value: Date.today %>
+      <%= f.submit "Complete!" %>
+    <% end %>
+
+  </li>
 <% end %>
 </ul>
 
 <%= link_to 'New Chore', new_chore_path %>
+<br>
+<%= link_to 'View completed chores', completed_chores_path %>
