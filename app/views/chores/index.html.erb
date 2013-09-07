@@ -4,7 +4,7 @@
   <li>
     <%= link_to chore.title, chore_path(chore) %>
     <br>
-    Due date: <%= chore.due_date %>
+    Due date: <%= chore.due_date.to_formatted_s(:short) %>
     <br>
     <%= form_for chore do |f| %>
       <%= f.hidden_field :last_completed, value: Date.today %>

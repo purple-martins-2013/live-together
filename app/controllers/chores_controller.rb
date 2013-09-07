@@ -2,7 +2,9 @@ class ChoresController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @chores = current_house.chores.load
+    @chores = current_house.chores.load.sort do |a,b|
+      a.due_date <=> b.due_date
+    end
   end
 
   def show

@@ -6,9 +6,9 @@ class Chore < ActiveRecord::Base
 
   def due_date
     if self.last_completed
-      (self.last_completed + self.frequency.days).to_formatted_s(:short)
+      self.last_completed + self.frequency.days
     else
-      Date.today.to_formatted_s(:short)
+      Date.today
     end
   end
 
