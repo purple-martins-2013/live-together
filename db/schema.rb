@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907050707) do
+ActiveRecord::Schema.define(version: 20130907211929) do
 
   create_table "chores", force: true do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20130907050707) do
     t.date     "last_completed"
     t.integer  "points"
     t.integer  "frequency"
+    t.date     "due_date",       default: '2013-09-07'
   end
 
   create_table "completed_chores", force: true do |t|

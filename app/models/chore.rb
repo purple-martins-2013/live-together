@@ -4,12 +4,9 @@ class Chore < ActiveRecord::Base
 
   belongs_to :house
 
-  def due_date
-    if self.last_completed
-      self.last_completed + self.frequency.days
-    else
-      Date.today
-    end
+  def complete!(user)
+    CompletedChore.create(chore_id: self.id, user_id: user.id, completed_at: Time.now)
+    self.update_attributes(last_completed: Date.today, due_date: Date.today + self.frequency.days)
   end
 
 end

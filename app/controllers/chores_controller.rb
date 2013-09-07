@@ -2,9 +2,7 @@ class ChoresController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @chores = current_house.chores.load.sort do |a,b|
-      a.due_date <=> b.due_date
-    end
+    @chores = current_house.chores.load.order("due_date ASC")
   end
 
   def show
@@ -26,9 +24,8 @@ class ChoresController < ApplicationController
 
   def update
     @chore = Chore.find(params[:id])
-    @chore.update_attributes(chore_params)
     if params[:chore][:last_completed]
-      CompletedChore.create(user_id: current_user.id, chore_id: @chore.id, completed_at: Time.now)
+      @chore.complete!(current_user)
     end
     redirect_to :back
   end
