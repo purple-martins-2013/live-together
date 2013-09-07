@@ -21,8 +21,9 @@ FactoryGirl.define do
 
   factory :chore do
     sequence(:title) {|n| "Title #{n}"}
-    sequence(:frequency) {|n| "Every #{n} days"}
+    frequency 7
     house
+    points 20
   end
 
   factory :grocery_list do

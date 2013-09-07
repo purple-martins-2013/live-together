@@ -5,7 +5,7 @@ feature 'Chores Layouts' do
   before(:all) do
     @user = FactoryGirl.create(:user)
     @house = FactoryGirl.create(:house)
-    @chore = @house.chores.create(title: 'fizz', frequency: 'buzz')
+    @chore = @house.chores.create(title: 'fizz', frequency: 7, points: 15)
     @user.house = @house
     @user.save
   end
@@ -43,7 +43,8 @@ feature 'Chores Layouts' do
     it "creates a new chore with valid data" do
       visit new_chore_path
       fill_in "chore_title", with: @chore.title
-      fill_in "chore_frequency", with: @chore.frequency
+      choose "Weekly"
+      fill_in "chore_points", with: @chore.points
       click_button "Create Chore"
       expect(page).to have_content @chore.title
     end

@@ -11,17 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130906061655) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20130907211929) do
 
   create_table "chores", force: true do |t|
     t.string   "title"
-    t.string   "frequency"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "house_id"
+    t.date     "last_completed"
+    t.integer  "points"
+    t.integer  "frequency"
+    t.date     "due_date"
+  end
+
+  create_table "completed_chores", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "chore_id"
+    t.datetime "completed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "grocery_items", force: true do |t|

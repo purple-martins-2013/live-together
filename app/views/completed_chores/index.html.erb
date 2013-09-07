@@ -1,0 +1,9 @@
+<ul>
+  <% @completed_chores.each do |chore| %>
+    <li>
+      Name: <%= chore.chore.title %><br>
+      Completed by: <%= chore.user.email %> at <%= chore.completed_at %><br>
+      Points: <%= chore.chore.points %>
+    </li>
+  <% end %>
+</ul>
