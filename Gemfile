@@ -29,6 +29,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'simplecov'
+  gem 'dotenv-rails'
 end
 
 group :test do

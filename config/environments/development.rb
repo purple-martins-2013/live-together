@@ -31,7 +31,7 @@ LiveTogether::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    user_name: ENV['MAIL_USERN_NAME'],
+    user_name: ENV['MAIL_USER_NAME'],
     password: ENV['MAIL_PASSWORD'],
     address: ENV['MAIL_SMTP_SERVER'],
     port: 26,
