@@ -7,6 +7,7 @@ describe House do
     it { should validate_presence_of :address }
     it { should have_many :users }
     it { should have_many :chores }
+    it { should have_many :grocery_lists }
     it { should have_many :invitations }
   end
 end

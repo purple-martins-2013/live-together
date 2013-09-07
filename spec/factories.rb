@@ -10,15 +10,23 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
-  factory :chore do
-    sequence(:title) {|n| "Title #{n}"}
-    sequence(:frequency) {|n| "Every #{n} days"}
+  factory :user_with_house, parent: :user do
     house
   end
 
   factory :house do
     name "House"
     address "22 test st."
+  end
+
+  factory :chore do
+    sequence(:title) {|n| "Title #{n}"}
+    sequence(:frequency) {|n| "Every #{n} days"}
+    house
+  end
+
+  factory :grocery_list do
+    name "List"
   end
 
   factory :invitation do
