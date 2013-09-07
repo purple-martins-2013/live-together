@@ -27,7 +27,9 @@ class ChoresController < ApplicationController
   def update
     @chore = Chore.find(params[:id])
     @chore.update_attributes(chore_params)
-    CompletedChore.create(user_id: current_user.id, chore_id: @chore.id, completed_at: Time.now)
+    if params[:chore][:last_completed]
+      CompletedChore.create(user_id: current_user.id, chore_id: @chore.id, completed_at: Time.now)
+    end
     redirect_to :back
   end
 

@@ -104,4 +104,25 @@ describe ChoresController do
       end
     end
   end
+
+  describe "#update" do
+    context "when user is logged in" do
+
+      before do
+        sign_in @user
+        request.env["HTTP_REFERER"] = chores_path
+      end
+
+      it "should update the last_completed attribute of chore" do
+        patch :update, id: @chore.id, chore: {last_completed: Date.today }
+        expect(@chore.reload.last_completed).to eq Date.today
+      end
+
+      it "should create a new completed chore" do
+        expect do
+          patch :update, id: @chore.id, chore: {last_completed: Date.today }
+        end.to change {CompletedChore.count}.by(1)
+      end
+    end
+  end
 end
