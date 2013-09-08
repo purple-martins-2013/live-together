@@ -27,7 +27,7 @@ FactoryGirl.define do
   end
 
   factory :grocery_list do
-    name "List"
+    sequence(:name) {|n| "List #{n}"}
   end
 
   factory :grocery_item do
