@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def welcome_mail(user)
     @user = user
     @url = "http://live-together.herokuapp.com"
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    mail(to: @user.email, subject: 'Welcome to Live-Together')
   end
 
 
@@ -12,6 +12,6 @@ class UserMailer < ActionMailer::Base
     @email = invitation.email
     @house = invitation.house
     @url = "http://live-together.herokuapp.com"
-    mail(to: @email, subject: 'Someone invited you to join livetogether')
+    mail(to: @email, subject: 'Someone invited you to join Live-Together')
   end
 end
