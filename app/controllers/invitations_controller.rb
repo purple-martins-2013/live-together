@@ -3,6 +3,7 @@ class InvitationsController < ApplicationController
 
   def create
     @invitation = current_house.invitations.create(invitation_params)
+    UserMailer.invitation_email(@invitation).deliver
     flash[:notice] = "Invitation sent to #{invitation_params[:email]}"
     redirect_to :back
   end
