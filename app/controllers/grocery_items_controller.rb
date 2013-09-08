@@ -14,7 +14,6 @@ class GroceryItemsController < ApplicationController
     if @grocery_item.save
       redirect_to grocery_list_path(@grocery_list)
     else
-      # render action: 'new'
       redirect_to new_grocery_list_grocery_item_path
     end
   end
