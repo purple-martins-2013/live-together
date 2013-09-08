@@ -11,3 +11,11 @@
     <%= f.submit "Send invitation" %>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    LiveTogether.initialize();
+    window.router = new LiveTogether.Routers.Houses();
+    Backbone.history.start();
+  });  
+</script>
