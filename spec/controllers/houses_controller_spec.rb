@@ -3,20 +3,16 @@ require 'spec_helper'
 describe HousesController do
 
   let(:house) { FactoryGirl.create(:house) }
+  let(:user) { house.users.first }
 
-  before do
-    @user = FactoryGirl.create(:user)
-  end
 
   describe "#show" do
     context "while logged in" do
 
-      before do
-        sign_in @user
-      end
-
       context "without a house assigned to the user" do
         it "should redirect to the #new action" do
+          user_without_house = FactoryGirl.create(:user)
+          sign_in user_without_house
           get :show, id: house.id
           expect(response).to redirect_to(new_house_path)
         end
@@ -25,8 +21,7 @@ describe HousesController do
       context "with a house assigned to the user" do
 
         before do
-          @user.house = house
-          @user.save
+          sign_in user
         end
 
         it "should render the show house view" do
@@ -53,11 +48,8 @@ describe HousesController do
   describe "#new" do
     context "while logged in" do
 
-      before do
-        sign_in @user
-      end
-
-      it "builds a @house" do
+      it "assigns a new house" do
+        sign_in user
         get :new
         expect(assigns(:house)).not_to eq nil
       end
@@ -74,11 +66,8 @@ describe HousesController do
   describe "#create" do
     context "while logged in" do
 
-      before do
-        sign_in @user
-      end
-
       it "should create a new house" do
+        sign_in user
         expect do
           post :create, house: FactoryGirl.attributes_for(:house)
         end.to change { House.count }.by(1)
