@@ -22,33 +22,30 @@ describe GroceryItemsController do
 
     describe "#create" do
 
-      context "with valid attributes" do
+      context "when I try to create a grocery_item with empty params" do
 
-        context "when I try to create a grocery_item with empty params" do
-
-          it "renders the grocery_item new page" do
-            post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "" }
-            expect(response).to redirect_to(new_grocery_list_grocery_item_path)
-          end
-
-          it "does not save the new grocery item" do
-            expect{
-              post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "" }
-            }.to_not change { GroceryItem.count }
-          end
+        it "renders the grocery_item new page" do
+          post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "" }
+          expect(response).to redirect_to(new_grocery_list_grocery_item_path)
         end
 
-        context "when I try to create a grocery_list with complete params" do
-          it "should redirect back to list page with item posted" do
-            post :create, { grocery_item: attributes_for(:grocery_item), grocery_list_id: grocery_list.id}
-            expect(response).to redirect_to(grocery_list_path(grocery_list))
-          end
+        it "does not save the new grocery item" do
+          expect{
+            post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "" }
+          }.to_not change { GroceryItem.count }
+        end
+      end
 
-          it "should create a new grocery_item" do
-            expect do
-              post :create, { grocery_item: attributes_for(:grocery_item), grocery_list_id: grocery_list.id}
-            end.to change { GroceryItem.count }.by(1)
-          end
+      context "when I try to create a grocery_list with complete params" do
+        it "should redirect back to list page with item posted" do
+          post :create, { grocery_item: attributes_for(:grocery_item), grocery_list_id: grocery_list.id}
+          expect(response).to redirect_to(grocery_list_path(grocery_list))
+        end
+
+        it "should create a new grocery_item" do
+          expect do
+            post :create, { grocery_item: attributes_for(:grocery_item), grocery_list_id: grocery_list.id}
+          end.to change { GroceryItem.count }.by(1)
         end
       end
     end
