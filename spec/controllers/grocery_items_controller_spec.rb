@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe GroceryItemsController do
-  let(:grocery_list) { FactoryGirl.create(:grocery_list) }
   let(:grocery_item) { FactoryGirl.create(:grocery_item) }
-  let(:user) { FactoryGirl.create(:user_with_house)}
-  let(:house) { user.house }
+  let(:grocery_list) { grocery_item.grocery_list }
+  let(:house) { grocery_list.house }
+  let(:user) { house.users.first }
 
   context "while logged in" do
 
@@ -72,7 +72,5 @@ describe GroceryItemsController do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
-
   end
-
 end

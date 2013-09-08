@@ -3,8 +3,8 @@ require 'spec_helper'
 describe GroceryListsController do
 
   let(:grocery_list) { FactoryGirl.create(:grocery_list) }
-  let(:user) { FactoryGirl.create(:user_with_house)}
-  let(:house) { user.house }
+  let(:house) { grocery_list.house }
+  let(:user) { house.users.first }
 
   context "while logged in" do
 
@@ -20,14 +20,14 @@ describe GroceryListsController do
       end
 
       it "should assign all the grocery lists for the user's house" do
-        house.grocery_lists << grocery_list
         get :index
         assigns(:grocery_lists).should eq([grocery_list])
       end
 
       it "should not assign grocery lists that don't belong to user's house " do
         get :index
-        assigns(:grocery_lists).should_not include(grocery_list)
+        new_grocery_list = FactoryGirl.create(:grocery_list)
+        assigns(:grocery_lists).should_not include(new_grocery_list)
       end
 
     end
