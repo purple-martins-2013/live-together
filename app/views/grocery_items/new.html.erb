@@ -1,0 +1,9 @@
+<h1>New Grocery Item</h1>
+
+<%= form_for [@grocery_list, @grocery_item] do |f| %>
+  <%= f.text_area :name %>
+  <% f.hidden_field :grocery_list_id, {:value => @grocery_list.id} %>
+  <%= f.submit %>
+<% end %>
+
+
