@@ -25,7 +25,7 @@ LiveTogether.Views.ChoreForm = Backbone.View.extend({
 
   createChore: function(e){
     e.preventDefault();
-    LiveTogether.Collections.Created.chores.create(this.serialize());
+    this.collection.create(this.serialize());
     this.$el.fadeOut(function(){
       this.remove();
     });

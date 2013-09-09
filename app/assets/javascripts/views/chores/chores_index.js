@@ -5,8 +5,10 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   className: 'panel large-6 columns',
 
   initialize: function(){
+    console.log('chores index view initialized');
     this.listenTo(this.collection, 'add', this.addOne);
     this.listenTo(this.collection, 'reset', this.addAll);
+    this.collection.fetch();
   },
 
   events: {
@@ -28,7 +30,7 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   },
 
   newChoreForm: function(){
-    var view = new LiveTogether.Views.ChoreForm();
+    var view = new LiveTogether.Views.ChoreForm({collection: this.collection});
     this.$el.append(view.render().$el.hide().fadeIn());
   }
 
