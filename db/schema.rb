@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908082542) do
+ActiveRecord::Schema.define(version: 20130909205506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,23 @@ ActiveRecord::Schema.define(version: 20130908082542) do
     t.datetime "updated_at"
   end
 
+  create_table "expenses", force: true do |t|
+    t.string   "name"
+    t.string   "descrption"
+    t.integer  "amount"
+    t.integer  "user_id"
+    t.date     "purchased_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expenses_users", force: true do |t|
+    t.integer  "expense_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "grocery_items", force: true do |t|
     t.string   "name"
     t.integer  "grocery_list_id"
@@ -49,6 +66,7 @@ ActiveRecord::Schema.define(version: 20130908082542) do
     t.integer  "house_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "last_purchased"
   end
 
   add_index "grocery_lists", ["name", "house_id"], name: "index_grocery_lists_on_name_and_house_id", unique: true, using: :btree
@@ -70,6 +88,16 @@ ActiveRecord::Schema.define(version: 20130908082542) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "settlements", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "amount",          default: 0
+    t.integer  "grocery_list_id"
+    t.integer  "expense_id"
+    t.date     "date_paid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
