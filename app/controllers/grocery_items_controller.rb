@@ -11,9 +11,14 @@ class GroceryItemsController < ApplicationController
     @grocery_list = GroceryList.find(params[:grocery_list_id])
     @grocery_item = @grocery_list.grocery_items.new(grocery_item_params)
 
-    if @grocery_item.save
+    begin
+      @grocery_item.save!
       redirect_to grocery_list_path(@grocery_list)
-    else
+    rescue ActiveRecord::RecordNotUnique
+      flash[:notice] = 'Item already included in list'
+      redirect_to grocery_list_path(@grocery_list)
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:notice] = e.message
       redirect_to new_grocery_list_grocery_item_path
     end
   end
