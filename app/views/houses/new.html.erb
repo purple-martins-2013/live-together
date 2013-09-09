@@ -25,7 +25,7 @@
     <ul>
       <% @invitations.each do |invitation| %>
         <li>
-          <%= invitation.house.name %>
+          <%= invitation.user.house.name %>
           <br>
           <%= link_to "Accept", accept_invitation_path(invitation) %>
         </li>
