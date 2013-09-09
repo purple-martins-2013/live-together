@@ -10,13 +10,10 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
-  factory :user_with_house, parent: :user do
-    house
-  end
-
   factory :house do
     name "House"
-    address "22 test st."
+    address "22 Test St."
+    users { [FactoryGirl.create(:user)] }
   end
 
   factory :chore do
@@ -28,10 +25,11 @@ FactoryGirl.define do
 
   factory :grocery_list do
     sequence(:name) {|n| "List #{n}"}
+    house
   end
 
   factory :grocery_item do
-    name "peanut butter"
+    sequence(:name) {|n| "Item #{n}"}
     grocery_list
   end
 
@@ -41,7 +39,7 @@ FactoryGirl.define do
 
   factory :invitation do
     email "test@factory.com"
-    house_id 1
+    user
   end
 end
 

@@ -2,21 +2,16 @@ require 'spec_helper'
 
 describe InvitationsController do
 
-  let(:invitation) { FactoryGirl.create(:invitation) }
-
-  before(:all) do
-    @user = FactoryGirl.create(:user)
-    @house = FactoryGirl.create(:house)
-    @user.house = @house
-    @user.save
-  end
+  let(:house) { FactoryGirl.create(:house) }
+  let(:user) { house.users.first }
+  let(:invitation) { FactoryGirl.create(:invitation, user: user) }
 
   describe "#create" do
     context "when logged in" do
 
       before do
-        sign_in @user
-        request.env["HTTP_REFERER"] = house_path(@house)
+        sign_in user
+        request.env["HTTP_REFERER"] = house_path(house)
       end
 
       it "should create an invitation with valid information" do
@@ -27,8 +22,8 @@ describe InvitationsController do
 
       it "should not create an invitation with invalid information" do
         expect do
-          post :create, invitation: {email: ""}
-        end.not_to change {Invitation.count}
+          post :create, invitation: {email: ''}
+        end.to raise_error(ArgumentError)
       end
     end
 
@@ -44,8 +39,8 @@ describe InvitationsController do
     context "when logged in" do
 
       before do
-        sign_in @user
-        @user.update_attributes(house_id: nil)
+        sign_in user
+        user.update_attributes(house_id: nil)
       end
 
       it "should assign the correct invitation instance variable" do
@@ -55,7 +50,7 @@ describe InvitationsController do
 
       it "should redirect to the correct house path" do
         get :accept, id: invitation.id
-        expect(response).to redirect_to house_path(invitation.house_id)
+        expect(response).to redirect_to house_path(invitation.user.house)
       end
     end
   end
