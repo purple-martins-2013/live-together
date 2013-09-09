@@ -3,8 +3,8 @@ require 'spec_helper'
 describe GroceryListsController do
 
   let(:grocery_list) { FactoryGirl.create(:grocery_list) }
-  let(:user) { FactoryGirl.create(:user_with_house)}
-  let(:house) { user.house }
+  let(:house) { grocery_list.house }
+  let(:user) { house.users.first }
 
   context "while logged in" do
 
@@ -20,14 +20,14 @@ describe GroceryListsController do
       end
 
       it "should assign all the grocery lists for the user's house" do
-        house.grocery_lists << grocery_list
         get :index
         assigns(:grocery_lists).should eq([grocery_list])
       end
 
       it "should not assign grocery lists that don't belong to user's house " do
         get :index
-        assigns(:grocery_lists).should_not include(grocery_list)
+        new_grocery_list = FactoryGirl.create(:grocery_list)
+        assigns(:grocery_lists).should_not include(new_grocery_list)
       end
 
     end
@@ -84,6 +84,21 @@ describe GroceryListsController do
         end
 
       end
+
+      context "when I try to create a grocery_list with a name that already exists in that house" do
+        it "redirects to grocery lists index" do
+          post :create, house_id: house.id, grocery_list: {name: "1" }
+          post :create, house_id: house.id, grocery_list: {name: "1" }
+          expect(response).to redirect_to(grocery_lists_path)
+        end
+
+        it "does not save the new grocery item" do
+          expect{
+            post :create, house_id: house.id, grocery_list: {name: "1" }
+            post :create, house_id: house.id, grocery_list: {name: "1" }
+          }.to change { GroceryList.count }.by(1)
+        end
+      end
     end
 
     describe "#edit" do
@@ -132,7 +147,6 @@ describe GroceryListsController do
           put :update, id: grocery_list, grocery_list: FactoryGirl.attributes_for(:grocery_list, name: nil)
           expect(response).to render_template :edit
         end
-
       end
     end
 

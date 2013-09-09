@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20130909230425) do
 
   # These are extensions that must be enabled in order to support this database
@@ -35,12 +36,24 @@ ActiveRecord::Schema.define(version: 20130909230425) do
     t.datetime "updated_at"
   end
 
+  create_table "expenses", force: true do |t|
+    t.integer  "purchaser_id"
+    t.string   "name"
+    t.integer  "total_cents"
+    t.string   "description"
+    t.date     "purchased_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "grocery_items", force: true do |t|
     t.string   "name"
     t.integer  "grocery_list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "grocery_items", ["name", "grocery_list_id"], name: "index_grocery_items_on_name_and_grocery_list_id", unique: true, using: :btree
 
   create_table "grocery_lists", force: true do |t|
     t.string   "name"
@@ -49,6 +62,8 @@ ActiveRecord::Schema.define(version: 20130909230425) do
     t.datetime "updated_at"
     t.date     "last_purchased"
   end
+
+  add_index "grocery_lists", ["name", "house_id"], name: "index_grocery_lists_on_name_and_house_id", unique: true, using: :btree
 
   create_table "grocery_lists_users", id: false, force: true do |t|
     t.integer "grocery_list_id"
@@ -64,7 +79,16 @@ ActiveRecord::Schema.define(version: 20130909230425) do
 
   create_table "invitations", force: true do |t|
     t.string   "email"
-    t.integer  "house_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "settlements", force: true do |t|
+    t.integer  "contributor_id"
+    t.integer  "expense_id"
+    t.integer  "amount_cents",   default: 0
+    t.date     "date_paid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

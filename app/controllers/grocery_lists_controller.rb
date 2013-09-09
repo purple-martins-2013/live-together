@@ -15,13 +15,19 @@ class GroceryListsController < ApplicationController
 
   def create
     @grocery_list = GroceryList.new(grocery_list_params)
-    if @grocery_list.save
+
+    begin
       @grocery_list.house = current_user.house
-      @grocery_list.save
+      @grocery_list.save!
       redirect_to grocery_list_path @grocery_list
-    else
+    rescue ActiveRecord::RecordNotUnique
+      flash[:notice] = 'List already included in for house'
+      redirect_to grocery_lists_path
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:alert] = e.message
       render "grocery_lists/new"
     end
+
   end
 
   def edit
