@@ -10,7 +10,7 @@ feature "user can create a house" do
     visit root_path
   end
 
-  xit "should display the create house form" do
+  it "should display the create house form" do
     expect(page).to have_content "Create house"
   end
 
@@ -22,7 +22,7 @@ feature "user can create a house" do
     expect(page).to have_content house.address
   end
 
-  xit "should not create a house with invalid data" do
+  it "should not create a house with invalid data" do
     fill_in "house_name", with: house.name
     click_button "Create house"
     expect(page).to have_content 'error'
