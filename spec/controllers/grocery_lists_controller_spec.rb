@@ -147,7 +147,6 @@ describe GroceryListsController do
           put :update, id: grocery_list, grocery_list: FactoryGirl.attributes_for(:grocery_list, name: nil)
           expect(response).to render_template :edit
         end
-
       end
     end
 

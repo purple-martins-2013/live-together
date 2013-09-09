@@ -24,7 +24,7 @@ class GroceryListsController < ApplicationController
       flash[:notice] = 'List already included in for house'
       redirect_to grocery_lists_path
     rescue ActiveRecord::RecordInvalid => e
-      flash[:notice] = e.message
+      flash[:alert] = e.message
       render "grocery_lists/new"
     end
 

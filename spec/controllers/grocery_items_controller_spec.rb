@@ -61,8 +61,6 @@ describe GroceryItemsController do
             post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
             post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
           }.to change { GroceryItem.count }.by(1)
-
-
         end
       end
 
