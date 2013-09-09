@@ -1,13 +1,15 @@
-<div class="large-12 columns">
-  <h1>Welcome to the app!</h1>
-  <p>This is the main house page for: <%= @house.name %> at address: <%= @house.address %></p>
+<div id="houseMain">
+  
 </div>
 
-<div class="large-12 columns">
-  <h3>Invite roommates to join this house:</h3>
-  <%= form_for @invitation, url: invitations_path, html: {class: 'invitation-form'} do |f| %>
-    <%= f.text_field :email %>
-
-    <%= f.submit "Send invitation" %>
-  <% end %>
-</div>
+<script>
+  $(document).ready(function(){
+    LiveTogether.initialize();
+    LiveTogether.Models.Created.house = new LiveTogether.Models.House(<%= @house.to_json.html_safe %>);
+    LiveTogether.Views.Created.houseDash = new LiveTogether.Views.HouseDash({model: LiveTogether.Models.Created.house});
+    LiveTogether.Views.Created.houseDash.render();
+    window.router = new LiveTogether.Routers.Houses();
+    Backbone.history.start();
+    router.navigate("house", {trigger:true});
+  });  
+</script>

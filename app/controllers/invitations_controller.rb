@@ -15,7 +15,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.find(params[:id])
     current_user.house = @invitation.user.house
     current_user.save
-    redirect_to house_path(@invitation.user.house_id)
+    redirect_to root_path
   end
 
   private

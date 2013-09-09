@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -17,6 +18,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'compass-rails', '~> 2.0.alpha.0'
 gem 'zurb-foundation', '~> 4.0.0'
+gem 'backbone-on-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -30,6 +32,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'dotenv-rails'
+  gem 'selenium-webdriver'
 end
 
 group :test do
@@ -47,6 +50,10 @@ end
 
 gem 'devise'
 
+group :production do
+  # Suggested by heroku to to enable all platform features
+  gem 'rails_12factor'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

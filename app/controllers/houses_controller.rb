@@ -5,6 +5,10 @@ class HousesController < ApplicationController
   def show
     @house = current_house
     @invitation = Invitation.new
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @house}
+    end
   end
 
   def new
