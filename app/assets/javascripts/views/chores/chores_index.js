@@ -9,6 +9,10 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
     this.listenTo(this.collection, 'reset', this.addAll);
   },
 
+  events: {
+    "click .new-chore": "newChoreForm"
+  },
+
   render: function(){
     this.$el.html(this.template());
     return this;
@@ -21,6 +25,11 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   addOne: function(model){
     var view = new LiveTogether.Views.Chore({model: model});
     this.$el.find('tbody').append(view.render().el);
+  },
+
+  newChoreForm: function(){
+    var view = new LiveTogether.Views.ChoreForm();
+    this.$el.append(view.render().$el.hide().fadeIn());
   }
 
 });

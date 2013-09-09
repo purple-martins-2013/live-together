@@ -6,6 +6,10 @@ LiveTogether.Views.Chore = Backbone.View.extend({
 
   className: 'chore-item',
 
+  initialize: function(){
+    this.listenTo(this.model, 'change', this.render);
+  },
+
   events: {
     "click .complete-chore" : "completeChore"
   },
@@ -16,7 +20,10 @@ LiveTogether.Views.Chore = Backbone.View.extend({
   },
 
   completeChore: function(){
-    
+    this.model.save({last_completed: new Date()}, {
+      wait: true,
+      patch: true
+    });
   }
 
 });

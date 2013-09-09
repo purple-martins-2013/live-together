@@ -18,18 +18,19 @@ class ChoresController < ApplicationController
   end
 
   def create
-    @chore = current_house.chores.new(chore_params)
-    if @chore.save
-      redirect_to chores_path
-    else
-      render "chores/new"
+    @chore = current_house.chores.create(chore_params)
+    respond_to do |format|
+      format.json { render json: @chore }
     end
   end
 
   def update
     @chore = Chore.find(params[:id])
     @chore.complete!(current_user) if params[:chore][:last_completed]
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { render json: @chore }
+    end
   end
 
   private
