@@ -32,6 +32,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'dotenv-rails'
+  gem 'email_spec'
 end
 
 group :test do

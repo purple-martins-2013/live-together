@@ -8,6 +8,10 @@ FactoryGirl.define do
     email
     password 'password'
     password_confirmation 'password'
+
+    factory :user_with_house do
+      house
+    end
   end
 
   factory :house do
@@ -39,7 +43,6 @@ FactoryGirl.define do
 
   factory :invitation do
     email "test@factory.com"
-    user
   end
 end
 
