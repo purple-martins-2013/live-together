@@ -47,6 +47,10 @@ describe ChoresController do
 
       it { should route(:post, 'chores').to(action: :create)}
 
+      before do
+        request.env["HTTP_REFERER"] = root_path
+      end
+
       context "with chore and frequency filled out" do
         it "should create a chore" do
           expect { post :create, {chore: attributes_for(:chore) } }.to change{Chore.count}.by(1)
@@ -56,11 +60,6 @@ describe ChoresController do
       context "with chore and frequency not filled out" do
         it "should not create a chore" do
           expect { post :create, {chore: {title: '', frequency: ''}} }.not_to change{Chore.count}
-        end
-
-        it "should display the new chore form again" do
-          post :create, chore: {title: '', frequency: ''}
-          expect(response).to render_template 'chores/new'
         end
       end
     end

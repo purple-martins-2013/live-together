@@ -50,7 +50,7 @@ describe InvitationsController do
 
       it "should redirect to the correct house path" do
         get :accept, id: invitation.id
-        expect(response).to redirect_to house_path(invitation.user.house)
+        expect(response).to redirect_to root_path
       end
     end
   end
