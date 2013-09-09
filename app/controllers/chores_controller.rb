@@ -20,6 +20,7 @@ class ChoresController < ApplicationController
   def create
     @chore = current_house.chores.create(chore_params)
     respond_to do |format|
+      format.html { redirect_to :back }
       format.json { render json: @chore }
     end
   end
