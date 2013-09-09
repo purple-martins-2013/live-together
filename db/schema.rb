@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20130909230425) do
     t.integer  "house_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "last_purchased"
   end
 
   create_table "grocery_lists_users", id: false, force: true do |t|
