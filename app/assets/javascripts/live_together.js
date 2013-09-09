@@ -9,8 +9,10 @@ window.LiveTogether = {
     Created: {}
   },
   Routers: {},
-  initialize: function() {
-    
+  initialize: function(houseJSON) {
+    window.router = new LiveTogether.Routers.Main();
+    Backbone.history.start();
+    router.navigate("house", {trigger:true});
   }
 };
 
