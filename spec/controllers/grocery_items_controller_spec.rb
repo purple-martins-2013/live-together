@@ -56,7 +56,14 @@ describe GroceryItemsController do
           expect(response).to redirect_to(grocery_list_path(grocery_list))
         end
 
+        it "does not save the new grocery item" do
+          expect{
+            post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
+            post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
+          }.to change { GroceryItem.count }.by(1)
 
+
+        end
       end
 
     end
