@@ -1,6 +1,10 @@
 window.LiveTogether = {
-  Models: {},
-  Collections: {},
+  Models: {
+    Created: {}
+  },
+  Collections: {
+    Created: {}
+  },
   Views: {
     Created: {}
   },
