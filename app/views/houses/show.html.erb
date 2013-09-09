@@ -1,15 +1,9 @@
 <div id="houseMain">
-  
+
 </div>
 
 <script>
   $(document).ready(function(){
     LiveTogether.initialize();
-    LiveTogether.Models.Created.house = new LiveTogether.Models.House(<%= @house.to_json.html_safe %>);
-    LiveTogether.Views.Created.houseDash = new LiveTogether.Views.HouseDash({model: LiveTogether.Models.Created.house});
-    LiveTogether.Views.Created.houseDash.render();
-    window.router = new LiveTogether.Routers.Houses();
-    Backbone.history.start();
-    router.navigate("house", {trigger:true});
-  });  
+  });
 </script>

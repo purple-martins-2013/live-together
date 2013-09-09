@@ -4,6 +4,9 @@ LiveTogether::Application.routes.draw do
 
   resources :chores, only: [:index, :show, :new, :create, :update]
   resources :houses, only: [:show, :new, :create]
+
+  resource :house, only: [:show]
+
   resources :grocery_lists do
     resources :grocery_items, only: [:new, :create, :show]
   end

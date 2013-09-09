@@ -70,6 +70,9 @@ GEM
       execjs
     eco-source (1.1.0.rc.1)
     ejs (1.1.1)
+    email_spec (1.5.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
     execjs (2.0.1)
     factory_girl (4.2.0)
@@ -191,6 +194,7 @@ DEPENDENCIES
   compass-rails (~> 2.0.alpha.0)
   devise
   dotenv-rails
+  email_spec
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
