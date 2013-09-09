@@ -1,10 +1,12 @@
 window.LiveTogether = {
   Models: {},
   Collections: {},
-  Views: {},
+  Views: {
+    Created: {}
+  },
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    
   }
 };
 
