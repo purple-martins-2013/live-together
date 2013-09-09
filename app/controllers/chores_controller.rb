@@ -3,6 +3,10 @@ class ChoresController < ApplicationController
 
   def index
     @chores = current_house.chores.load.order("due_date ASC")
+    respond_to do |format|
+      format.html
+      format.json { render json: @chores }
+    end
   end
 
   def show
