@@ -51,8 +51,9 @@ describe GroceryItemsController do
 
       context "when I try to create a grocery_item with a name that already exists in that list" do
         it "redirects to grocery list index" do
-          post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "" }
-          expect(response).to redirect_to(new_grocery_list_grocery_item_path)
+          post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
+          post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
+          expect(response).to redirect_to(grocery_list_path(grocery_list))
         end
 
 

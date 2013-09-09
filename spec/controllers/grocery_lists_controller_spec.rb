@@ -84,6 +84,16 @@ describe GroceryListsController do
         end
 
       end
+
+      context "when I try to create a grocery_list with a name that already exists in that house" do
+        it "redirects to grocery lists index" do
+          post :create, house_id: house.id, grocery_list: {name: "1" }
+          post :create, house_id: house.id, grocery_list: {name: "1" }
+          expect(response).to redirect_to(grocery_lists_path)
+        end
+
+
+      end
     end
 
     describe "#edit" do
