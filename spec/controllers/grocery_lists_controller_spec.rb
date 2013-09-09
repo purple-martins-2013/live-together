@@ -84,6 +84,21 @@ describe GroceryListsController do
         end
 
       end
+
+      context "when I try to create a grocery_list with a name that already exists in that house" do
+        it "redirects to grocery lists index" do
+          post :create, house_id: house.id, grocery_list: {name: "1" }
+          post :create, house_id: house.id, grocery_list: {name: "1" }
+          expect(response).to redirect_to(grocery_lists_path)
+        end
+
+        it "does not save the new grocery item" do
+          expect{
+            post :create, house_id: house.id, grocery_list: {name: "1" }
+            post :create, house_id: house.id, grocery_list: {name: "1" }
+          }.to change { GroceryList.count }.by(1)
+        end
+      end
     end
 
     describe "#edit" do
@@ -132,7 +147,6 @@ describe GroceryListsController do
           put :update, id: grocery_list, grocery_list: FactoryGirl.attributes_for(:grocery_list, name: nil)
           expect(response).to render_template :edit
         end
-
       end
     end
 

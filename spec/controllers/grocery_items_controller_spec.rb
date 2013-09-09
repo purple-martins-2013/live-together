@@ -14,7 +14,7 @@ describe GroceryItemsController do
 
     describe "#new" do
 
-      it "should render the 'new' view" do
+      it "renders the 'new' view" do
         get :new, {grocery_item: attributes_for(:grocery_item), grocery_list_id: grocery_list.id}
         expect(response).to be_success
       end
@@ -36,24 +36,40 @@ describe GroceryItemsController do
         end
       end
 
-      context "when I try to create a grocery_list with complete params" do
+      context "when I try to create a grocery_item with complete params" do
         it "should redirect back to list page with item posted" do
           post :create, { grocery_item: attributes_for(:grocery_item), grocery_list_id: grocery_list.id}
           expect(response).to redirect_to(grocery_list_path(grocery_list))
         end
 
-        it "should create a new grocery_item" do
+        it "creates a new grocery_item" do
           expect do
             post :create, { grocery_item: attributes_for(:grocery_item), grocery_list_id: grocery_list.id}
           end.to change { GroceryItem.count }.by(1)
         end
       end
+
+      context "when I try to create a grocery_item with a name that already exists in that list" do
+        it "redirects to grocery list index" do
+          post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
+          post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
+          expect(response).to redirect_to(grocery_list_path(grocery_list))
+        end
+
+        it "does not save the new grocery item" do
+          expect{
+            post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
+            post :create, grocery_list_id: grocery_list.id, grocery_item: {name: "1" }
+          }.to change { GroceryItem.count }.by(1)
+        end
+      end
+
     end
 
     describe "#delete" do
       it { should route(:delete, '/grocery_items/1').to(action: :destroy, id: 1) }
 
-      it "should delete a grocery_item" do
+      it "deletes a grocery_item" do
         delete :destroy, :id => grocery_item
         GroceryItem.find_by_id(grocery_item.id).should be_nil
       end
@@ -67,7 +83,7 @@ describe GroceryItemsController do
 
   context "while not logged in" do
     describe "#new" do
-      it "should redirect to the login form" do
+      it "redirects to the login form" do
         get :new, {grocery_item: attributes_for(:grocery_item), grocery_list_id: grocery_list.id}
         expect(response).to redirect_to(new_user_session_path)
       end
