@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20130909205506) do
   create_table "expenses", force: true do |t|
     t.string   "name"
     t.string   "descrption"
-    t.integer  "amount"
+    t.integer  "total_cents"
     t.integer  "user_id"
     t.date     "purchased_on"
     t.datetime "created_at"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20130909205506) do
 
   create_table "settlements", force: true do |t|
     t.integer  "user_id"
-    t.integer  "amount",          default: 0
+    t.integer  "amount_cents",    default: 0
     t.integer  "grocery_list_id"
     t.integer  "expense_id"
     t.date     "date_paid"
