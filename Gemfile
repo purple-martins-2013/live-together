@@ -48,6 +48,10 @@ end
 
 gem 'devise'
 
+group :production do
+  # Suggested by heroku to to enable all platform features
+  gem 'rails_12factor'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
