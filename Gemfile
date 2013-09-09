@@ -32,6 +32,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'dotenv-rails'
+  gem 'selenium-webdriver'
 end
 
 group :test do
