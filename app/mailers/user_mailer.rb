@@ -10,7 +10,8 @@ class UserMailer < ActionMailer::Base
 
   def invitation_email(invitation)
     @email = invitation.email
-    @house = invitation.house
+    @user = invitation.user
+    @house = invitation.user.house
     @url = "http://live-together.herokuapp.com"
     mail(to: @email, subject: 'Someone invited you to join Live-Together')
   end

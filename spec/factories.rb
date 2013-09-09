@@ -39,7 +39,7 @@ FactoryGirl.define do
 
   factory :invitation do
     email "test@factory.com"
-    house
+    user
   end
 end
 
