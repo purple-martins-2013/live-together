@@ -7,6 +7,12 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   initialize: function(){
     this.listenTo(this.collection, 'add', this.addOne);
     this.listenTo(this.collection, 'reset', this.addAll);
+    this.collection.fetch({
+      reset: true,
+      success: function(){
+        console.log('chores fetch successful');
+      }
+    });
   },
 
   events: {

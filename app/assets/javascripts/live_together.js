@@ -10,7 +10,9 @@ window.LiveTogether = {
   },
   Routers: {},
   initialize: function() {
-    
+    Backbone.history.start();
+    this.router = new this.Routers.Houses();
+    this.router.navigate("house", {trigger:true});
   }
 };
 
