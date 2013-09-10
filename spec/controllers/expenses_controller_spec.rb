@@ -89,10 +89,10 @@ describe ExpensesController do
       end
     end
 
-    # describe "#create" do
-    #   it "should not create a chore" do
-    #     expect { post :create, {chore: attributes_for(:chore) } }.not_to change{Chore.count}
-    #   end
-    # end
+    describe "#create" do
+      it "should not create a expense" do
+        expect { post :create, {expense: attributes_for(:expense) } }.not_to change{Chore.count}
+      end
+    end
   end
 end
