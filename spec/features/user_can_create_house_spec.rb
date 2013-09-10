@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "user can create a house" do
+feature "user can create a house", feature: true do
 
   let(:user) { FactoryGirl.build(:user) }
   let(:house) { FactoryGirl.build(:house) }

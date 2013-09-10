@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "user can accept invitation" do
+feature "user can accept invitation", feature: true do
 
   let(:house) { FactoryGirl.create(:house) }
   let(:current_user) { house.users.first }
