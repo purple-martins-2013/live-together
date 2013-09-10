@@ -1,20 +1,31 @@
 LiveTogether.Views.Dashboard = Backbone.View.extend({
 
-  template: JST['dashboard'],
+  template: JST['house/dashboard'],
+
+  scaffoldTemplate: JST['house/scaffold'],
 
   el: '#houseMain',
 
   initialize: function(){
     console.log('dashboard view initialized');
+
+    // Initialize dashboard view
+    this.$el.html(this.scaffoldTemplate());
     this.$info = this.$('#houseInfo');
-    var that = this;
+    this.$leftPanel = this.$('#leftPanel');
+    this.$rightPanel = this.$('#rightPanel');
     this.listenTo(this.model, 'change', this.render);
     this.model.fetch();
 
     // Initialize chores view
     var chores = new LiveTogether.Collections.Chores();
-    that.choresView = new LiveTogether.Views.ChoresIndex({collection: chores});
-    that.$el.append(that.choresView.render().el);
+    this.choresView = new LiveTogether.Views.ChoresIndex({collection: chores});
+    this.$leftPanel.html(this.choresView.render().el);
+
+    // Initialize lists view
+    var lists = new LiveTogether.Collections.Lists();
+    this.listsView = new LiveTogether.Views.ListsIndex({collection: lists});
+    this.$rightPanel.append(this.listsView.render().el);
   },
 
   render: function(){
