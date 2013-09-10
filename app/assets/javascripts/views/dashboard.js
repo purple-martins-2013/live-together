@@ -49,6 +49,13 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
       that.usersView.$el.hide();
       that.$rightPanel.append(view.render().el);
     });
+  },
+
+  showCompletedChores: function(){
+    var completed = new LiveTogether.Collections.CompletedChores();
+    this.completedChoresView = new LiveTogether.Views.CompletedChoresIndex({collection: completed});
+    this.choresView.$el.hide();
+    this.$leftPanel.append(this.completedChoresView.render().el);
   }
 
 });

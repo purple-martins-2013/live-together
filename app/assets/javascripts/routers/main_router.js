@@ -2,7 +2,8 @@ LiveTogether.Routers.Main = Backbone.Router.extend({
 
   routes: {
     "": "houseDashboard",
-    "lists/:id": "showList"
+    "lists/:id": "showList",
+    "chores/completed": "showCompletedChores"
   },
 
   houseDashboard: function(){
@@ -13,6 +14,11 @@ LiveTogether.Routers.Main = Backbone.Router.extend({
   showList: function(id){
     console.log('show list route triggered with id', id);
     this.getDashBoardView().showList(id);
+  },
+
+  showCompletedChores: function(){
+    console.log('completed chores route triggered');
+    this.getDashBoardView().showCompletedChores();
   },
 
   getDashBoardView: function(){
