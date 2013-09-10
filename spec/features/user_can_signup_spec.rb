@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "user can sign up" do
+feature "user can sign up", feature: true do
 
   let(:user) { FactoryGirl.build(:user) }
 
