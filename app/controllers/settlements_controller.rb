@@ -13,10 +13,12 @@ class SettlementsController < ApplicationController
     @settlement = Settlement.find(params[:id])
   end
 
+  # change how created
   def new
-    @settlement = current_user.settlements.new
+    @settlement = Settlement.new
   end
 
+# needs updated
   def create
     @settlement = current_user.settlements.create(settlement_params)
     respond_to do |format|

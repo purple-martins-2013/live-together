@@ -47,7 +47,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-
+gem 'money-rails'
 gem 'devise'
 
 group :production do
