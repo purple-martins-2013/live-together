@@ -28,10 +28,10 @@ class GroceryListsController < ApplicationController
         format.json { render json: @grocery_list }
       rescue ActiveRecord::RecordNotUnique
         flash[:notice] = 'List already included in for house'
-        redirect_to grocery_lists_path
+        format.html { redirect_to grocery_lists_path }
       rescue ActiveRecord::RecordInvalid => e
         flash[:alert] = e.message
-        render "grocery_lists/new"
+        format.html { render "grocery_lists/new" }
       end
     end
 
