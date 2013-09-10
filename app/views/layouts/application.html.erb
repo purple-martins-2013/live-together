@@ -15,9 +15,9 @@
     <li class="toggle-topbar"><a href>Menu</a></li>
   </ul>
   <section class="top-bar-section">
-    <ul class="left">
-      <% if user_signed_in? %>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    <% if user_signed_in? %>
+
+      <ul class="left">
         <% if current_house %>
           <li>
             <%= link_to "Chores", chores_path %>
@@ -26,11 +26,24 @@
             <%= link_to "Grocery Lists", grocery_lists_path %>
           </li>
         <% end %>
-      <% else %>
+      </ul>
+
+      <ul class="right">
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <%= link_to current_user.name, root_path %>
+          <ul class="dropdown">
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="right">
+        <li class="divider"></li>
         <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <li><%= link_to "Login", new_user_session_path %></li>
-      <% end %>
-    </ul>
+      </ul>
+    <% end %>
+
   </section>
 </nav>
 
