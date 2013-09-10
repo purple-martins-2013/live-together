@@ -15,8 +15,6 @@ LiveTogether::Application.routes.draw do
   end
   resources :completed_chores, only: [:index]
 
-
   resources :expenses, only: [:index, :show, :new, :create]
   resources :settlements, only: [:index, :show, :new, :create, :update]
-
 end

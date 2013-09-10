@@ -53,8 +53,6 @@ FactoryGirl.define do
     amount_cents 500
     date_paid Date.today
     expense
-    grocery_list
-    user
   end
 end
 
