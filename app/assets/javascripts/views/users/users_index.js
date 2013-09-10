@@ -2,20 +2,16 @@ LiveTogether.Views.UsersIndex = Backbone.View.extend({
 
   template: JST['users/index'],
 
-  className: 'panel large-12 columns',
+  className: 'large-12 columns',
 
   initialize: function(){
+    this.$el.html(this.template());
     this.listenTo(this.collection, 'add', this.addOne);
     this.collection.fetch();
   },
 
   events: {
     "click .invite-user": "newUserForm"
-  },
-
-  render: function(){
-    this.$el.html(this.template());
-    return this;
   },
 
   addOne: function(model){

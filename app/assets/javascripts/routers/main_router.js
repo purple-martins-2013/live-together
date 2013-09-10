@@ -8,7 +8,10 @@ LiveTogether.Routers.Main = Backbone.Router.extend({
 
   houseDashboard: function(){
     console.log('main house dash route triggered');
-    this.getDashBoardView();
+    var dashboard = this.getDashBoardView();
+    dashboard.showChoresIndex();
+    dashboard.showUsersIndex();
+    dashboard.showListsIndex();
   },
 
   showList: function(id){

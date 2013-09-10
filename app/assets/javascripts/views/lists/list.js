@@ -2,7 +2,7 @@ LiveTogether.Views.List = Backbone.View.extend({
 
   template: JST['lists/show'],
 
-  className: 'panel large-12 columns',
+  className: 'large-12 columns',
 
   initialize: function(){
     console.log('show list view initialized with id:', this.model.id);
