@@ -48,6 +48,9 @@ end
 
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
 
 group :production do
   # Suggested by heroku to to enable all platform features
