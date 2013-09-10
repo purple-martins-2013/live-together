@@ -11,11 +11,6 @@ LiveTogether.Views.ListDashboard = Backbone.View.extend({
   render: function(){
     this.$el.html(this.template({list: this.model.attributes}));
     return this;
-  },
-
-  addOne: function(model){
-    var view = new LiveTogether.Views.ListDashboard({model: model});
-    this.$el.append(view.render().el);
   }
 
 });
