@@ -16,7 +16,6 @@
   </ul>
   <section class="top-bar-section">
     <% if user_signed_in? %>
-
       <ul class="left">
         <% if current_house %>
           <li>
@@ -27,15 +26,11 @@
           </li>
         <% end %>
       </ul>
-
       <ul class="right">
         <li class="divider"></li>
-        <li class="has-dropdown">
-          <%= link_to current_user.name, root_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
+        <li><%= link_to current_user.name, root_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       </ul>
     <% else %>
       <ul class="right">
@@ -43,7 +38,6 @@
         <li><%= link_to "Sign up", new_user_registration_path %></li>
       </ul>
     <% end %>
-
   </section>
 </nav>
 
