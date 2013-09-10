@@ -8,6 +8,7 @@ LiveTogether.Views.List = Backbone.View.extend({
     console.log('show list view initialized with id:', this.model.id);
     this.listenTo(this.model, 'change', this.render);
     this.listenTo(this.model.items, 'add', this.addOne);
+    this.model.fetch();
     this.model.items.fetch();
   },
 

@@ -16,12 +16,17 @@ LiveTogether.Routers.Main = Backbone.Router.extend({
 
   showList: function(id){
     console.log('show list route triggered with id', id);
-    this.getDashBoardView().showList(id);
+    var dashboard = this.getDashBoardView();
+    dashboard.showChoresIndex();
+    dashboard.showList(id);
   },
 
   showCompletedChores: function(){
     console.log('completed chores route triggered');
-    this.getDashBoardView().showCompletedChores();
+    var dashboard = this.getDashBoardView();
+    dashboard.showCompletedChores();
+    dashboard.showUsersIndex();
+    dashboard.showListsIndex();
   },
 
   getDashBoardView: function(){

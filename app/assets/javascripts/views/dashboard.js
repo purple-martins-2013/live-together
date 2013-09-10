@@ -44,15 +44,12 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
   },
 
   showList: function(id){
-    console.log('list shown with id', id);
-    var lists = this.lists.fetch();
-    var that = this;
-    lists.done(function(){
-      var list = that.lists.get(id);
-      var view = new LiveTogether.Views.List({model: list});
-      that.$rightUpperPanel.hide();
-      that.$rightLowerPanel.html(view.render().el);
-    });
+    var list = new LiveTogether.Models.List({id: id});
+    this.lists = this.lists || new LiveTogether.Collections.Lists();
+    this.lists.add(list, {silent: true});
+    var view = new LiveTogether.Views.List({model: list});
+    this.$rightUpperPanel.hide();
+    this.$rightLowerPanel.html(view.el);
   },
 
   showCompletedChores: function(){
