@@ -20,7 +20,7 @@ class HousesController < ApplicationController
     @house = House.create(house_params)
     if @house.persisted?
       current_user.update_attributes(house:@house)
-      redirect_to house_path @house
+      redirect_to root_path
     else
       render "houses/new"
     end
