@@ -11,13 +11,11 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
-  FactoryGirl.define do
-    factory :authentication do
-      user_id 1
-      provider "facebook"
-      uid "test uid string"
-      token "test token string"
-    end
+  factory :authentication do
+    user
+    provider "facebook"
+    uid "test uid string"
+    token "test token string"
   end
 
   factory :house do
