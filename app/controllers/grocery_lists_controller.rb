@@ -4,6 +4,10 @@ class GroceryListsController < ApplicationController
 
   def index
     @grocery_lists = current_user.house.grocery_lists
+    respond_to do |format|
+      format.html
+      format.json { render json: @grocery_lists }
+    end
   end
 
   def show
@@ -16,16 +20,19 @@ class GroceryListsController < ApplicationController
   def create
     @grocery_list = GroceryList.new(grocery_list_params)
 
-    begin
-      @grocery_list.house = current_user.house
-      @grocery_list.save!
-      redirect_to grocery_list_path @grocery_list
-    rescue ActiveRecord::RecordNotUnique
-      flash[:notice] = 'List already included in for house'
-      redirect_to grocery_lists_path
-    rescue ActiveRecord::RecordInvalid => e
-      flash[:alert] = e.message
-      render "grocery_lists/new"
+    respond_to do |format|
+      begin
+        @grocery_list.house = current_user.house
+        @grocery_list.save!
+        format.html { redirect_to grocery_list_path @grocery_list }
+        format.json { render json: @grocery_list }
+      rescue ActiveRecord::RecordNotUnique
+        flash[:notice] = 'List already included in for house'
+        redirect_to grocery_lists_path
+      rescue ActiveRecord::RecordInvalid => e
+        flash[:alert] = e.message
+        render "grocery_lists/new"
+      end
     end
 
   end

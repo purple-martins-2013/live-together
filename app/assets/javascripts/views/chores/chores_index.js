@@ -2,7 +2,7 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
 
   template: JST['chores/index'],
 
-  className: 'panel large-6 columns',
+  className: 'panel large-12 columns',
 
   initialize: function(){
     console.log('chores index view initialized');
