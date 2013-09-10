@@ -11,7 +11,7 @@ LiveTogether.Views.CompletedChore = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(this.template({chore: this.model.attributes}));
+    this.$el.html(this.template(this.model.attributes));
     return this;
   }
 
