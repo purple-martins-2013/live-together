@@ -2,7 +2,7 @@ LiveTogether.Routers.Main = Backbone.Router.extend({
 
   routes: {
     "house": "houseDashboard",
-    "user/:id": "userProfile"
+    "house/lists/:id": "showList"
   },
 
   houseDashboard: function(){
@@ -11,8 +11,8 @@ LiveTogether.Routers.Main = Backbone.Router.extend({
     var dashboardView = new LiveTogether.Views.Dashboard({model: house});
   },
 
-  userProfile: function(id){
-    console.log('user profile route triggered with id:', id);
+  showList: function(id){
+    console.log('show list route triggered with id', id);
   }
 
 });
