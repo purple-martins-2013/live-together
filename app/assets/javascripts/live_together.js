@@ -1,16 +1,15 @@
 window.LiveTogether = {
   Models: {
-    Created: {}
   },
   Collections: {
-    Created: {}
   },
   Views: {
-    Created: {}
   },
   Routers: {},
   initialize: function() {
-    
+    this.router = new LiveTogether.Routers.Main();
+    Backbone.history.start();
+    this.router.navigate("house", {trigger:true});
   }
 };
 

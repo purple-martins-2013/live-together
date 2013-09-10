@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   sequence :email do |n|
-    "email#{n}#{rand(2000)}@factory.com"
+    "email#{n}#{rand(20000)}@factory.com"
   end
 
   factory :user do
@@ -47,7 +47,23 @@ FactoryGirl.define do
   end
 
   factory :invitation do
-    email "test@factory.com"
+    email
+    user
+  end
+
+  factory :expense do
+    sequence(:name) {|n| "Expense #{n}"}
+    description "Expense description"
+    total_cents 1000
+    purchased_on Date.today
+    user
+  end
+
+  factory :settlement do
+    amount_cents 500
+    date_paid Date.today
+    expense
+    grocery_list
     user
   end
 end
