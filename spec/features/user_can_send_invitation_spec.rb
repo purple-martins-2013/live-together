@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "user can invite another user" do
+feature "user can invite another user", feature: true do
 
   before do
     @user = FactoryGirl.create(:user)
