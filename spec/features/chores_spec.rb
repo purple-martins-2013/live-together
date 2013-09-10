@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Chores List' do
+feature 'Chores List', feature: true do
 
   before(:all) do
     @user = FactoryGirl.create(:user)
