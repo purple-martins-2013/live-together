@@ -39,6 +39,6 @@ class SettlementsController < ApplicationController
   private
 
   def settlement_params
-    params.require(:settlement).permit(:amount_cents, :date_paid)
+    params.require(:settlement).permit(:expense, :amount_cents, :date_paid)
   end
 end
