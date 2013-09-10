@@ -47,15 +47,12 @@ FactoryGirl.define do
     description "Expense description"
     total_cents 1000
     purchased_on Date.today
-    user
   end
 
   factory :settlement do
     amount_cents 500
     date_paid Date.today
     expense
-    grocery_list
-    user
   end
 end
 
