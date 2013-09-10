@@ -1,6 +1,13 @@
 class GroceryItemsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    @grocery_list = GroceryList.find(params[:grocery_list_id]);
+    @items = @grocery_list.grocery_items
+    respond_to do |format|
+      format.json { render json: @items }
+    end
+  end
 
   def new
     @grocery_item = GroceryItem.new

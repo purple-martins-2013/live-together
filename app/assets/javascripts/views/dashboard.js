@@ -23,8 +23,8 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
     this.$leftPanel.html(this.choresView.render().el);
 
     // Initialize lists view
-    var lists = new LiveTogether.Collections.Lists();
-    this.listsView = new LiveTogether.Views.ListsIndex({collection: lists});
+    this.lists = new LiveTogether.Collections.Lists();
+    this.listsView = new LiveTogether.Views.ListsIndex({collection: this.lists});
     this.$rightPanel.append(this.listsView.render().el);
 
     // Initialize users view
@@ -40,7 +40,15 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
 
   showList: function(id){
     console.log('list shown with id', id);
-    var items = new LiveTogether.Collections.Items();
+    var lists = this.lists.fetch();
+    var that = this;
+    lists.done(function(){
+      var list = that.lists.get(id);
+      var view = new LiveTogether.Views.List({model: list});
+      that.listsView.$el.hide();
+      that.usersView.$el.hide();
+      that.$rightPanel.append(view.render().el);
+    });
   }
 
 });
