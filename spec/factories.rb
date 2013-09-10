@@ -8,6 +8,11 @@ FactoryGirl.define do
     email
     password 'password'
     password_confirmation 'password'
+
+    factory :user_with_house do
+      house
+    end
+
   end
 
   factory :house do
@@ -44,15 +49,17 @@ FactoryGirl.define do
 
   factory :expense do
     sequence(:name) {|n| "Expense #{n}"}
+    purchaser { FactoryGirl.create(:user_with_house) }
     description "Expense description"
     total_cents 1000
     purchased_on Date.today
   end
 
   factory :settlement do
+    contributor { FactoryGirl.create(:user) }
+    expense
     amount_cents 500
     date_paid Date.today
-    expense
   end
 end
 
