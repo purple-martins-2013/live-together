@@ -6,6 +6,7 @@ FactoryGirl.define do
 
   factory :user do
     email
+    name 'Test User'
     password 'password'
     password_confirmation 'password'
   end
