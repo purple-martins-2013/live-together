@@ -1,5 +1,7 @@
 LiveTogether::Application.routes.draw do
   devise_for :users
+  get '/auth/:provider/callback', to: 'authentications#create'
+
   root to: "houses#show"
 
   resources :chores, only: [:index, :show, :new, :create, :update]
