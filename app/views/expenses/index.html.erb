@@ -1,0 +1,12 @@
+<h1>Expense List</h1>
+<ul>
+<% @expenses.each do |expense| %>
+  <li>
+    <%= expense.name %>
+  </li>
+<% end %>
+</ul>
+
+<%= link_to 'New Expense', new_expense_path %>
+<br>
+
