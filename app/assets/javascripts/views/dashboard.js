@@ -36,6 +36,11 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
   render: function(){
     this.$info.html(this.template({house: this.model.attributes}));
     return this;
+  },
+
+  showList: function(id){
+    console.log('list shown with id', id);
+    var items = new LiveTogether.Collections.Items();
   }
 
 });
