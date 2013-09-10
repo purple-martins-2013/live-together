@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :invitations
   has_many :expenses, foreign_key: :purchaser_id
   has_many :settlements, foreign_key: :contributor_id
+  has_many :completed_chores
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
