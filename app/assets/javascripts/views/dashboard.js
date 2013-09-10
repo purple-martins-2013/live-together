@@ -26,6 +26,11 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
     var lists = new LiveTogether.Collections.Lists();
     this.listsView = new LiveTogether.Views.ListsIndex({collection: lists});
     this.$rightPanel.append(this.listsView.render().el);
+
+    // Initialize users view
+    var users = new LiveTogether.Collections.Users();
+    this.usersView = new LiveTogether.Views.UsersIndex({collection: users});
+    this.$rightPanel.prepend(this.usersView.render().el);
   },
 
   render: function(){
