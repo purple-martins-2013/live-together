@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'user can logout' do
+feature 'user can logout', feature: true do
 
   let(:user) { FactoryGirl.create(:user) }
 
