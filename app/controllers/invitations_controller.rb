@@ -2,12 +2,18 @@ class InvitationsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    if @invitation = current_user.invitations.create(invitation_params)
-      UserMailer.invitation_email(@invitation).deliver
-      flash[:notice] = "Invitation sent to #{invitation_params[:email]}"
-      redirect_to :back
-    else
-      flash[:notice] = "Invitation sent to #{invitation_params[:email]}"
+    @invitation = current_user.invitations.create(invitation_params)
+
+    respond_to do |format|
+      if @invitation
+        UserMailer.invitation_email(@invitation).deliver
+        flash[:notice] = "Invitation sent to #{invitation_params[:email]}"
+        format.html { redirect_to :back }
+      else
+        flash[:notice] = "Invitation sent to #{invitation_params[:email]}"
+        format.html
+      end
+      format.json { render json: @invitation }
     end
   end
 

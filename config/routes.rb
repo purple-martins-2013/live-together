@@ -2,6 +2,8 @@ LiveTogether::Application.routes.draw do
   devise_for :users
   root to: "houses#show"
 
+  resources :users, only: [:index]
+
   resources :chores, only: [:index, :show, :new, :create, :update]
   resources :houses, only: [:show, :new, :create]
   resources :grocery_lists do
