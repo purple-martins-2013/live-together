@@ -18,7 +18,8 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   },
 
   events: {
-    "click .new-chore": "newChoreForm"
+    "click .new-chore": "newChoreForm",
+    "click .completed-chores": "completedChores"
   },
 
   render: function(){
@@ -39,6 +40,10 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   newChoreForm: function(){
     var view = new LiveTogether.Views.ChoreForm({collection: this.collection});
     this.$el.append(view.render().$el.hide().fadeIn());
+  },
+
+  completedChores: function(){
+    LiveTogether.router.navigate('chores/completed', {trigger: true});
   }
 
 });

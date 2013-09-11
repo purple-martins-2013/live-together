@@ -1,7 +1,7 @@
 LiveTogether.Routers.Main = Backbone.Router.extend({
 
   routes: {
-    "": "houseDashboard",
+    "house": "houseDashboard",
     "lists/:id": "showList",
     "chores/completed": "showCompletedChores"
   },
