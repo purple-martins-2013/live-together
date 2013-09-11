@@ -18,8 +18,9 @@
     <center><h3>Create a new account</h3></center>
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <div data-alert class="alert-box alert"><%= devise_error_messages! %></div>
-
+      <% if ! devise_error_messages!.empty? %>
+        <div data-alert class="alert-box alert"><%= devise_error_messages! %></div>
+      <% end %>
 
       <div><%= f.label :email %><br />
       <%= f.email_field :email, :autofocus => true %></div>
