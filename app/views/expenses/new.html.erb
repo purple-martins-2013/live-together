@@ -1,1 +1,27 @@
-<h1>Temp New Expense List</h1>
+<h1>New Expense List</h1>
+
+<%= form_for @expense do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :total_cents %>
+  <%= f.number_field :total_cents %>
+  <%= f.label :purchased_on %>
+  <%= f.date_field :purchased_on %>
+  <br>
+  <br>
+  <br>
+  <div class="contributors">
+    <% @contributors.each do |user| %>
+      <%= check_box_tag "expense[contributor_ids][]", user.id %>
+      <%= user.name%>
+    <% end %>
+
+  </div>
+
+
+  <%= f.submit "Submit", class: "button success" %>
+
+<% end %>

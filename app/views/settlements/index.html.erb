@@ -2,10 +2,16 @@
 <ul>
 <% @settlements.each do |settlement| %>
   <li>
-    <%= settlement.name %>
+    <p><%= settlement.contributor.name %> ows <%= settlement.expense.purchaser.name %> : $ <%= settlement.amount_cents/100 %> for <%= settlement.expense.name %> on <%= settlement.expense.purchased_on %>   </p>
   </li>
 <% end %>
 </ul>
-
-<%= link_to 'New settlement', new_settlement_path %>
 <br>
+<h3>Debts</h3>
+<% @debts.each do |debt| %>
+  <li>
+    <p><%= debt[0].name %> : $ <%= debt[1]/100 %></p>
+  </li>
+<% end %>
+
+</ul>
