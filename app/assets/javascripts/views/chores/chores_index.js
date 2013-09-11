@@ -7,10 +7,11 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   initialize: function(){
     console.log('chores index view initialized');
     this.$el.html(this.template());
-    this.listenTo(this.collection, 'add', this.addOne);
+    this.listenTo(this.collection, 'add', this.addAll);
     this.listenTo(this.collection, 'reset', this.addAll);
+    this.listenTo(this.collection, 'sort', this.addAll);
     if (this.collection.length === 0){
-      this.collection.fetch();
+      this.collection.fetch({reset: true});
     } else {
       this.addAll();
     }
@@ -26,6 +27,7 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   },
 
   addAll: function(){
+    this.$el.find('tbody').empty();
     this.collection.each(this.addOne, this);
   },
 

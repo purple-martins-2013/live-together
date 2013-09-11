@@ -20,9 +20,12 @@ LiveTogether.Views.Chore = Backbone.View.extend({
   },
 
   completeChore: function(){
+    var that = this;
     this.model.save({last_completed: new Date()}, {
       wait: true,
       patch: true
+    }).done(function(){
+      that.model.collection.sort();
     });
   }
 
