@@ -23,3 +23,12 @@ li {
 .nav {
   padding: 0px;
 }
+
+button.small.button {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+input.small.button {
+  margin-bottom: 4px;
+}
