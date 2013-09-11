@@ -33,10 +33,12 @@ group :development, :test do
   gem 'simplecov'
   gem 'dotenv-rails'
   gem 'selenium-webdriver'
+  gem 'debugger'
 end
 
 group :test do
   gem 'launchy'
+  gem 'database_cleaner'
 end
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -49,6 +51,9 @@ end
 
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
 
 group :production do
   # Suggested by heroku to to enable all platform features
