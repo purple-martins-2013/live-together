@@ -33,10 +33,13 @@
     </ul>
   </section>
 </nav>
-
-<% if alert || notice %>
-  <div class="notice"><%= notice %></div>
-  <div class="alert"><%= alert %></div>
+<% if ! flash.empty? %>
+  <div alert class="button alert">
+    <% if alert || notice %>
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+    <% end %>
+  </div>
 <% end %>
 
 <div class="row">
