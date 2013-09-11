@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20130909230425) do
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "house_id"
   end
 
   create_table "expenses", force: true do |t|

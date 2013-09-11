@@ -2,12 +2,11 @@ LiveTogether.Views.ChoreForm = Backbone.View.extend({
 
   template: JST['chores/new'],
 
-  tagName: 'form',
-
   className: 'new-chore-form',
 
   events: {
-    "submit" : "createChore"
+    "submit" : "createChore",
+    "click .cancel-form": "cancelForm"
   },
 
   render: function(){
@@ -26,6 +25,12 @@ LiveTogether.Views.ChoreForm = Backbone.View.extend({
   createChore: function(e){
     e.preventDefault();
     this.collection.create(this.serialize());
+    this.$el.fadeOut(function(){
+      this.remove();
+    });
+  },
+
+  cancelForm: function(){
     this.$el.fadeOut(function(){
       this.remove();
     });
