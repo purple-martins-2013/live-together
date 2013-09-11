@@ -18,15 +18,18 @@ class GroceryItemsController < ApplicationController
     @grocery_list = GroceryList.find(params[:grocery_list_id])
     @grocery_item = @grocery_list.grocery_items.new(grocery_item_params)
 
-    begin
-      @grocery_item.save!
-      redirect_to grocery_list_path(@grocery_list)
-    rescue ActiveRecord::RecordNotUnique
-      flash[:notice] = 'Item already included in list'
-      redirect_to grocery_list_path(@grocery_list)
-    rescue ActiveRecord::RecordInvalid => e
-      flash[:alert] = e.message
-      redirect_to new_grocery_list_grocery_item_path
+    respond_to do |format|
+      begin
+        @grocery_item.save!
+        format.html { redirect_to grocery_list_path(@grocery_list) }
+        format.json { render json: @grocery_item }
+      rescue ActiveRecord::RecordNotUnique
+        flash[:notice] = 'Item already included in list'
+        format.html { redirect_to grocery_list_path(@grocery_list) }
+      rescue ActiveRecord::RecordInvalid => e
+        flash[:alert] = e.message
+        format.html { redirect_to new_grocery_list_grocery_item_path }
+      end
     end
   end
 

@@ -12,6 +12,10 @@ LiveTogether.Views.List = Backbone.View.extend({
     this.model.items.fetch();
   },
 
+  events: {
+    "click .new-item": "newItemForm"
+  },
+
   render: function(){
     this.$el.html(this.template({list: this.model.attributes}));
     return this;
@@ -20,6 +24,11 @@ LiveTogether.Views.List = Backbone.View.extend({
   addOne: function(model){
     var view = new LiveTogether.Views.Item({model: model});
     this.$el.find('#itemsContainer').append(view.render().el);
+  },
+
+  newItemForm: function(){
+    var view = new LiveTogether.Views.ItemForm({collection: this.model.items});
+    this.$el.append(view.render().el);
   }
 
 });
