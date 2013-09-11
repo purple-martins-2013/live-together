@@ -15,6 +15,10 @@ LiveTogether.Views.CompletedChoresIndex = Backbone.View.extend({
     }
   },
 
+  events: {
+    "click .view-chores": "viewChores"
+  },
+
   addAll: function(){
     this.collection.each(this.addOne, this);
   },
@@ -22,6 +26,10 @@ LiveTogether.Views.CompletedChoresIndex = Backbone.View.extend({
   addOne: function(model){
     var view = new LiveTogether.Views.CompletedChore({model: model});
     this.$el.find('tbody').append(view.render().el);
+  },
+
+  viewChores: function(){
+    LiveTogether.router.navigate('house', {trigger: true});
   }
 
 });
