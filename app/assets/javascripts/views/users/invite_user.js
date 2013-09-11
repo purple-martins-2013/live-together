@@ -2,12 +2,11 @@ LiveTogether.Views.UserForm = Backbone.View.extend({
 
   template: JST['users/invite'],
 
-  tagName: 'form',
-
   className: 'invite-user-form',
 
   events: {
-    "submit" : "createInvitation"
+    "submit" : "createInvitation",
+    "click .cancel-form": "cancelForm"
   },
 
   render: function(){
@@ -24,6 +23,12 @@ LiveTogether.Views.UserForm = Backbone.View.extend({
   createInvitation: function(e){
     e.preventDefault();
     this.collection.create(this.serialize());
+    this.$el.fadeOut(function(){
+      this.remove();
+    });
+  },
+
+  cancelForm: function(){
     this.$el.fadeOut(function(){
       this.remove();
     });
