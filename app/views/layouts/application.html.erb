@@ -41,12 +41,16 @@
   </section>
 </nav>
 <% if ! flash.empty? %>
-  <a href="#" class="button alert disabled">
+  <center>
     <% if alert || notice %>
-      <div class="notice"><%= notice %></div>
-      <div class="alert"><%= alert %></div>
+      <% if notice %>
+        <a href="#" class="button success disabled"><div class="notice"><%= notice %></div></a>
+      <% end %>
+      <% if alert %>
+        <a href="#" class="button alert disabled"><div class="alert"><%= alert %></div></a>
+      <% end %>
     <% end %>
-  </a>
+  </center>
 <% end %>
 
 <div class="row">
