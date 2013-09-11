@@ -2,7 +2,7 @@ class ChoresController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @chores = current_house.chores.load.order("due_date ASC")
+    @chores = current_house.chores.load
     respond_to do |format|
       format.html
       format.json { render json: @chores }
