@@ -7,7 +7,7 @@ LiveTogether::Application.routes.draw do
   resources :chores, only: [:index, :show, :new, :create, :update]
   resources :houses, only: [:show, :new, :create]
   resources :grocery_lists do
-    resources :grocery_items, only: [:new, :create, :show]
+    resources :grocery_items, only: [:new, :create, :show, :index]
   end
 
   resources :grocery_items, only: [:destroy]
@@ -18,5 +18,5 @@ LiveTogether::Application.routes.draw do
   resources :completed_chores, only: [:index]
 
   resources :expenses, only: [:index, :show, :new, :create]
-  resources :payments [:index, :show, :new, :create, :destroy]
+  resources :payments, only: [:index, :show, :new, :create, :destroy]
 end

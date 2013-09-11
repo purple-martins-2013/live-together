@@ -27,7 +27,7 @@ class ChoresController < ApplicationController
 
   def update
     @chore = Chore.find(params[:id])
-    @chore.complete!(current_user) if params[:chore][:last_completed]
+    @chore.complete!(current_user, current_house) if params[:chore][:last_completed]
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { render json: @chore }

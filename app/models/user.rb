@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :expenses, foreign_key: :purchaser_id
   has_many :debts, foreign_key: :borrower_id
   has_many :payments, foreign_key: :borrower_id
+  has_many :completed_chores
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
