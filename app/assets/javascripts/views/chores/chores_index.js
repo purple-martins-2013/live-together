@@ -9,7 +9,11 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
     this.$el.html(this.template());
     this.listenTo(this.collection, 'add', this.addOne);
     this.listenTo(this.collection, 'reset', this.addAll);
-    this.collection.fetch();
+    if (this.collection.length === 0){
+      this.collection.fetch();
+    } else {
+      this.addAll();
+    }
   },
 
   events: {
@@ -22,7 +26,7 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   },
 
   addAll: function(){
-    console.log('addAll executed');
+    this.collection.each(this.addOne, this);
   },
 
   addOne: function(model){

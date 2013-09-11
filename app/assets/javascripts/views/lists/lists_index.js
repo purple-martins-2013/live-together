@@ -7,7 +7,11 @@ LiveTogether.Views.ListsIndex = Backbone.View.extend({
   initialize: function(){
     this.$el.html(this.template());
     this.listenTo(this.collection, 'add', this.addOne);
-    this.collection.fetch();
+    if (this.collection.length === 0){
+      this.collection.fetch();
+    } else {
+      this.addAll();
+    }
   },
 
   events: {
@@ -17,6 +21,10 @@ LiveTogether.Views.ListsIndex = Backbone.View.extend({
   render: function(){
     this.delegateEvents(this.events);
     return this;
+  },
+
+  addAll: function(){
+    this.collection.each(this.addOne, this);
   },
 
   addOne: function(model){
