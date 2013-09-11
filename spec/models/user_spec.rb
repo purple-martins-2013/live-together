@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe User do
 
-  let(:user) { FactoryGirl.create(:user) }
-
   describe "validations" do
     it { should validate_uniqueness_of :email }
     it { should validate_presence_of :email }
@@ -40,12 +38,9 @@ describe User do
         auth = {'info' => attributes_for(:user).stringify_keys, "provider" => "anything", "uid" => "something", "credentials" => {"token" => "a token"}}
         user = User.find_or_create_by_omniauth(auth)
         expect { user.authentications }.to_not eq(nil)
-
       end
 
-      # fix to make sure user = user with factorygirl
       it "returns user" do
-        let(:user) { create(:user) }
         auth = {'info' => attributes_for(:user).stringify_keys, "provider" => "anything", "uid" => "something", "credentials" => {"token" => "a token"}}
         user = User.find_or_create_by_omniauth(auth)
         expect { user }.to_not eq(nil)
