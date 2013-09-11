@@ -1,35 +1,35 @@
-<h2>Create house</h2>
+<div class="row">
+  <div class="large-8 columns">
+  <h2>Create house</h2>
 
-<%= form_for @house do |f| %>
+  <%= form_for @house do |f| %>
+    <% if @house.errors.any? %>
+      <div data-alert class="alert-box alert">
+        <h4><%= pluralize(@house.errors.count, 'error') %> prevented the house from being saved.</h4>
+        <ul>
+        <% @house.errors.full_messages.each do |error_msg| %>
+          <li><%= error_msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <% if @house.errors.any? %>
-    <div>
-      <h2><%= pluralize(@house.errors.count, 'error') %> prevented the house from being saved..</h2>
-      <ul>
-      <% @house.errors.full_messages.each do |error_msg| %>
-        <li><%= error_msg %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+
+    <%= f.submit "Create house" %>
   <% end %>
-
-  <%= f.text_field :name %>
-  <%= f.text_field :address %>
-
-  <%= f.submit "Create house" %>
-<% end %>
-
-<% if @invitations %>
-  <div class="large-12 columns">
-    <h3>Your invitations</h3>
-    <ul>
-      <% @invitations.each do |invitation| %>
-        <li>
-          <%= invitation.user.house.name %>
-          <br>
-          <%= link_to "Accept", accept_invitation_path(invitation) %>
-        </li>
-      <% end %>
-    </ul>
   </div>
-<% end %>
+
+  <div class="large-4 columns">
+  <% if @invitations %>
+    <h2>Your invitations</h2>
+    <% @invitations.each do |invitation| %>
+      <%= invitation.user.house.name %> |
+      <%= link_to "Join the house", accept_invitation_path(invitation) %>
+    <% end %>
+  <% end %>
+  </div>
+</div>

@@ -12,3 +12,6 @@
   display: inline-block;
 }
 
+.alert-box h4 {
+  color: white;
+}
