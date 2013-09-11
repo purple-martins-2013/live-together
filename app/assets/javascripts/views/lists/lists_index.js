@@ -14,6 +14,11 @@ LiveTogether.Views.ListsIndex = Backbone.View.extend({
     "click .new-list": "newListForm"
   },
 
+  render: function(){
+    this.delegateEvents(this.events);
+    return this;
+  },
+
   addOne: function(model){
     var view = new LiveTogether.Views.ListDashboard({model: model});
     this.$el.find('#listsContainer').append(view.render().el);

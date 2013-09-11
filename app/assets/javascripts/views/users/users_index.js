@@ -14,6 +14,11 @@ LiveTogether.Views.UsersIndex = Backbone.View.extend({
     "click .invite-user": "newUserForm"
   },
 
+  render: function(){
+    this.delegateEvents(this.events);
+    return this;
+  },
+
   addOne: function(model){
     var view = new LiveTogether.Views.UserDashboard({model: model});
     this.$el.find('#usersContainer').append(view.render().el);

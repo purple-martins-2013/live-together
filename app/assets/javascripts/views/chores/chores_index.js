@@ -16,6 +16,11 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
     "click .new-chore": "newChoreForm"
   },
 
+  render: function(){
+    this.delegateEvents(this.events);
+    return this;
+  },
+
   addAll: function(){
     console.log('addAll executed');
   },

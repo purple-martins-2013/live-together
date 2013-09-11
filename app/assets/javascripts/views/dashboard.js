@@ -27,34 +27,34 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
   showChoresIndex: function(){
     this.chores = this.chores || new LiveTogether.Collections.Chores();
     this.choresView = this.choresView || new LiveTogether.Views.ChoresIndex({collection: this.chores});
-    this.$leftPanel.html(this.choresView.el);
+    this.$leftPanel.html(this.choresView.render().el);
   },
 
   showListsIndex: function(){
     this.lists = this.lists || new LiveTogether.Collections.Lists();
     this.listsView = this.listsView || new LiveTogether.Views.ListsIndex({collection: this.lists});
-    this.$rightLowerPanel.html(this.listsView.el);
+    this.$rightLowerPanel.html(this.listsView.render().el);
   },
 
   showUsersIndex: function(){
     this.users = this.users || new LiveTogether.Collections.Users();
     this.usersView = this.usersView || new LiveTogether.Views.UsersIndex({collection: this.users});
-    this.$rightUpperPanel.html(this.usersView.el);
+    this.$rightUpperPanel.html(this.usersView.render().el);
     this.$rightUpperPanel.show();
   },
 
   showList: function(id){
     var list = new LiveTogether.Models.List({id: id});
-    this.lists = this.lists || new LiveTogether.Collections.Lists();
-    this.lists.add(list, {silent: true});
+    var lists = new LiveTogether.Collections.Lists();
+    lists.add(list, {silent: true});
     var view = new LiveTogether.Views.List({model: list});
     this.$rightUpperPanel.hide();
-    this.$rightLowerPanel.html(view.el);
+    this.$rightLowerPanel.html(view.render().el);
   },
 
   showCompletedChores: function(){
     this.completedChores = this.completedChores || new LiveTogether.Collections.CompletedChores();
     this.completedChoresView = this.completedChoresView || new LiveTogether.Views.CompletedChoresIndex({collection: this.completedChores});
-    this.$leftPanel.html(this.completedChoresView.el);
+    this.$leftPanel.html(this.completedChoresView.render().el);
   }
 });

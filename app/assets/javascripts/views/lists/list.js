@@ -18,7 +18,6 @@ LiveTogether.Views.List = Backbone.View.extend({
   },
 
   addOne: function(model){
-    console.log('item view rendered:', model);
     var view = new LiveTogether.Views.Item({model: model});
     this.$el.find('#itemsContainer').append(view.render().el);
   }
