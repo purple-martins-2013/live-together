@@ -15,3 +15,11 @@
 .alert-box h4 {
   color: white;
 }
+
+li {
+  padding: 2px 0px;
+}
+
+.nav {
+  padding: 0px;
+}
