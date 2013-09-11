@@ -12,10 +12,10 @@
         <%= f.email_field :email, :autofocus => true %></div>
       <div><%= f.label :password %><br />
         <%= f.password_field :password %></div>
-      <% if devise_mapping.rememberable? -%>
-        <div><%= f.check_box :remember_me %><%= label_tag :remember_me, nil, :class => "box-tag" %></div>
-      <% end -%>
-      <div><%= f.submit "Sign in", :class => "small button success" %></div>
+
+      <div><%= f.submit "Sign in", :class => "small button success" %><% if devise_mapping.rememberable? %>
+        <%= f.check_box :remember_me %><%= label_tag :remember_me, nil, :class => "box-tag" %>
+      <% end %></div>
     <% end %>
     <%= render "devise/shared/links" %>
   </div>
