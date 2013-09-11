@@ -1,11 +1,11 @@
-LiveTogether.Views.ListForm = Backbone.View.extend({
+LiveTogether.Views.ItemForm = Backbone.View.extend({
 
-  template: JST['lists/new'],
+  template: JST['items/new'],
 
-  className: 'new-list-form',
+  className: 'new-item-form',
 
   events: {
-    "submit" : "createList",
+    "submit" : "createItem",
     "click .cancel-form": "cancelForm"
   },
 
@@ -16,11 +16,11 @@ LiveTogether.Views.ListForm = Backbone.View.extend({
 
   serialize: function(){
     return {
-      name: this.$el.find("input[name='name']").val(),
+      name: this.$el.find("input[name='name']").val()
     };
   },
 
-  createList: function(e){
+  createItem: function(e){
     e.preventDefault();
     this.collection.create(this.serialize());
     this.$el.fadeOut(function(){

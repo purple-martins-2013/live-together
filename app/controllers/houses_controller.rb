@@ -17,11 +17,10 @@ class HousesController < ApplicationController
   end
 
   def create
-    @house = House.new(house_params)
-    if @house.save
-      current_user.house = @house
-      current_user.save
-      redirect_to house_path @house
+    @house = House.create(house_params)
+    if @house.persisted?
+      current_user.update_attributes(house:@house)
+      redirect_to root_path
     else
       render "houses/new"
     end
