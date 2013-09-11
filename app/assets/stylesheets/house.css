@@ -7,3 +7,7 @@
   font-size: 18px;
   color: white;
 }
+
+.box-tag {
+  display: inline-block;
+}

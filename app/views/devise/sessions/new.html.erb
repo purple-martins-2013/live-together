@@ -1,5 +1,5 @@
 <div class="row">
-  <center><h1>Welcome to LiveTogeteher</h1>
+  <center><h1>Welcome to LiveTogether</h1>
     <h3>Sign in to start living together</h3></center>
 </div>
 <div class="row">
@@ -13,7 +13,7 @@
       <div><%= f.label :password %><br />
         <%= f.password_field :password %></div>
       <% if devise_mapping.rememberable? -%>
-        <div><%= f.check_box :remember_me %><%= label_tag :remember_me%></div>
+        <div><%= f.check_box :remember_me %><%= label_tag :remember_me, nil, :class => "box-tag" %></div>
       <% end -%>
       <div><%= f.submit "Sign in", :class => "small button success" %></div>
     <% end %>
