@@ -6,4 +6,12 @@ class ApplicationController < ActionController::Base
   def current_house
     current_user.house
   end
+
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :remember_me, :house_id) }
+  end
 end

@@ -1,18 +1,37 @@
-<h2>Sign up</h2>
+<div class="row">
+  <center>
+    <h2>Sign up</h2>
+    <h4>You can log in with facebook or create a new account.</h4>
+  </center>
+<hr>
+</div>
+<div class="row">
+  <div class="large-6 columns">
+    <center><h3>Login with facebook</h3>
+      <br>
+    <p>Tired of remembering all those passwords for every site ? <br/> You can access live-together using facebook.</p>
+    <%= link_to 'Login with Facebook', '/auth/facebook/', :class => "button" %>
+    </center>
+  </div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="large-6 columns">
+    <center><h3>Create a new account</h3></center>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email, :autofocus => true %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+      <div><%= f.label :name %><br />
+        <%= f.text_field :name %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <div><%= f.label :password %><br />
+      <%= f.password_field :password %></div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+      <div><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %></div>
 
-<%= render "devise/shared/links" %>
+      <div><%= f.submit "Sign up" , :class => "small button success" %></div>
+    <% end %>
+  </div>
+</div>

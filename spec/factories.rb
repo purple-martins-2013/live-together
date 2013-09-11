@@ -6,6 +6,7 @@ FactoryGirl.define do
 
   factory :user do
     email
+    name 'Test User'
     password 'password'
     password_confirmation 'password'
 
@@ -13,6 +14,13 @@ FactoryGirl.define do
       house
     end
 
+  end
+
+  factory :authentication do
+    user
+    provider "facebook"
+    uid "test uid string"
+    token "test token string"
   end
 
   factory :house do
