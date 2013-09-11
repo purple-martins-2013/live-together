@@ -36,16 +36,25 @@ describe User do
         }.to change(User, :count).by(1)
       end
 
-      # it "returns user"
+      it "authenticates user" do
+        auth = {'info' => attributes_for(:user).stringify_keys, "provider" => "anything", "uid" => "something", "credentials" => {"token" => "a token"}}
+        user = User.find_or_create_by_omniauth(auth)
+        expect { user.authentications }.to_not eq(nil)
+
+      end
+
+      # fix to make sure user = user with factorygirl
+      it "returns user" do
+        let(:user) { create(:user) }
+        auth = {'info' => attributes_for(:user).stringify_keys, "provider" => "anything", "uid" => "something", "credentials" => {"token" => "a token"}}
+        user = User.find_or_create_by_omniauth(auth)
+        expect { user }.to_not eq(nil)
+      end
     end
 
-    # it "responds to :find_or_create_by_omniauth method" do
-    #   User.should respond_to(:find_or_create_by_omniauth).with(1).argument
-    # end
-
-    # subject {User}
-    #   it { should respond_to(:find_or_create_by_omniauth).with(1).argument}
-
+    it "responds to :find_or_create_by_omniauth method" do
+      User.should respond_to(:find_or_create_by_omniauth).with(1).argument
+    end
 
 
   end
