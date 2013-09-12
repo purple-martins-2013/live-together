@@ -31,6 +31,8 @@ class PaymentsController < ApplicationController
   end
 
   def destroy
+    Payment.find_by_id(params[:id]).destroy
+    redirect_to payments_path
   end
 
   def payment_request

@@ -63,11 +63,14 @@ FactoryGirl.define do
     purchased_on Date.today
   end
 
-  factory :settlement do
-    contributor { FactoryGirl.create(:user) }
-    expense
-    amount_cents 500
-    date_paid Date.today
+  factory :payment do
+    borrower { create(:user) }
+    # expense
+    lender {create(:user)}
+    description "Payment description"
+    amount 500.00
+    date Date.today
+    method "cash"
   end
 end
 
