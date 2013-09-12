@@ -43,4 +43,39 @@ feature 'Dashboard', feature: true, js: true do
       end
     end
   end
+
+  describe "grocery lists" do
+    describe "adding a list" do
+      before do
+        click_button "Add list"
+        fill_in "name", with: "Test list"
+        click_button "Create"
+      end
+
+      it "adds the new list to the index view and hides the form" do
+        expect(page).to have_css("li", text: "Test list")
+        expect(page).not_to have_css('.new-list-form')
+      end
+
+      describe "viewing the added list" do
+        before do
+          click_link "Test list"
+        end
+
+        it "displays the correct list and add item form" do
+          expect(page).to have_css('h3', text: "Test list")
+          click_button "Add item"
+          expect(page).to have_css('.new-item-form')
+        end
+
+        it "can add items to the list" do
+          click_button "Add item"
+          fill_in "name", with: "A test item"
+          click_button "Create"
+          expect(page).to have_css('li', text: "A test item")
+          expect(page).not_to have_css('.new-item-form')
+        end
+      end
+    end
+  end
 end
