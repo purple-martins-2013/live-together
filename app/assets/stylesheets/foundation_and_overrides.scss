@@ -15,10 +15,10 @@
 // $em-base: 16px;
 
 // We use these to control various global styles
-// $body-bg: #fff;
+// $body-bg: #ddd;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-// $body-font-weight: normal;
+// $body-font-family: "Helvetica Neue Light", "Helvetica", Helvetica, Arial, sans-serif;
+// $body-font-weight: 300;
 // $body-font-style: normal;
 
 // We use this to control font-smoothing
@@ -85,8 +85,8 @@
 //
 
 // We use these to control header font styles
-// $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-// $header-font-weight: bold;
+$header-font-family: "Helvetica Neue Light", "Helvetica", Helvetica, Arial, sans-serif;
+$header-font-weight: 300;
 // $header-font-style: normal;
 // $header-font-color: #222;
 // $header-line-height: 1.4;
@@ -971,9 +971,9 @@
 $topbar-bg: #172CAF;
 
 // Height and margin
-$topbar-height: 52px;
+$topbar-height: 45px;
 $topbar-line-height: 1 em;
-// $topbar-margin-bottom: emCalc(30px);
+$topbar-margin-bottom: emCalc(0px);
 
 // Control Input height for top bar
 // $topbar-input-height: 2.45em;
