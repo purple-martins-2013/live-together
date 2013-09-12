@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :name
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable
 
   def self.find_or_create_by_omniauth(auth)
     authentication = Authentication.find_by_provider_and_uid(auth['provider'], auth['uid'])
@@ -28,6 +28,24 @@ class User < ActiveRecord::Base
     user.save
     user.authentications.create(provider: auth['provider'], uid: auth['uid'], token: auth['credentials']['token'])
     user
+  end
+
+  def roomates
+    User.where(house: self.house).where.not(id: self.id)
+  end
+
+  def settlements
+    self.roomates.map do |roomate|
+      {roomate: roomate, balance: debt_with(roomate)}
+    end
+  end
+
+  def debt_with(roomate)
+    debts = Debt.where(borrower: self, lender: roomate).sum(:amount_cents)
+    loans = Debt.where(borrower: roomate, lender: self).sum(:amount_cents)
+    payments_sent = Payment.where(borrower: self, lender: roomate).sum(:amount_cents)
+    payments_received = Payment.where(borrower: roomate, lender: self).sum(:amount_cents)
+    return loans - debts + payments_sent - payments_received
   end
 
 end
