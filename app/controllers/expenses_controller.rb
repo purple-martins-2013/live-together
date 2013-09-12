@@ -2,11 +2,9 @@ class ExpensesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @expenses = current_user.expenses.load
-    respond_to do |format|
-      format.html
-      format.json { render json: @expenses }
-    end
+    @house_expenses =Expense.where(purchaser_id: current_house.users)
+    # @expenses = current_user.expenses.load
+    @user_debts = Debt.where( borrower: current_user)
   end
 
   def show
