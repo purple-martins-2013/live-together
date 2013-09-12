@@ -34,6 +34,7 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
 
   addOne: function(model){
     var view = new LiveTogether.Views.Chore({model: model});
+    view.users = this.users;
     this.$el.find('tbody').append(view.render().el);
   },
 

@@ -29,6 +29,8 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
     var that = this;
     this.chores = this.chores || new LiveTogether.Collections.Chores();
     this.choresView = new LiveTogether.Views.ChoresIndex({collection: this.chores});
+    this.users = this.users || new LiveTogether.Collections.Users();
+    this.choresView.users = this.users;
     if (this.$leftPanel.html().length === 0) {
       this.$leftPanel.html(this.choresView.render().$el.addClass('front'));
     } else if (this.completedChoresView) {

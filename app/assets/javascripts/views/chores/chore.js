@@ -26,6 +26,7 @@ LiveTogether.Views.Chore = Backbone.View.extend({
       patch: true
     }).done(function(){
       that.model.collection.sort();
+      that.users.fetch();
     });
   }
 
