@@ -21,4 +21,6 @@ LiveTogether::Application.routes.draw do
 
   resources :expenses, only: [:index, :show, :new, :create]
   resources :payments, only: [:index, :show, :new, :create, :destroy]
+
+  post '/request_payment', to: 'payments#payment_request', as: 'payment_request'
 end
