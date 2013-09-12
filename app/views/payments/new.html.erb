@@ -1,0 +1,45 @@
+<h1>New Payment</h1>
+
+<%= form_for @payment do |f| %>
+
+    <% if @payment.errors.any? %>
+    <div>
+      <h2><%= pluralize(@payment.errors.count, 'error') %> prevented the form from being saved..</h2>
+      <ul>
+      <% @payment.errors.full_messages.each do |error_msg| %>
+        <li><%= error_msg %></li>
+      <% end %>
+      </ul>
+
+    </div>
+  <% end %>
+
+
+  <h3>You are paying :</h3>
+  <div>
+    <% current_house.users.each do |user| %>
+      <% next if user == current_user %>
+      <div class="payment_payees">
+        <%= f.radio_button "lender_id", user.id %>
+        <img src="<%= user.image %>" alt="">
+        <%= user.name %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :ammount %>
+  <%= f.number_field :amount_cents %>
+  <%= f.label :method %>
+  <%= f.radio_button(:method, "cash") %>
+  <%= "Cash" %>
+  <%= f.radio_button(:method, "deposit") %>
+  <%= "Deposit" %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+
+  <%= f.submit "Submit", class: "button success" %>
+
+<% end %>
+<hr>
