@@ -12,26 +12,27 @@ class PaymentsController < ApplicationController
 
   def new
     lender = User.find(params[:lender_id])
-    amount = current_user.debt_with(lender).abs/100.0
+    amount = current_user.debt_with(lender).abs
     payment_params = { lender: lender , amount_cents: amount }
     @payment = current_user.payments.new(payment_params)
   end
 
   def create
-    payment_params[:amount_cents] = payment_params[:amount] * 100
+    payment_params[:amount_cents] = to_cents(payment_params[:amount])
     @payment = current_user.payments.create(payment_params)
     if @payment.persisted?
       flash[:notice] = "Payment registered succesfully."
       redirect_to payments_path
     else
-      p @payment.errors.full_messages
+      @payment.errors.full_messages
       flash[:error] = "Error while creating payment."
       render new_payment_path
     end
   end
 
-
   def destroy
+    Payment.find_by_id(params[:id]).destroy
+    redirect_to payments_path
   end
 
   def payment_request

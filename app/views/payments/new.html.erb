@@ -28,7 +28,7 @@
           <span class="prefix"><strong> $ </strong></span>
         </div>
         <div class="small-9 large-10 columns">
-          <%= f.number_field :amount , :default => @payment.amount_cents , :step => 'any'%>
+          <%= f.number_field :amount , :default => @payment.amount , :step => 'any'%>
         </div>
       </div>
       <%= f.label :date %>
