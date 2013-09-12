@@ -19,11 +19,9 @@ class PaymentsController < ApplicationController
 
   def create
     payment_params[:amount_cents] = to_cents(payment_params[:amount])
-    p params
     @payment = current_user.payments.create(payment_params)
     if @payment.persisted?
       flash[:notice] = "Payment registered succesfully."
-      p 'persisted'
       redirect_to payments_path
     else
       @payment.errors.full_messages

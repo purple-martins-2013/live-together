@@ -55,7 +55,6 @@ describe ExpensesController do
       end
     end
 
-
     describe "#create" do
 
       it { should route(:post, 'expenses').to(action: :create)}

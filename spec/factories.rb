@@ -66,7 +66,7 @@ FactoryGirl.define do
   factory :payment do
     borrower_id { create(:user).id }
     # expense
-    lender_id {create(:user).id }
+    lender_id { create(:user).id }
     description "Payment description"
     amount 500.00
     date Date.today

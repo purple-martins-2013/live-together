@@ -42,7 +42,6 @@ describe PaymentsController do
       it "shows the individual payment" do
         get :show, id: payment
         expect(assigns(:payment)).to eq payment
-      #   expect(response).to render_template :show
       end
     end
 
@@ -50,11 +49,6 @@ describe PaymentsController do
 
       it { should route(:get, 'payments/new').to(action: :new)}
 
-      # it "displays the new payment form" do
-      #   get :new
-      #   expect(assigns(:payment)).not_to eq nil
-      #   expect(response).to render_template 'payments/new'
-      # end
     end
 
     describe "#create" do
@@ -69,9 +63,6 @@ describe PaymentsController do
         it "creates an payment" do
           expect { post :create, {payment: attributes_for(:payment) } }.to change{Payment.count}.by(1)
         end
-        it "redirects to payment index" do
-          expect { post :create, {payment: attributes_for(:payment) } }.to redirect_to payments_path
-        end
       end
 
       context "with description, amount, date, and/or method filled out not filled out" do
@@ -79,9 +70,6 @@ describe PaymentsController do
           expect { post :create, {payment: {description: '', amount: ''}} }.not_to change{Payment.count}
         end
 
-        # it "displays error messages" do
-        #   expect { post :create, {payment: {description: '', amount: ''}} }.to
-        # end
 
       end
     end
@@ -105,12 +93,6 @@ describe PaymentsController do
     end
 
 
-    describe "#payment_request" do
-      it "redirects to payment index"
-
-      it "sends email"
-
-    end
   end
 
   context "when not logged in" do
