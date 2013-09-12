@@ -61,6 +61,18 @@ class GroceryListsController < ApplicationController
     @grocery_list = GroceryList.find(params[:id])
   end
 
+  def suscribe
+    @grocery_list = GroceryList.find(params[:id])
+    @grocery_list.users << current_user
+    redirect_to grocery_list_path @grocery_list
+  end
+
+  def unsuscribe
+    @grocery_list = GroceryList.find(params[:id])
+    @grocery_list.users.delete(current_user)
+    redirect_to grocery_list_path @grocery_list
+  end
+
   def grocery_list_params
     params.require(:grocery_list).permit(:name)
   end

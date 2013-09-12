@@ -68,12 +68,6 @@ describe ExpensesController do
           expect { post :create, {expense: attributes_for(:expense) } }.to change{Expense.count}.by(1)
         end
       end
-
-      context "with name, total, and purchased_on not filled out" do
-        it "does not create an expense" do
-          expect { post :create, {expense: {name: '', total: ''}} }.not_to change{Expense.count}
-        end
-      end
     end
 
     describe "#delete" do
