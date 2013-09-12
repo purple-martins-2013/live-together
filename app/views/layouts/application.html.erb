@@ -18,16 +18,16 @@
     <% if user_signed_in? %>
       <ul class="left">
         <% if current_house %>
+          <li class="divider"></li>
           <li class="nav">
-            <%= link_to "Chores", chores_path %>
+            <%= link_to "House Dashboard", root_path %>
           </li>
+          <li class="divider"></li>
           <li class="nav">
-            <%= link_to "Grocery Lists", grocery_lists_path %>
-          </li>
-          <li>
             <%= link_to "Expenses", expenses_path %>
           </li>
-          <li>
+          <li class="divider"></li>
+          <li class="nav">
             <%= link_to "Settlements", payments_path %>
           </li>
         <% end %>
