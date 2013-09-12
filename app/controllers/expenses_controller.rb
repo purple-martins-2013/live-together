@@ -2,8 +2,7 @@ class ExpensesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @house_expenses =Expense.where(purchaser_id: current_house.users)
-    # @expenses = current_user.expenses.load
+    @house_expenses = Expense.where(purchaser_id: current_house.users)
     @user_debts = Debt.where( borrower: current_user)
   end
 
@@ -17,6 +16,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
+    expense_params[:total_cents] = to_cents(expense_params[:total])
     @expense = current_user.expenses.new(expense_params)
     if @expense.save
       redirect_to expenses_path
@@ -29,9 +29,14 @@ class ExpensesController < ApplicationController
     # end
   end
 
+  def destroy
+    Expense.find_by_id(params[:id]).destroy
+    redirect_to expenses_path
+  end
+
   private
 
   def expense_params
-    params.require(:expense).permit(:name, :total_cents, :description, :purchased_on, {:contributor_ids => []})
+    params.require(:expense).permit(:name, :total, :description, :purchased_on, {:contributor_ids => []})
   end
 end

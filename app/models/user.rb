@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   def settlements
     self.roomates.map do |roomate|
-      {roomate: roomate, balance: debt_with(roomate)/100.0}
+      {roomate: roomate, balance: debt_with(roomate)}
     end
   end
 

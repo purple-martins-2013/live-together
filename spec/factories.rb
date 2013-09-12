@@ -59,7 +59,7 @@ FactoryGirl.define do
     sequence(:name) {|n| "Expense #{n}"}
     purchaser { FactoryGirl.create(:user_with_house) }
     description "Expense description"
-    total_cents 1000
+    total 10.00
     purchased_on Date.today
   end
 
