@@ -19,7 +19,7 @@ LiveTogether::Application.routes.draw do
   end
   resources :completed_chores, only: [:index]
 
-  resources :expenses, only: [:index, :show, :new, :create]
+  resources :expenses, only: [:index, :show, :new, :create, :destroy]
   resources :payments, only: [:index, :show, :new, :create, :destroy]
 
   post '/request_payment', to: 'payments#payment_request', as: 'payment_request'

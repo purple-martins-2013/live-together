@@ -2,8 +2,7 @@ class ExpensesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @house_expenses =Expense.where(purchaser_id: current_house.users)
-    # @expenses = current_user.expenses.load
+    @house_expenses = Expense.where(purchaser_id: current_house.users)
     @user_debts = Debt.where( borrower: current_user)
   end
 
@@ -27,6 +26,11 @@ class ExpensesController < ApplicationController
     #   format.html { redirect_to :back }
     #   format.json { render json: @expense }
     # end
+  end
+
+  def destroy
+    Expense.find_by_id(params[:id]).destroy
+    redirect_to expenses_path
   end
 
   private

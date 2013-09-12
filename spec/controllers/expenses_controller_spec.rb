@@ -6,6 +6,7 @@ describe ExpensesController do
   let(:user) { house.users.first }
 
   let(:expense) { create(:expense, purchaser: user) }
+  let(:debt) {create(:debt, borrower: user)}
 
   context "while logged in" do
 
@@ -17,9 +18,20 @@ describe ExpensesController do
 
       it { should route(:get, '/expenses').to(action: :index) }
 
-      it "should list all expenses" do
+      it "should list all your debts" do
         get :index
-        assigns(:expenses).should eq(user.expenses.load)
+        assigns(:user_debts).should eq(Debt.where( borrower: user))
+      end
+
+      it "should list all house expenses" do
+        get :index
+        assigns(:house_expenses).should eq(Expense.where( purchaser_id: house.users))
+
+      end
+
+      it "should render the 'index' view" do
+        get :index
+        expect(response).to render_template 'expenses/index'
       end
     end
 
@@ -62,6 +74,24 @@ describe ExpensesController do
         it "does not create an expense" do
           expect { post :create, {expense: {name: '', total_cents: ''}} }.not_to change{Expense.count}
         end
+      end
+    end
+
+    describe "#delete" do
+
+      before :each do
+        @expense = create(:expense)
+      end
+
+      it "should delete an expense" do
+        expect {
+          delete :destroy, id: @expense
+        }.to change {Expense.count}.by(-1)
+      end
+
+      it "redirects to the expense index" do
+        delete :destroy, id: @expense
+        response.should redirect_to expenses_path
       end
     end
   end

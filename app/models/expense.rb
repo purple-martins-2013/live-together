@@ -2,7 +2,7 @@ class Expense < ActiveRecord::Base
   attr_accessor :contributor_ids
   validates_presence_of :purchaser_id, :name, :total_cents, :purchased_on
 
-  has_many :debts, :dependent => :delete_all
+  has_many :debts, dependent: :destroy
   has_many :borrowers, through: :debts, class_name: "User"
   belongs_to :purchaser, class_name: "User"
 
