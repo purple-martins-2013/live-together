@@ -15,8 +15,22 @@
 
 <p><%= link_to 'Add an item to the list', new_grocery_list_grocery_item_path(@grocery_list) %></p>
 
-
 <hr>
 
 <p><%= link_to 'Delete', grocery_list_path(@grocery_list), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></p>
 <p><%= link_to 'Edit', edit_grocery_list_path(@grocery_list)%></p>
+
+<div>
+  <%= form_tag( { :controller=>"expenses", action: "new_from_grocery_list", method: 'post' } ) %>
+  <%= hidden_field_tag 'expense[:name]' , @grocery_list.name %>
+  <%= hidden_field_tag 'expense[:description]' , @grocery_list.grocery_items.map{|item| item.name }.join(', ') %>
+  <%= hidden_field_tag 'expense[:total_cents]' , 0 %>
+  <%= hidden_field_tag 'expense[:contributor_ids]' , @grocery_list.users.map{|user| user.id }%>
+  <%= submit_tag "Buy this list", class: "button" %>
+
+  <% unless @grocery_list.users.include?(current_user) %>
+    <%= link_to 'Suscribe to this list', suscribe_path(id: @grocery_list.id), method: 'post', class: "button" %>
+  <% else %>
+    <%= link_to 'Unuscribe to this list', unsuscribe_path(id: @grocery_list.id), method: 'post', class: "button" %>
+  <% end %>
+</div>
