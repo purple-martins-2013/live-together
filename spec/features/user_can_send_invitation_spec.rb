@@ -2,22 +2,17 @@ require 'spec_helper'
 
 feature "user can invite another user", feature: true do
 
+  let!(:house) { FactoryGirl.create(:house) }
+  let(:current_user) { house.users.first }
+
   before do
-    @user = FactoryGirl.create(:user)
-    @house = FactoryGirl.create(:house)
-    @user.house = @house
-    @user.save
+    @user = current_user
     sign_in_through_view(@user)
   end
 
-  xit "should display the invite roommates form" do
-    expect(page).to have_content "Invite roommates"
-  end
-
-  xit "should create a new invitation" do
-    fill_in "invitation_email", with: "test@test.com"
-    click_button "Send invitation"
-    expect(page).to have_content "Invitation sent to test@test.com"
+  it "should display the invite roommates form" do
+    click_button "Invite user"
+    expect(page).to have_button "Invite"
   end
 
 end
