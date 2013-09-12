@@ -8,11 +8,7 @@ LiveTogether.Views.CompletedChoresIndex = Backbone.View.extend({
     console.log('completed chores index view initialized');
     this.$el.html(this.template());
     this.listenTo(this.collection, 'add', this.addOne);
-    if (this.collection.length === 0){
-      this.collection.fetch();
-    } else {
-      this.addAll();
-    }
+    this.collection.fetch();
   },
 
   events: {
