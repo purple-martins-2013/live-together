@@ -66,11 +66,11 @@ describe PaymentsController do
       end
 
       context "with description, amount, date, and method filled out" do
-      #   it "creates an payment" do
-      #     expect { post :create, {payment: attributes_for(:payment) } }.to change{Payment.count}.by(1)
-      #   end
+        it "creates an payment" do
+          expect { post :create, {payment: attributes_for(:payment) } }.to change{Payment.count}.by(1)
+        end
         it "redirects to payment index" do
-          # expect { post :create, {payment: attributes_for(:payment) } }.to redirect_to  payments_path
+          expect { post :create, {payment: attributes_for(:payment) } }.to redirect_to payments_path
         end
       end
 
@@ -79,7 +79,10 @@ describe PaymentsController do
           expect { post :create, {payment: {description: '', amount: ''}} }.not_to change{Payment.count}
         end
 
-        it "displays error messages"
+        # it "displays error messages" do
+        #   expect { post :create, {payment: {description: '', amount: ''}} }.to
+        # end
+
       end
     end
 
