@@ -28,6 +28,7 @@ LiveTogether.Views.List = Backbone.View.extend({
   },
 
   newItemForm: function(){
+    $('.new-item').fadeOut();
     var view = new LiveTogether.Views.ItemForm({collection: this.model.items});
     this.$el.append(view.render().$el.hide().fadeIn());
   },

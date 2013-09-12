@@ -33,6 +33,7 @@ LiveTogether.Views.ListsIndex = Backbone.View.extend({
   },
 
   newListForm: function(){
+    $('.new-list').hide();
     var view = new LiveTogether.Views.ListForm({collection: this.collection});
     this.$el.append(view.render().$el.hide().fadeIn());
   }
