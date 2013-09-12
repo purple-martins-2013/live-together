@@ -3,7 +3,13 @@ LiveTogether.Routers.Main = Backbone.Router.extend({
   routes: {
     "house": "houseDashboard",
     "lists/:id": "showList",
-    "chores/completed": "showCompletedChores"
+    "chores/completed": "showCompletedChores",
+    "_=_": "redirectHome"
+  },
+
+  redirectHome: function(){
+    console.log('redirecting to home...');
+    LiveTogether.router.navigate("");
   },
 
   houseDashboard: function(){
