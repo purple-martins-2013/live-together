@@ -11,10 +11,14 @@ class PaymentsController < ApplicationController
   end
 
   def new
-    @payment = current_user.payments.new
+    lender = User.find(params[:lender_id])
+    amount = current_user.debt_with(lender).abs/100.0
+    payment_params = { lender: lender , amount_cents: amount }
+    @payment = current_user.payments.new(payment_params)
   end
 
   def create
+    payment_params[:amount_cents] = payment_params[:amount] * 100
     @payment = current_user.payments.create(payment_params)
     if @payment.persisted?
       flash[:notice] = "Payment registered succesfully."
@@ -41,6 +45,6 @@ class PaymentsController < ApplicationController
   private
 
   def payment_params
-    params.require(:payment).permit(:amount_cents, :date, :description, :method, :lender_id)
+    params.require(:payment).permit(:amount, :date, :description, :method, :lender_id)
   end
 end
