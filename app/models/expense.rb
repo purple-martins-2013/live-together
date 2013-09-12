@@ -19,4 +19,5 @@ class Expense < ActiveRecord::Base
       self.debts.create(borrower: user, lender: self.purchaser , amount_cents: debt_amount)
     end
   end
+
 end

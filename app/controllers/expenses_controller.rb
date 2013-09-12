@@ -16,6 +16,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
+    expense_params[:total_cents] = (expense_params[:total] * 100)
     @expense = current_user.expenses.new(expense_params)
     if @expense.save
       redirect_to expenses_path
@@ -36,6 +37,6 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:name, :total_cents, :description, :purchased_on, {:contributor_ids => []})
+    params.require(:expense).permit(:name, :total, :description, :purchased_on, {:contributor_ids => []})
   end
 end
