@@ -28,6 +28,7 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
     if (this.choresView) { this.choresView.remove(); }
     var that = this;
     this.chores = this.chores || new LiveTogether.Collections.Chores();
+    LiveTogether.users = LiveTogether.users || new LiveTogether.Collections.Users();
     this.choresView = new LiveTogether.Views.ChoresIndex({collection: this.chores});
     if (this.$leftPanel.html().length === 0) {
       this.$leftPanel.html(this.choresView.render().$el.addClass('front'));
@@ -44,8 +45,8 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
   },
 
   showUsersIndex: function(){
-    this.users = this.users || new LiveTogether.Collections.Users();
-    this.usersView = new LiveTogether.Views.UsersIndex({collection: this.users});
+    LiveTogether.users = LiveTogether.users || new LiveTogether.Collections.Users();
+    this.usersView = new LiveTogether.Views.UsersIndex({collection: LiveTogether.users});
     this.$rightUpperPanel.html(this.usersView.render().el);
     this.$rightUpperPanel.fadeIn();
   },
