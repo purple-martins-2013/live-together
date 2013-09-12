@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130912023534) do
+ActiveRecord::Schema.define(version: 20130912181729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 20130912023534) do
     t.integer "grocery_list_id"
     t.integer "user_id"
   end
+
+  add_index "grocery_lists_users", ["grocery_list_id", "user_id"], name: "index_grocery_lists_users_on_grocery_list_id_and_user_id", unique: true, using: :btree
 
   create_table "houses", force: true do |t|
     t.string   "name"
