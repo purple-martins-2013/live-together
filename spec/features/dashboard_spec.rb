@@ -15,6 +15,13 @@ feature 'Dashboard', feature: true, js: true do
       expect(page).to have_content @chore.points
     end
 
+    it "can toggle between chores and completed chores" do
+      click_button "Completed chores"
+      expect(page).to have_content "Completed chores"
+      click_button "View chores"
+      expect(page).to have_content "Chores"
+    end
+
     describe "completing a chore" do
       before do
         click_button "Complete!"
