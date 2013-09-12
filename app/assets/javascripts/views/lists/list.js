@@ -13,7 +13,8 @@ LiveTogether.Views.List = Backbone.View.extend({
   },
 
   events: {
-    "click .new-item": "newItemForm"
+    "click .new-item": "newItemForm",
+    "click .all-lists": "allLists"
   },
 
   render: function(){
@@ -27,8 +28,13 @@ LiveTogether.Views.List = Backbone.View.extend({
   },
 
   newItemForm: function(){
+    $('.new-item').fadeOut();
     var view = new LiveTogether.Views.ItemForm({collection: this.model.items});
-    this.$el.append(view.render().el);
+    this.$el.append(view.render().$el.hide().fadeIn());
+  },
+
+  allLists: function(){
+    LiveTogether.router.navigate('house', {trigger: true});
   }
 
 });

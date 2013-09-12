@@ -8,7 +8,7 @@ class CompletedChore < ActiveRecord::Base
       title: self.chore.title,
       points: self.chore.points,
       id: self.id,
-      user: self.user.email,
+      user: self.user.name,
       house_id: self.house_id,
       completed_at: self.completed_at.to_formatted_s(:short)
     }

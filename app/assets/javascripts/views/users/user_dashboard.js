@@ -2,7 +2,7 @@ LiveTogether.Views.UserDashboard = Backbone.View.extend({
 
   template: JST['users/show_dashboard'],
 
-  tagName: 'li',
+  tagName: 'tr',
 
   initialize: function(){
     this.listenTo(this.model, 'change', this.render);

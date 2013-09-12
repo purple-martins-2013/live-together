@@ -9,6 +9,13 @@ window.LiveTogether = {
   initialize: function() {
     this.router = new LiveTogether.Routers.Main();
     Backbone.history.start();
+    if (!window.location.hash) {
+      this.router.navigate('house', {trigger: true});
+    }
+
+    setTimeout(function(){
+      $('.button.success.disabled').slideUp();
+    }, 2000);
   }
 };
 

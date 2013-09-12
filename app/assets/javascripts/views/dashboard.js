@@ -25,9 +25,17 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
   },
 
   showChoresIndex: function(){
+    if (this.choresView) { this.choresView.remove(); }
+    var that = this;
     this.chores = this.chores || new LiveTogether.Collections.Chores();
+    LiveTogether.users = LiveTogether.users || new LiveTogether.Collections.Users();
     this.choresView = new LiveTogether.Views.ChoresIndex({collection: this.chores});
-    this.$leftPanel.html(this.choresView.render().el);
+    if (this.$leftPanel.html().length === 0) {
+      this.$leftPanel.html(this.choresView.render().$el.addClass('front'));
+    } else if (this.completedChoresView) {
+      this.$leftPanel.append(this.choresView.render().$el.addClass('front'));
+      $('.flip-container').removeClass('flip');
+    }
   },
 
   showListsIndex: function(){
@@ -37,10 +45,10 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
   },
 
   showUsersIndex: function(){
-    this.users = this.users || new LiveTogether.Collections.Users();
-    this.usersView = new LiveTogether.Views.UsersIndex({collection: this.users});
+    LiveTogether.users = LiveTogether.users || new LiveTogether.Collections.Users();
+    this.usersView = new LiveTogether.Views.UsersIndex({collection: LiveTogether.users});
     this.$rightUpperPanel.html(this.usersView.render().el);
-    this.$rightUpperPanel.show();
+    this.$rightUpperPanel.fadeIn();
   },
 
   showList: function(id){
@@ -53,8 +61,16 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
   },
 
   showCompletedChores: function(){
-    this.completedChores = this.completedChores || new LiveTogether.Collections.CompletedChores();
+    if (this.completedChoresView) { this.completedChoresView.remove(); }
+    var that = this;
+    this.completedChores = new LiveTogether.Collections.CompletedChores();
     this.completedChoresView = new LiveTogether.Views.CompletedChoresIndex({collection: this.completedChores});
-    this.$leftPanel.html(this.completedChoresView.render().el);
+    if (this.$leftPanel.html().length === 0) {
+      $('.flip-container').addClass('flip');
+      this.$leftPanel.html(this.completedChoresView.render().$el.addClass('back'));
+    } else if (this.choresView) {
+      this.$leftPanel.append(this.completedChoresView.render().$el.addClass('back'));
+      $('.flip-container').addClass('flip');
+    }
   }
 });

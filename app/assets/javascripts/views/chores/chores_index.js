@@ -7,17 +7,19 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   initialize: function(){
     console.log('chores index view initialized');
     this.$el.html(this.template());
-    this.listenTo(this.collection, 'add', this.addOne);
+    this.listenTo(this.collection, 'add', this.addAll);
     this.listenTo(this.collection, 'reset', this.addAll);
+    this.listenTo(this.collection, 'sort', this.addAll);
     if (this.collection.length === 0){
-      this.collection.fetch();
+      this.collection.fetch({reset: true});
     } else {
       this.addAll();
     }
   },
 
   events: {
-    "click .new-chore": "newChoreForm"
+    "click .new-chore": "newChoreForm",
+    "click .completed-chores": "completedChores"
   },
 
   render: function(){
@@ -26,6 +28,7 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   },
 
   addAll: function(){
+    this.$el.find('tbody').empty();
     this.collection.each(this.addOne, this);
   },
 
@@ -35,8 +38,13 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   },
 
   newChoreForm: function(){
+    $('.new-chore').fadeOut();
     var view = new LiveTogether.Views.ChoreForm({collection: this.collection});
     this.$el.append(view.render().$el.hide().fadeIn());
+  },
+
+  completedChores: function(){
+    LiveTogether.router.navigate('chores/completed', {trigger: true});
   }
 
 });

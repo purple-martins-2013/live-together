@@ -1,9 +1,15 @@
 LiveTogether.Routers.Main = Backbone.Router.extend({
 
   routes: {
-    "": "houseDashboard",
+    "house": "houseDashboard",
     "lists/:id": "showList",
-    "chores/completed": "showCompletedChores"
+    "chores/completed": "showCompletedChores",
+    "_=_": "redirectHome"
+  },
+
+  redirectHome: function(){
+    console.log('redirecting to home...');
+    LiveTogether.router.navigate("");
   },
 
   houseDashboard: function(){
@@ -17,16 +23,16 @@ LiveTogether.Routers.Main = Backbone.Router.extend({
   showList: function(id){
     console.log('show list route triggered with id', id);
     var dashboard = this.getDashBoardView();
-    dashboard.showChoresIndex();
     dashboard.showList(id);
+    if (!dashboard.choresView){ dashboard.showChoresIndex(); }
   },
 
   showCompletedChores: function(){
     console.log('completed chores route triggered');
     var dashboard = this.getDashBoardView();
     dashboard.showCompletedChores();
-    dashboard.showUsersIndex();
-    dashboard.showListsIndex();
+    if (!dashboard.usersView) { dashboard.showUsersIndex(); }
+    if (!dashboard.listsView) { dashboard.showListsIndex(); }
   },
 
   getDashBoardView: function(){

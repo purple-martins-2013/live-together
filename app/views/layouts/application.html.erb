@@ -18,10 +18,10 @@
     <% if user_signed_in? %>
       <ul class="left">
         <% if current_house %>
-          <li>
+          <li class="nav">
             <%= link_to "Chores", chores_path %>
           </li>
-          <li>
+          <li class="nav">
             <%= link_to "Grocery Lists", grocery_lists_path %>
           </li>
           <li>
@@ -34,22 +34,32 @@
       </ul>
       <ul class="right">
         <li class="divider"></li>
-        <li><%= link_to current_user.name, root_path %></li>
+        <% if current_user.image? %>
+          <li class="nav"><%= image_tag(current_user.image, :style =>"height:39px") %>
+        <% end %>
+        <li class="nav"><%= link_to current_user.name, root_path %></li>
         <li class="divider"></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <li class="nav"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       </ul>
     <% else %>
       <ul class="right">
         <li class="divider"></li>
-        <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <li class="nav"><%= link_to "Sign up", new_user_registration_path %></li>
       </ul>
     <% end %>
   </section>
 </nav>
-
-<% if alert || notice %>
-  <div class="notice"><%= notice %></div>
-  <div class="alert"><%= alert %></div>
+<% if ! flash.empty? %>
+  <center>
+    <% if alert || notice %>
+      <% if notice %>
+        <a href="#" class="button success disabled"><div class="notice"><%= notice %></div></a>
+      <% end %>
+      <% if alert %>
+        <a href="#" class="button alert disabled"><div class="alert"><%= alert %></div></a>
+      <% end %>
+    <% end %>
+  </center>
 <% end %>
 
 <div class="row">

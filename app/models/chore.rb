@@ -12,6 +12,7 @@ class Chore < ActiveRecord::Base
   def complete!(user, house)
     house.completed_chores.create(chore_id: self.id, user_id: user.id, completed_at: Time.now)
     self.update_attributes(last_completed: Date.today, due_date: Date.today + self.frequency.days)
+    user.update_attributes(points: user.points + self.points);
   end
 
 end
