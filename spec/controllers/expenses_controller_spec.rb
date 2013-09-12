@@ -64,15 +64,15 @@ describe ExpensesController do
         request.env["HTTP_REFERER"] = root_path
       end
 
-      context "with name, total_cents, and purchased_on filled out" do
+      context "with name, total, and purchased_on filled out" do
         it "creates an expense" do
           expect { post :create, {expense: attributes_for(:expense) } }.to change{Expense.count}.by(1)
         end
       end
 
-      context "with name, total_cents, and purchased_on not filled out" do
+      context "with name, total, and purchased_on not filled out" do
         it "does not create an expense" do
-          expect { post :create, {expense: {name: '', total_cents: ''}} }.not_to change{Expense.count}
+          expect { post :create, {expense: {name: '', total: ''}} }.not_to change{Expense.count}
         end
       end
     end

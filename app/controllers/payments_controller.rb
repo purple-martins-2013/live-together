@@ -30,7 +30,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-
   def destroy
   end
 
