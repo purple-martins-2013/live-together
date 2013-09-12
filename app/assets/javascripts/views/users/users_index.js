@@ -33,6 +33,7 @@ LiveTogether.Views.UsersIndex = Backbone.View.extend({
   },
 
   newUserForm: function(){
+    $('.invite-user').hide();
     var view = new LiveTogether.Views.UserForm({collection: new LiveTogether.Collections.Invitations()});
     this.$el.append(view.render().$el.hide().fadeIn());
   },

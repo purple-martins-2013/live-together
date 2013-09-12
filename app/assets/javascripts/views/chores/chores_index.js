@@ -38,6 +38,7 @@ LiveTogether.Views.ChoresIndex = Backbone.View.extend({
   },
 
   newChoreForm: function(){
+    $('.new-chore').fadeOut();
     var view = new LiveTogether.Views.ChoreForm({collection: this.collection});
     this.$el.append(view.render().$el.hide().fadeIn());
   },

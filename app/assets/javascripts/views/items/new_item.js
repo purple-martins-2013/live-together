@@ -23,12 +23,14 @@ LiveTogether.Views.ItemForm = Backbone.View.extend({
   createItem: function(e){
     e.preventDefault();
     this.collection.create(this.serialize());
+    $('.new-item').fadeIn();
     this.$el.fadeOut(function(){
       this.remove();
     });
   },
 
   cancelForm: function(){
+    $('.new-item').fadeIn();
     this.$el.fadeOut(function(){
       this.remove();
     });
