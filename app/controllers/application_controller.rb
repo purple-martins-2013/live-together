@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
     current_user.house
   end
 
+  def to_cents(dollars)
+    dollars * 100
+  end
+
+  def to_dollars(cents)
+    cents.abs/100.0
+  end
+
+
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   protected

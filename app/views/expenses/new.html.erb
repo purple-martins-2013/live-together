@@ -7,7 +7,15 @@
   <%= f.label :description %>
   <%= f.text_field :description %>
   <%= f.label :total %>
-  <%= f.number_field :total, :step => '0.01' %>
+
+  <div class="row collapse">
+    <div class="small-1 large-2 columns">
+      <span class="prefix"><strong> $ </strong></span>
+    </div>
+    <div class="small-11 large-10 columns">
+      <%= f.number_field :total , :step => '0.01' %>
+    </div>
+  </div>
   <%= f.label :purchased_on %>
   <%= f.date_field :purchased_on %>
   <br>

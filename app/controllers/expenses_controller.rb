@@ -16,7 +16,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    expense_params[:total_cents] = (expense_params[:total] * 100)
+    expense_params[:total_cents] = to_cents(expense_params[:total])
     @expense = current_user.expenses.new(expense_params)
     if @expense.save
       redirect_to expenses_path

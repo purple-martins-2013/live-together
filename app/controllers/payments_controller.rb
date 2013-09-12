@@ -12,13 +12,13 @@ class PaymentsController < ApplicationController
 
   def new
     lender = User.find(params[:lender_id])
-    amount = current_user.debt_with(lender).abs/100.0
+    amount = current_user.debt_with(lender).abs
     payment_params = { lender: lender , amount_cents: amount }
     @payment = current_user.payments.new(payment_params)
   end
 
   def create
-    payment_params[:amount_cents] = payment_params[:amount] * 100
+    payment_params[:amount_cents] = to_cents(payment_params[:amount])
     @payment = current_user.payments.create(payment_params)
     if @payment.persisted?
       flash[:notice] = "Payment registered succesfully."
