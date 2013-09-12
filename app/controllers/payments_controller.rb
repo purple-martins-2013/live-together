@@ -30,6 +30,14 @@ class PaymentsController < ApplicationController
   def destroy
   end
 
+  def payment_request
+    lender = current_user
+    borrower = User.find(params[:borrower_id])
+    UserMailer.payment_request_email(lender, borrower).deliver
+    flash[:notice] = "Payment request sent."
+    redirect_to payments_path
+  end
+
   private
 
   def payment_params
