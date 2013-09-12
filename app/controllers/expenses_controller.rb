@@ -3,7 +3,6 @@ class ExpensesController < ApplicationController
 
   def index
     @house_expenses =Expense.where(purchaser_id: current_house.users)
-    # @expenses = current_user.expenses.load
     @user_debts = Debt.where( borrower: current_user)
   end
 
@@ -23,15 +22,19 @@ class ExpensesController < ApplicationController
     else
       redirect_to new_expense_path
     end
-    # respond_to do |format|
-    #   format.html { redirect_to :back }
-    #   format.json { render json: @expense }
-    # end
+  end
+
+  def new_from_grocery_list
+    @expense = current_user.expenses.new(
+      name: params[:expense][':name'],
+      description: params[:expense][':description'],
+      contributor_ids: params[:expense][':contributor_ids']
+      )
   end
 
   private
 
   def expense_params
-    params.require(:expense).permit(:name, :total_cents, :description, :purchased_on, {:contributor_ids => []})
+    params.require(:expense).permit(:name, :total_cents, :description, :purchased_on, :contributor_ids,  {:contributor_ids => []})
   end
 end
