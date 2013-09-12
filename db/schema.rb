@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130912023534) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -40,6 +43,15 @@ ActiveRecord::Schema.define(version: 20130912023534) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "house_id"
+  end
+
+  create_table "debts", force: true do |t|
+    t.integer  "borrower_id"
+    t.integer  "lender_id"
+    t.integer  "expense_id"
+    t.integer  "amount_cents", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "expenses", force: true do |t|
@@ -90,13 +102,15 @@ ActiveRecord::Schema.define(version: 20130912023534) do
     t.integer  "user_id"
   end
 
-  create_table "settlements", force: true do |t|
-    t.integer  "contributor_id"
-    t.integer  "expense_id"
-    t.integer  "amount_cents",   default: 0
-    t.date     "date_paid"
+  create_table "payments", force: true do |t|
+    t.integer  "borrower_id"
+    t.integer  "lender_id"
+    t.string   "description"
+    t.integer  "amount_cents", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
+    t.string   "method"
   end
 
   create_table "users", force: true do |t|

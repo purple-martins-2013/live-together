@@ -12,7 +12,6 @@ describe User do
     it { should have_many :authentications }
     it { should belong_to :house }
     it { should have_and_belong_to_many :grocery_lists }
-    it { should have_many :settlements }
     it { should have_many :expenses }
   end
 

@@ -1,0 +1,66 @@
+
+  <h1>Payments</h1>
+  <div class="row">
+    <ul class="roomate_settlements">
+      <% @settlements.each do |settlement| %>
+        <li style="display: inline-block; list-style-type: none; padding: 20px;">
+          <div style="padding:10px; border: solid 1px ">
+            <center>
+              <%= image_tag(settlement[:roomate].image, style: "border:solid 1px; height: 50px") %>
+              <p><%= settlement[:roomate].name %></p>
+              <% case  %>
+              <% when settlement[:balance] == 0 %>
+              All good here.
+              <% when settlement[:balance] < 0 %>
+              <p><%= "You owe $#{ display_dollars(settlement[:balance]) }" %></p>
+              <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success"%>
+              <%else%>
+              <p><%= "Owes you $#{ display_dollars(settlement[:balance]) }" %></p>
+              <%= link_to "Request Payment", payment_request_path(borrower_id: settlement[:roomate].id), method: 'post', class: "button "%>
+            <% end %>
+          </center>
+        </div>
+      </li>
+    <%end %>
+  </ul>
+</div>
+<h2>Your Payments</h2>
+<div class='row'>
+  <div class="large-3 columns">
+    <strong>Date</strong>
+  </div>
+  <div class="large-3 columns">
+    <strong>Payer</strong>
+  </div>
+  <div class="large-3 columns">
+    <strong>Payee</strong>
+  </div>
+  <div class="large-3 columns">
+    <strong>Amount</strong>
+  </div>
+</div>
+<div class="row">
+  <% @payments.each do |payment| %>
+    <div class="row">
+    <hr>
+      <div class="large-3 columns">
+        <%= payment.date %>
+      </div>
+      <div class="large-3 columns">
+        <%= payment.borrower.name %>
+      </div>
+      <div class="large-3 columns">
+        <%= payment.lender.name %>
+      </div>
+      <div class="large-3 columns">
+         $ <%= payment.amount %>
+      </div>
+    </div>
+    <div class="row">
+
+      <div style="background-color: #E7E7E7; padding: 10px; margin: 10px ">
+        <em><%= payment.description %></em>
+      </div>
+    </div>
+  <% end %>
+</div>

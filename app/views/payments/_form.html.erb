@@ -1,0 +1,25 @@
+<%= form_for @payment do |f| %>
+
+  <h3>You are paying :</h3>
+  <div>
+    <% current_house.users.each do |user| %>
+      <%= radio_button_tag(:lender_id, "#{user.id}") %>
+      <%= label_tag(:name, "#{user.name}") %>
+    <% end %>
+  </div>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :amount %>
+  <%= f.number_field :amount_cents %>
+  <%= f.label :method %>
+  <%= radio_button_tag(:method, "cash") %>
+  <%= label_tag(:method, "cash") %>
+  <%= radio_button_tag(:method, "deposit") %>
+  <%= label_tag(:method, "deposit") %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+
+  <%= f.submit "Submit", class: "button success" %>
+
+<% end %>

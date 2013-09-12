@@ -49,7 +49,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-
+gem 'money-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -69,5 +69,4 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'quiet_assets', :group => :development
