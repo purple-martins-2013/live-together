@@ -41,10 +41,6 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-<<<<<<< HEAD
-    params.require(:expense).permit(:name, :total_cents, :description, :purchased_on, :contributor_ids,  {:contributor_ids => []})
-=======
-    params.require(:expense).permit(:name, :total, :description, :purchased_on, {:contributor_ids => []})
->>>>>>> master
+    params.require(:expense).permit(:name, :total, :description, :purchased_on, :contributor_ids,  {:contributor_ids => []})
   end
 end
