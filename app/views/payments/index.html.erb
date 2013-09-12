@@ -16,7 +16,7 @@
               <%= link_to "Make Payment", new_payment_path, class: "button success"%>
               <%else%>
               <p><%= "Owes you $ #{ settlement[:balance] }" %></p>
-              <%= link_to "Request Payment", new_payment_path, class: "button "%>
+              <%= link_to "Request Payment", payment_request_path(borrower_id: settlement[:roomate].id), method: 'post', class: "button "%>
             <% end %>
           </center>
         </div>
