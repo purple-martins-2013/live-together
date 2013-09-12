@@ -7,7 +7,7 @@ class Expense < ActiveRecord::Base
   belongs_to :purchaser, class_name: "User"
 
   after_save :create_debts
-  # monetize :total_cents
+  monetize :total_cents
 
   private
   def create_debts
