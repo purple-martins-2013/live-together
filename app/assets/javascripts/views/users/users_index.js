@@ -29,7 +29,7 @@ LiveTogether.Views.UsersIndex = Backbone.View.extend({
 
   addOne: function(model){
     var view = new LiveTogether.Views.UserDashboard({model: model});
-    this.$el.find('#usersContainer').append(view.render().el);
+    this.$el.find('tbody').append(view.render().el);
   },
 
   newUserForm: function(){
