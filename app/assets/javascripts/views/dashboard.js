@@ -30,10 +30,10 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
     this.chores = this.chores || new LiveTogether.Collections.Chores();
     this.choresView = new LiveTogether.Views.ChoresIndex({collection: this.chores});
     if (this.$leftPanel.html().length === 0) {
-      this.$leftPanel.html(this.choresView.render().$el.addClass('front').hide().fadeIn());
+      this.$leftPanel.html(this.choresView.render().$el.addClass('front'));
     } else if (this.completedChoresView) {
       this.$leftPanel.append(this.choresView.render().$el.addClass('front'));
-      $('.flip-container').toggleClass('flip');
+      $('.flip-container').removeClass('flip');
     }
   },
 
@@ -47,7 +47,7 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
     this.users = this.users || new LiveTogether.Collections.Users();
     this.usersView = new LiveTogether.Views.UsersIndex({collection: this.users});
     this.$rightUpperPanel.html(this.usersView.render().el);
-    this.$rightUpperPanel.show();
+    this.$rightUpperPanel.fadeIn();
   },
 
   showList: function(id){
@@ -69,7 +69,7 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
       this.$leftPanel.html(this.completedChoresView.render().$el.addClass('back'));
     } else if (this.choresView) {
       this.$leftPanel.append(this.completedChoresView.render().$el.addClass('back'));
-      $('.flip-container').toggleClass('flip');
+      $('.flip-container').addClass('flip');
     }
   }
 });
