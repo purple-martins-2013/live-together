@@ -29,7 +29,7 @@
       <ul class="right">
         <li class="divider"></li>
         <% if current_user.image? %>
-          <li class="nav"><%= image_tag(current_user.image, :style =>"height:39px") %>
+          <li class="nav" style='line-height: 1em'><%= image_tag(current_user.image) %></li>
         <% end %>
         <li class="nav"><%= link_to current_user.name, root_path %></li>
         <li class="divider"></li>
