@@ -1,0 +1,34 @@
+<h1>New Expense List</h1>
+
+<%= form_for @expense do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :total %>
+
+  <div class="row collapse">
+    <div class="small-1 large-2 columns">
+      <span class="prefix"><strong> $ </strong></span>
+    </div>
+    <div class="small-11 large-10 columns">
+      <%= f.number_field :total , :step => '0.01' %>
+    </div>
+  </div>
+  <%= f.label :purchased_on %>
+  <%= f.date_field :purchased_on %>
+  <br>
+  <br>
+  <br>
+  <div class="contributors">
+    <% @contributors.each do |user| %>
+      <%= check_box_tag "expense[contributor_ids][]", user.id %>
+      <%= user.name%>
+    <% end %>
+
+  </div>
+
+  <%= f.submit "Submit", class: "button success" %>
+
+<% end %>

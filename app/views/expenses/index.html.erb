@@ -1,0 +1,73 @@
+<% user_total = 0 %>
+<% house_total = 0 %>
+<h1>Expense List</h1>
+<h2>House Expenses</h2>
+
+<div class='row'>
+  <div class="large-3 columns">
+    <strong>Date</strong>
+  </div>
+  <div class="large-3 columns">
+    <strong>Description</strong>
+  </div>
+  <div class="large-3 columns">
+    <strong>Amount</strong>
+  </div>
+</div>
+<% @house_expenses.each do |expense| %>
+  <% house_total += expense.total_cents %>
+  <div class='row'>
+    <hr>
+      <div class="large-3 columns">
+        <%= expense.purchased_on %>
+      </div>
+      <div class="large-3 columns">
+        <%= expense.name %>
+      </div>
+      <div class="large-3 columns">
+        <%= expense.total %>
+      </div>
+    </div>
+  <% end %>
+  <hr>
+  <div class='row'>
+    <h4><center>$ <%= display_dollars(house_total) %></center></h4>
+  </div>
+
+
+
+
+<h2>Your Expenses</h2>
+<p>Only expenses you are part of.</p>
+<div class='row'>
+  <div class="large-3 columns">
+    <strong>Date</strong>
+  </div>
+  <div class="large-3 columns">
+    <strong>Description</strong>
+  </div>
+  <div class="large-3 columns">
+    <strong>Your Share</strong>
+  </div>
+</div>
+<% @user_debts.each do |debt| %>
+  <% user_total += debt.amount_cents %>
+  <div class='row'>
+    <hr>
+      <div class="large-3 columns">
+        <%= debt.expense.purchased_on %>
+      </div>
+      <div class="large-3 columns">
+        <%= debt.expense.name %>
+      </div>
+      <div class="large-3 columns">
+        <%= debt.amount %>
+      </div>
+    </div>
+  <% end %>
+  <hr>
+  <div class='row'>
+    <h4><center>$ <%= display_dollars(user_total) %></center></h4>
+  </div>
+    <%= link_to 'New Expense', new_expense_path %>
+    <br>
