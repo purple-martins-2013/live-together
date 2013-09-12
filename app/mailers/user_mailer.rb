@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   def payment_request_email(lender, borrower)
     @lender = lender
     @borrower = borrower
-    @balance = lender.debt_with(borrower)
+    @balance =  "%.2f" % (lender.debt_with(borrower)/100.0)
     @url = "http://live-together.herokuapp.com"
     mail(to: @borrower.email, subject: 'Roomate request')
   end
