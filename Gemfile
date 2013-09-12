@@ -34,6 +34,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'selenium-webdriver'
   gem 'debugger'
+  gem 'better_errors'
 end
 
 group :test do

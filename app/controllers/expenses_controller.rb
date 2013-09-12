@@ -23,10 +23,14 @@ class ExpensesController < ApplicationController
     else
       redirect_to new_expense_path
     end
-    # respond_to do |format|
-    #   format.html { redirect_to :back }
-    #   format.json { render json: @expense }
-    # end
+  end
+
+  def new_from_grocery_list
+    @expense = current_user.expenses.new(
+      name: params[:expense][':name'],
+      description: params[:expense][':description'],
+      contributor_ids: params[:expense][':contributor_ids']
+      )
   end
 
   def destroy
@@ -37,6 +41,6 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:name, :total, :description, :purchased_on, {:contributor_ids => []})
+    params.require(:expense).permit(:name, :total, :description, :purchased_on, :contributor_ids,  {:contributor_ids => []})
   end
 end
