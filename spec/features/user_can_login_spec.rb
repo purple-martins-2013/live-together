@@ -17,11 +17,4 @@ feature "user can login", feature: true do
     expect(page).to have_content 'Logout'
     expect(page).to have_content 'Signed in successfully'
   end
-
-  it "displays an error message when a user is logged in without valid info" do
-    fill_in 'user_email', with: user.email
-    fill_in 'user_password', with: 'pass'
-    click_button 'Sign in'
-    expect(page).to have_content 'Invalid'
-  end
 end
