@@ -31,7 +31,7 @@
   <% end %>
   <hr>
   <div class='row'>
-    <h4><center>$ <%= house_total %></center></h4>
+    <h4><center>$ <%= house_total.to_f/100 %></center></h4>
   </div>
 
 
@@ -67,7 +67,7 @@
   <% end %>
   <hr>
   <div class='row'>
-    <h4><center>$ <%= user_total %></center></h4>
+    <h4><center>$ <%= user_total.to_f/100 %></center></h4>
   </div>
     <%= link_to 'New Expense', new_expense_path %>
     <br>
