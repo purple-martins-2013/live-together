@@ -12,10 +12,10 @@
               <% when settlement[:balance] == 0 %>
               All good here.
               <% when settlement[:balance] < 0 %>
-              <p><%= "You owe $ #{ settlement[:balance].abs }" %></p>
+              <p><%= "You owe $#{ "%.2f" % settlement[:balance].abs }" %></p>
               <%= link_to "Make Payment", new_payment_path, class: "button success"%>
               <%else%>
-              <p><%= "Owes you $ #{ settlement[:balance] }" %></p>
+              <p><%= "Owes you $#{ "%.2f" % settlement[:balance] }" %></p>
               <%= link_to "Request Payment", new_payment_path, class: "button "%>
             <% end %>
           </center>
@@ -53,7 +53,7 @@
         <%= payment.lender.name %>
       </div>
       <div class="large-3 columns">
-         $ <%= payment.amount_cents %>
+         $ <%= payment.amount %>
       </div>
     </div>
     <div class="row">
