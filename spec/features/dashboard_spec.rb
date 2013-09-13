@@ -79,7 +79,7 @@ feature 'Dashboard', feature: true, js: true do
           click_button "Add item"
           fill_in "name", with: "A test item"
           click_button "Create"
-          expect(page).to have_css('li', text: "A test item")
+          expect(page).to have_css('#itemsContainer li', text: "A test item")
           expect(page).not_to have_css('.new-item-form')
         end
       end

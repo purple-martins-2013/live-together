@@ -13,7 +13,7 @@
               All good here.
               <% when settlement[:balance] < 0 %>
               <p><%= "You owe $#{ display_dollars(settlement[:balance]) }" %></p>
-              <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success"%>
+              <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success", id: "newPaymentForm" %>
               <%else%>
               <p><%= "Owes you $#{ display_dollars(settlement[:balance]) }" %></p>
               <%= link_to "Request Payment", payment_request_path(borrower_id: settlement[:roomate].id), method: 'post', class: "button "%>

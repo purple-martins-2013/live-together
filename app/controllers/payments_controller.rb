@@ -15,6 +15,7 @@ class PaymentsController < ApplicationController
     amount = current_user.debt_with(lender).abs
     payment_params = { lender: lender , amount_cents: amount }
     @payment = current_user.payments.new(payment_params)
+    render layout: false
   end
 
   def create
