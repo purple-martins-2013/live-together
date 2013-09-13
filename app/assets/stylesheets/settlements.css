@@ -1,0 +1,50 @@
+
+.roomate_board{
+  text-align: center;
+}
+
+.roomate{
+  display: inline-block;
+  list-style-type: none;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.roomate_card {
+  min-width: 250px;
+  height: 300px;
+  padding:30px 20px;
+  border: solid 1px #C5C5C5;
+  background-color: #F2F2F2;
+}
+
+.roomate_avatar {
+  height: 70px;
+  border: solid 1px #C5C5C5;
+}
+
+.rommate_card_situation {
+  font-weight: bold;
+}
+
+.payments_table {
+
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+
+.danger {
+  background-color: #CF453F;
+  border-color: #A33B37;
+}
+
+.row.table_headers {
+  margin-top: 55px;
+  margin-bottom: 15px;
+  font-size: 25px;
+}
+
+.row.table_content {
+  margin-left: 5px;
+  margin-right: 5px;
+}

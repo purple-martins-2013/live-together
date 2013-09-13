@@ -1,21 +1,23 @@
 
-  <h1>Payments</h1>
+  <h1>Settlements</h1>
+  <hr>
   <div class="row">
-    <ul class="roomate_settlements">
+    <ul class="roomate_board" >
       <% @settlements.each do |settlement| %>
-        <li style="display: inline-block; list-style-type: none; padding: 20px;">
-          <div style="padding:10px; border: solid 1px ">
+        <li class="roomate">
+          <div class="roomate_card">
             <center>
-              <%= image_tag(settlement[:roomate].image, style: "border:solid 1px; height: 50px") %>
+              <%= image_tag(settlement[:roomate].image, class: "roomate_avatar ") %>
               <p><%= settlement[:roomate].name %></p>
+
               <% case  %>
               <% when settlement[:balance] == 0 %>
-              All good here.
+                <p class="rommate_card_situation">All good here.</p>
               <% when settlement[:balance] < 0 %>
-              <p><%= "You owe $#{ display_dollars(settlement[:balance]) }" %></p>
-              <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success"%>
+                <p class="rommate_card_situation"><%= "You owe $ #{ display_dollars(settlement[:balance]) }" %></p>
+                <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success"%>
               <%else%>
-              <p><%= "Owes you $#{ display_dollars(settlement[:balance]) }" %></p>
+              <p class="rommate_card_situation"><%= "Owes you $ #{ display_dollars(settlement[:balance]) }" %></p>
               <%= link_to "Request Payment", payment_request_path(borrower_id: settlement[:roomate].id), method: 'post', class: "button "%>
             <% end %>
           </center>
@@ -24,43 +26,45 @@
     <%end %>
   </ul>
 </div>
-<h2>Your Payments</h2>
-<div class='row'>
+<hr>
+<!-- <h2>Your Payments</h2> -->
+<div class='row table_headers'>
   <div class="large-3 columns">
-    <strong>Date</strong>
+    <p>Date</p>
   </div>
   <div class="large-3 columns">
-    <strong>Payer</strong>
+    <p>Payer</p>
   </div>
   <div class="large-3 columns">
-    <strong>Payee</strong>
+    <p>Payee</p>
   </div>
-  <div class="large-3 columns">
-    <strong>Amount</strong>
+  <div class="large-2 columns">
+    <center><p>Amount</p></center>
+  </div>
+  <div class="large-1 columns">
   </div>
 </div>
-<div class="row">
+<div class="row table_content">
   <% @payments.each do |payment| %>
-    <div class="row">
-    <hr>
+    <div class="row payment">
       <div class="large-3 columns">
-        <%= payment.date %>
+        <%= payment.date.to_formatted_s(:long) %>
       </div>
       <div class="large-3 columns">
-        <%= payment.borrower.name %>
+        <p><%= payment.borrower.name %></p>
       </div>
       <div class="large-3 columns">
         <%= payment.lender.name %>
       </div>
-      <div class="large-3 columns">
-         $ <%= payment.amount %>
+      <div class="large-2 columns">
+         <center>$ <%= payment.amount %></center>
       </div>
-    </div>
-    <div class="row">
-
-      <div style="background-color: #E7E7E7; padding: 10px; margin: 10px ">
-        <em><%= payment.description %></em>
+      <div class="large-1 columns">
+        <% if payment.borrower == current_user %>
+          <%= link_to "Delete", payment_path(payment), method: :delete, class: 'button danger small radius' %>
+        <%end %>
       </div>
+    <hr>
     </div>
   <% end %>
 </div>
