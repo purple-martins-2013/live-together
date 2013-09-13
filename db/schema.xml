@@ -32,7 +32,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="624" y="201" name="houses">
+</datatypes><table x="622" y="276" name="houses">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -75,7 +75,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="472" y="138" name="chores">
+<table x="465" y="80" name="chores">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -117,6 +117,10 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="chores" row="id" />
 </row>
+<row name="house_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="houses" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -137,7 +141,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="760" y="152" name="grocery_lists">
+<table x="740" y="152" name="grocery_lists">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -170,11 +174,15 @@
 <part>id</part>
 </key>
 </table>
-<table x="679" y="459" name="settlements">
+<table x="713" y="474" name="payments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="contributor_id" null="1" autoincrement="0">
+<row name="borrower_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="lender_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
@@ -185,14 +193,20 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="expenses" row="id" />
 </row>
-<row name="date_paid" null="1" autoincrement="0">
+<row name="date" null="1" autoincrement="0">
 <datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
+<row name="method" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="410" y="474" name="expenses">
+<table x="382" y="455" name="expenses">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -211,6 +225,29 @@
 <default>NULL</default></row>
 <row name="purchased_on" null="1" autoincrement="0">
 <datatype>DATE</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="848" y="355" name="debts">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="borrower_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="lender_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="expense_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="expenses" row="id" />
+</row>
+<row name="amount_cents" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
