@@ -1,4 +1,13 @@
-<h3><%= list.name %></h3>
+<h3 class="left"><%= list.name %></h3>
+<ul class="button-group right">
+  <% if (list.users.indexOf(LiveTogether.current_user.id) > -1){ %>
+  <li><a href="#" id="unsubscribe" class="small button alert">Unsubscribe</a></li>
+  <% } else { %>
+  <li><a href="#" id="subscribe" class="small button success">Subscribe</a></li>
+  <% } %>
+  <li><a href=<%= "/new_from_grocery_list/"+list.id %> class="small button secondary">Buy</a></li>
+</ul>
+<div class="clearfix"></div>
 <div id="itemsContainer"></div>
 <button class="small button new-item">Add item</button>
 <button class="small button right all-lists">Back</button>
