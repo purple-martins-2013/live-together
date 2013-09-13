@@ -28,4 +28,6 @@ LiveTogether::Application.routes.draw do
   get '/new_from_grocery_list/:id', to: 'expenses#new_from_grocery_list'
 
   get '/current_user', to: 'users#get_current_user'
+
+  mount JasmineRails::Engine => "/jasmine_specs" if defined?(JasmineRails)
 end
