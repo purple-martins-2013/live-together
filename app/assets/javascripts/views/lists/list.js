@@ -22,10 +22,14 @@ LiveTogether.Views.List = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template({list: this.model.attributes}));
+    if (this.model.items.length > 0) {
+      this.addAll();
+    }
     return this;
   },
 
   addAll: function(){
+    $('#itemsContainer').empty();
     this.model.items.each(this.addOne, this);
   },
 
