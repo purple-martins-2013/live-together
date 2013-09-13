@@ -61,13 +61,13 @@ class GroceryListsController < ApplicationController
     @grocery_list = GroceryList.find(params[:id])
   end
 
-  def suscribe
+  def subscribe
     @grocery_list = GroceryList.find(params[:id])
     @grocery_list.users << current_user
     redirect_to grocery_list_path @grocery_list
   end
 
-  def unsuscribe
+  def unsubscribe
     @grocery_list = GroceryList.find(params[:id])
     @grocery_list.users.delete(current_user)
     redirect_to grocery_list_path @grocery_list
