@@ -25,7 +25,7 @@
   <%= hidden_field_tag 'expense[:name]' , @grocery_list.name %>
   <%= hidden_field_tag 'expense[:description]' , @grocery_list.grocery_items.map{|item| item.name }.join(', ') %>
   <%= hidden_field_tag 'expense[:total_cents]' , 0 %>
-  <%= hidden_field_tag 'expense[:contributor_ids]' , @grocery_list.users.map{|user| user.id }%>
+  <%= hidden_field_tag 'expense[:contributor_ids]' , @grocery_list.users.map{|user| user.id if user.id != current_user.id }%>
   <%= submit_tag "Buy this list", class: "button" %>
 
   <% unless @grocery_list.users.include?(current_user) %>
