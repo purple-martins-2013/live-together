@@ -25,5 +25,5 @@ LiveTogether::Application.routes.draw do
   post '/request_payment', to: 'payments#payment_request', as: 'payment_request'
   post '/suscribe', to: 'grocery_lists#suscribe'
   post '/unsuscribe', to: 'grocery_lists#unsuscribe'
-  post '/new_from_grocery_list', to: 'expenses#new_from_grocery_list'
+  get '/new_from_grocery_list/:id', to: 'expenses#new_from_grocery_list'
 end

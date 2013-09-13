@@ -26,10 +26,16 @@ class ExpensesController < ApplicationController
   end
 
   def new_from_grocery_list
+    @grocery_list = GroceryList.find(params[:id])
+
+    name = @grocery_list.name
+    description = @grocery_list.grocery_items.map{|item| item.name }.join(', ')
+    contributors = @grocery_list.users.map{|user| user.id }
+
     @expense = current_user.expenses.new(
-      name: params[:expense][':name'],
-      description: params[:expense][':description'],
-      contributor_ids: params[:expense][':contributor_ids']
+      name: name,
+      description: description,
+      contributor_ids: contributors
       )
   end
 
