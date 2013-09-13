@@ -14,12 +14,18 @@ LiveTogether.Views.List = Backbone.View.extend({
 
   events: {
     "click .new-item": "newItemForm",
-    "click .all-lists": "allLists"
+    "click .all-lists": "allLists",
+    "click #subscribe": "subscribe",
+    "click #unsubscribe": "unsubscribe"
   },
 
   render: function(){
     this.$el.html(this.template({list: this.model.attributes}));
     return this;
+  },
+
+  addAll: function(){
+    this.model.items.each(this.addOne, this);
   },
 
   addOne: function(model){
@@ -35,6 +41,30 @@ LiveTogether.Views.List = Backbone.View.extend({
 
   allLists: function(){
     LiveTogether.router.navigate('house', {trigger: true});
+  },
+
+  subscribe: function(e){
+    e.preventDefault();
+    var that = this;
+    $.post('/subscribe', { id: this.model.id }).done(function(){
+      that.model.fetch({
+        success: function(){
+          that.addAll();
+        }
+      });
+    });
+  },
+
+  unsubscribe: function(e){
+    e.preventDefault();
+    var that = this;
+    $.post('/unsubscribe', { id: this.model.id }).done(function(){
+      that.model.fetch({
+        success: function(){
+          that.addAll();
+        }
+      });
+    });
   }
 
 });
