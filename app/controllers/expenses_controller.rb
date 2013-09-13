@@ -16,6 +16,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
+    p params
     expense_params[:total_cents] = to_cents(expense_params[:total])
     @expense = current_user.expenses.new(expense_params)
     if @expense.save
@@ -30,7 +31,7 @@ class ExpensesController < ApplicationController
 
     name = @grocery_list.name
     description = @grocery_list.grocery_items.map{|item| item.name }.join(', ')
-    contributors = @grocery_list.users.map{|user| user.id }
+    contributors = @grocery_list.users.map{|user| user.id }.join(' ')
 
     @expense = current_user.expenses.new(
       name: name,
