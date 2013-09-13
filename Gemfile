@@ -36,6 +36,7 @@ group :development, :test do
   gem 'debugger'
   gem 'better_errors'
   gem 'jasmine-rails'
+  gem 'jasmine-jquery-rails'
 end
 
 group :test do

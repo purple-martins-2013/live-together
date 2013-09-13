@@ -9,5 +9,4 @@ describe("List model", function(){
   it("assigns the correct url to the collection of items", function(){
     expect(list.items.url).toBe("/grocery_lists/37/grocery_items");
   });
-
 });
