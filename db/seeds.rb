@@ -49,3 +49,6 @@ Expense.create(purchaser_id: 1, name: "Cable Bill", total_cents: 6000, descripti
 
 Payment.create(borrower_id: 1, lender_id: 2, description: 'Advance on the rent', amount_cents: 100000, date: "2013-09-02", method: "cash" )
 Payment.create(borrower_id: 1, lender_id: 2, description: 'Seccond payment of septembers rent.', amount_cents: 20000, date: "2013-09-03", method: "cash" )
+
+User.first.grocery_lists << GroceryList.all
+User.last.grocery_lists << GroceryList.last
