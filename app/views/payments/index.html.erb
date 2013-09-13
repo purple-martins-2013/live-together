@@ -1,6 +1,5 @@
-
-  <h1>Settlements</h1>
-  <hr>
+<h1>Payments</h1>
+<hr>
   <div class="row">
     <ul class="roomate_board" >
       <% @settlements.each do |settlement| %>
@@ -9,14 +8,13 @@
             <center>
               <%= image_tag(settlement[:roomate].image, class: "roomate_avatar ") %>
               <p><%= settlement[:roomate].name %></p>
-
               <% case  %>
               <% when settlement[:balance] == 0 %>
-                <p class="rommate_card_situation">All good here.</p>
+              <p class="rommate_card_situation">All good here.</p>
               <% when settlement[:balance] < 0 %>
-                <p class="rommate_card_situation"><%= "You owe $ #{ display_dollars(settlement[:balance]) }" %></p>
-                <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success", id: "newPaymentForm" %>
-              <%else%>
+              <p class="rommate_card_situation"><%= "You owe $ #{ display_dollars(settlement[:balance]) }" %></p>
+              <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success", id: "newPaymentForm" %>
+            <%else%>
               <p class="rommate_card_situation"><%= "Owes you $ #{ display_dollars(settlement[:balance]) }" %></p>
               <%= link_to "Request Payment", payment_request_path(borrower_id: settlement[:roomate].id), method: 'post', class: "button "%>
             <% end %>
@@ -57,14 +55,15 @@
         <%= payment.lender.name %>
       </div>
       <div class="large-2 columns">
-         <center>$ <%= payment.amount %></center>
+        <center>$
+          <%= payment.amount %></center>
       </div>
       <div class="large-1 columns">
         <% if payment.borrower == current_user %>
           <%= link_to "Delete", payment_path(payment), method: :delete, class: 'button danger small radius' %>
         <%end %>
       </div>
-    <hr>
+      <hr>
     </div>
   <% end %>
 </div>

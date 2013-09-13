@@ -1,3 +1,25 @@
+.background_holder {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  width: 100%;
+
+}
+
+.background_image {
+  position: absolute;
+  width: 100%;
+}
+
+
+.content {
+  position: fixed;
+  top: 300px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+}
+
 
 .roomate_board{
   text-align: center;
