@@ -57,7 +57,7 @@ LiveTogether.Views.Dashboard = Backbone.View.extend({
     lists.add(list, {silent: true});
     var view = new LiveTogether.Views.List({model: list});
     this.$rightUpperPanel.hide();
-    this.$rightLowerPanel.html(view.render().el);
+    this.$rightLowerPanel.html(view.el);
   },
 
   showCompletedChores: function(){

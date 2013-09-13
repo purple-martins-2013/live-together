@@ -29,8 +29,8 @@
   <%= submit_tag "Buy this list", class: "button" %>
 
   <% unless @grocery_list.users.include?(current_user) %>
-    <%= link_to 'Suscribe to this list', suscribe_path(id: @grocery_list.id), method: 'post', class: "button" %>
+    <%= link_to 'Suscribe to this list', subscribe_path(id: @grocery_list.id), method: 'post', class: "button" %>
   <% else %>
-    <%= link_to 'Unuscribe to this list', unsuscribe_path(id: @grocery_list.id), method: 'post', class: "button" %>
+    <%= link_to 'Unuscribe to this list', unsubscribe_path(id: @grocery_list.id), method: 'post', class: "button" %>
   <% end %>
 </div>
