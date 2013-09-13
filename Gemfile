@@ -35,6 +35,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'debugger'
   gem 'better_errors'
+  gem 'jasmine-rails'
 end
 
 group :test do
