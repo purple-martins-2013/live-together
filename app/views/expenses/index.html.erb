@@ -6,79 +6,85 @@
 </div>
 <hr>
 
-
-<div>
-<h3>House Expenses</h3>
-<br>
-<div class='row'>
-  <div class="large-3 columns">
-    <strong>Date</strong>
-  </div>
-  <div class="large-3 columns">
-    <strong>Description</strong>
-  </div>
-  <div class="large-3 columns">
-    <strong>Amount</strong>
-  </div>
-</div>
-<% @house_expenses.each do |expense| %>
-  <% house_total += expense.total_cents %>
-  <div class='row'>
-    <hr>
+<div class='flip-container'>
+  <div class="row flipper">
+    <div class="front small-12 columns">
+    <h3 class="left">House Expenses</h3>
+    <button class="toggleExpenseFlip button small secondary right">View your expenses</button>
+    <div class="clearfix"></div>
+    <br>
+    <div class='row'>
       <div class="large-3 columns">
-        <%= expense.purchased_on.to_formatted_s(:long) %>
+        <strong>Date</strong>
       </div>
       <div class="large-3 columns">
-        <%= expense.name %>
+        <strong>Description</strong>
       </div>
       <div class="large-3 columns">
-        $ <%= expense.total %>
+        <strong>Amount</strong>
       </div>
     </div>
-  <% end %>
-  <hr>
-  <div class='row'>
-    <div class="large-3 large-offset-8 columns">
-      <h4 style ="text-align: center">$ <%= display_dollars(house_total) %></h4>
-    </div>
-  </div>
-</div>
-
-
-
-<h3 sytle="margin-bottom: 25px;">Your Expenses</h3>
-<br>
-<div>
-<div class='row'>
-  <div class="large-3 columns">
-    <strong>Date</strong>
-  </div>
-  <div class="large-3 columns">
-    <strong>Description</strong>
-  </div>
-  <div class="large-3 columns">
-    <strong>Your Share</strong>
-  </div>
-</div>
-<% @user_debts.each do |debt| %>
-  <% user_total += debt.amount_cents %>
-  <div class='row'>
-    <hr>
-      <div class="large-3 columns">
-        <%= debt.expense.purchased_on.to_formatted_s(:long) %>
-      </div>
-      <div class="large-3 columns">
-        <%= debt.expense.name %>
-      </div>
-      <div class="large-3 columns">
-        <%= debt.amount %>
+    <% @house_expenses.each do |expense| %>
+      <% house_total += expense.total_cents %>
+      <div class='row'>
+        <hr>
+          <div class="large-3 columns">
+            <%= expense.purchased_on.to_formatted_s(:long) %>
+          </div>
+          <div class="large-3 columns">
+            <%= expense.name %>
+          </div>
+          <div class="large-3 columns">
+            $ <%= expense.total %>
+          </div>
+        </div>
+      <% end %>
+      <hr>
+      <div class='row'>
+        <div class="large-3 large-offset-8 columns">
+          <h4 style ="text-align: center">$ <%= display_dollars(house_total) %></h4>
+        </div>
       </div>
     </div>
-  <% end %>
-  <hr>
-  <div class='row'>
-    <div class="large-3 large-offset-8 columns">
-      <h4 style ="text-align: center">$ <%= display_dollars(user_total) %></h4>
+
+
+    <div class="back small-12 columns">
+    <h3 style="margin-bottom: 25px;" class="left">Your Expenses</h3>
+    <button class="toggleExpenseFlip button small secondary right">View house expenses</button>
+    <div class="clearfix"></div>
+    <br>
+    <div class='row'>
+      <div class="large-3 columns">
+        <strong>Date</strong>
+      </div>
+      <div class="large-3 columns">
+        <strong>Description</strong>
+      </div>
+      <div class="large-3 columns">
+        <strong>Your Share</strong>
+      </div>
+    </div>
+    <% @user_debts.each do |debt| %>
+      <% user_total += debt.amount_cents %>
+      <div class='row'>
+        <hr>
+          <div class="large-3 columns">
+            <%= debt.expense.purchased_on.to_formatted_s(:long) %>
+          </div>
+          <div class="large-3 columns">
+            <%= debt.expense.name %>
+          </div>
+          <div class="large-3 columns">
+            <%= debt.amount %>
+          </div>
+        </div>
+      <% end %>
+      <hr>
+      <div class='row'>
+        <div class="large-3 large-offset-8 columns">
+          <h4 style ="text-align: center">$ <%= display_dollars(user_total) %></h4>
+        </div>
+      </div>
     </div>
   </div>
 </div>

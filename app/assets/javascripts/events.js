@@ -13,4 +13,8 @@ $(document).ready(function(){
       $('#myModal').foundation('reveal', 'open');
     });
   });
+
+  $('.toggleExpenseFlip').on('click', function(){
+    $('.flip-container').toggleClass('flip');
+  });
 });
