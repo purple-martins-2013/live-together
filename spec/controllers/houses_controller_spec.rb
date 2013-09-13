@@ -72,6 +72,14 @@ describe HousesController do
           post :create, house: FactoryGirl.attributes_for(:house)
         end.to change { House.count }.by(1)
       end
+
+      it "not increase House.count if improper attributes" do
+        sign_in user
+        expect do
+          post :create, { house: {name: '', address: '123 Street'}}
+        end.to change { House.count }.by(0)
+      end
+
     end
 
     context "while not logged in" do
