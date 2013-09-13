@@ -17,7 +17,7 @@ LiveTogether.Views.List = Backbone.View.extend({
     "click .all-lists": "allLists",
     "click #subscribe": "subscribe",
     "click #unsubscribe": "unsubscribe",
-    "click .button.secondary": "formModal"
+    "click #buyList": "formModal"
   },
 
   render: function(){
