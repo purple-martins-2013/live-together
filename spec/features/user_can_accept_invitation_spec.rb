@@ -15,11 +15,11 @@ feature "user can accept invitation", feature: true, js: true do
     sign_in_through_view(@roomate)
   end
 
-  it "should be able to view the invitation on the new house page" do
+  it "is able to view the invitation on the new house page" do
     expect(page).to have_content @house.name
   end
 
-  it "should be able to accept the invitation and view the house dash" do
+  it "is able to accept the invitation and view the house dash" do
     click_link "Join the house"
     expect(page).to have_content @house.name
     expect(page).to have_content @house.address

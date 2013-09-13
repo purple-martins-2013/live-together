@@ -60,7 +60,7 @@ describe PaymentsController do
       end
 
       context "with description, amount, date, and method filled out" do
-        it "creates an payment" do
+        it "creates a payment" do
           expect { post :create, {payment: attributes_for(:payment) } }.to change{Payment.count}.by(1)
         end
       end
@@ -80,7 +80,7 @@ describe PaymentsController do
         @payment = create(:payment)
       end
 
-      it "should delete a payment" do
+      it "deletes a payment" do
         expect {
           delete :destroy, id: @payment
         }.to change {Payment.count}.by(-1)
@@ -98,28 +98,28 @@ describe PaymentsController do
   context "when not logged in" do
 
     describe "#index" do
-      it "should redirect to the login form" do
+      it "redirects to the login form" do
         get :index
         expect(response).to redirect_to(new_user_session_path)
       end
     end
 
     describe "#show" do
-      it "should redirect to the login form" do
+      it "redirects to the login form" do
         get :show, id: payment
         expect(response).to redirect_to(new_user_session_path)
       end
     end
 
     describe "#new" do
-      it "should redirect to the login form" do
+      it "redirects to the login form" do
         get :new
         expect(response).to redirect_to(new_user_session_path)
       end
     end
 
     describe "#create" do
-      it "should not create a payment" do
+      it "does not create a payment" do
         expect { post :create, {payment: attributes_for(:payment) } }.not_to change{Chore.count}
       end
     end
