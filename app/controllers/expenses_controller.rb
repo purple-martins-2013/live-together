@@ -13,6 +13,7 @@ class ExpensesController < ApplicationController
   def new
     @expense = current_user.expenses.new
     @contributors = current_house.users.reject {|user| user == current_user }
+    render layout: false
   end
 
   def create
@@ -26,11 +27,19 @@ class ExpensesController < ApplicationController
   end
 
   def new_from_grocery_list
+    @grocery_list = GroceryList.find(params[:id])
+
+    name = @grocery_list.name
+    description = @grocery_list.grocery_items.map{|item| item.name }.join(', ')
+    contributors = @grocery_list.users.map{|user| user.id unless user.id == current_user.id }.join(' ')
+
     @expense = current_user.expenses.new(
-      name: params[:expense][':name'],
-      description: params[:expense][':description'],
-      contributor_ids: params[:expense][':contributor_ids']
+      name: name,
+      description: description,
+      contributor_ids: contributors
       )
+
+    render layout: false
   end
 
   def destroy

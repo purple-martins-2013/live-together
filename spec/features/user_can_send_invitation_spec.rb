@@ -10,7 +10,7 @@ feature "user can invite another user", feature: true do
     sign_in_through_view(@user)
   end
 
-  it "should display the invite roommates form" do
+  it "displays the invite roommates form" do
     click_button "Invite user"
     expect(page).to have_button "Invite"
   end

@@ -8,11 +8,10 @@ class InvitationsController < ApplicationController
       if @invitation
         UserMailer.invitation_email(@invitation).deliver
         flash[:notice] = "Invitation sent to #{invitation_params[:email]}"
-        format.html { redirect_to :back }
       else
-        flash[:notice] = "Invitation sent to #{invitation_params[:email]}"
-        format.html
+        flash[:notice] = "There was an error with your invitation please try again."
       end
+      format.html { redirect_to :back }
       format.json { render json: @invitation }
     end
   end

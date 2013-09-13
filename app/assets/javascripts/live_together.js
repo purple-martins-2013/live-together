@@ -7,6 +7,8 @@ window.LiveTogether = {
   },
   Routers: {},
   initialize: function() {
+    this.current_user = new LiveTogether.Models.CurrentUser();
+    this.current_user.fetch();
     this.router = new LiveTogether.Routers.Main();
     Backbone.history.start();
     if (!window.location.hash) {

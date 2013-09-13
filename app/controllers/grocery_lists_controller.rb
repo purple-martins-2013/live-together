@@ -61,16 +61,22 @@ class GroceryListsController < ApplicationController
     @grocery_list = GroceryList.find(params[:id])
   end
 
-  def suscribe
+  def subscribe
     @grocery_list = GroceryList.find(params[:id])
     @grocery_list.users << current_user
-    redirect_to grocery_list_path @grocery_list
+    respond_to do |format|
+      format.html {redirect_to grocery_list_path @grocery_list}
+      format.json {render json: @grocery_list}
+    end
   end
 
-  def unsuscribe
+  def unsubscribe
     @grocery_list = GroceryList.find(params[:id])
     @grocery_list.users.delete(current_user)
-    redirect_to grocery_list_path @grocery_list
+    respond_to do |format|
+      format.html {redirect_to grocery_list_path @grocery_list}
+      format.json {render json: @grocery_list}
+    end
   end
 
   def grocery_list_params

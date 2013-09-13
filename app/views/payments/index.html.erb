@@ -15,7 +15,7 @@
                 <p class="rommate_card_situation">All good here.</p>
               <% when settlement[:balance] < 0 %>
                 <p class="rommate_card_situation"><%= "You owe $ #{ display_dollars(settlement[:balance]) }" %></p>
-                <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success"%>
+                <%= link_to "Make Payment", new_payment_path(lender_id: settlement[:roomate].id), class: "button success", id: "newPaymentForm" %>
               <%else%>
               <p class="rommate_card_situation"><%= "Owes you $ #{ display_dollars(settlement[:balance]) }" %></p>
               <%= link_to "Request Payment", payment_request_path(borrower_id: settlement[:roomate].id), method: 'post', class: "button "%>
