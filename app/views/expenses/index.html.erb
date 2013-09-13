@@ -26,7 +26,7 @@
   <div class='row'>
     <hr>
       <div class="large-3 columns">
-        <%= expense.purchased_on %>
+        <%= expense.purchased_on.to_formatted_s(:long) %>
       </div>
       <div class="large-3 columns">
         <%= expense.name %>
@@ -65,7 +65,7 @@
   <div class='row'>
     <hr>
       <div class="large-3 columns">
-        <%= debt.expense.purchased_on %>
+        <%= debt.expense.purchased_on.to_formatted_s(:long) %>
       </div>
       <div class="large-3 columns">
         <%= debt.expense.name %>
