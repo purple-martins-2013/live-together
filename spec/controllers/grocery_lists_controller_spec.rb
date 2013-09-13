@@ -169,9 +169,9 @@ describe GroceryListsController do
       end
     end
 
-    describe "#suscribe" do
+    describe "#subscribe" do
       before(:each) do
-        post :suscribe, id: grocery_list
+        post :subscribe, id: grocery_list
       end
 
       it "adds user to grocery list users list" do
@@ -185,9 +185,9 @@ describe GroceryListsController do
       end
     end
 
-    describe "#unsuscribe" do
+    describe "#unsubscribe" do
       before(:each) do
-        post :unsuscribe, id: grocery_list
+        post :unsubscribe, id: grocery_list
       end
 
       it "redirects to grocey list show" do
