@@ -26,4 +26,6 @@ LiveTogether::Application.routes.draw do
   post '/subscribe', to: 'grocery_lists#subscribe'
   post '/unsubscribe', to: 'grocery_lists#unsubscribe'
   get '/new_from_grocery_list/:id', to: 'expenses#new_from_grocery_list'
+
+  get '/current_user', to: 'users#get_current_user'
 end
