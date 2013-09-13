@@ -10,11 +10,11 @@ feature "user can create a house", feature: true do
     visit root_path
   end
 
-  it "should display the create house form" do
+  it "displays the create house form" do
     expect(page).to have_content "Create house"
   end
 
-  it "should successfully create a new house with valid data" do
+  it "successfully creates a new house with valid data" do
     fill_in "house_name", with: house.name
     fill_in "house_address", with: house.address
     click_button "Create house"
