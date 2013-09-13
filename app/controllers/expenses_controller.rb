@@ -37,6 +37,8 @@ class ExpensesController < ApplicationController
       description: description,
       contributor_ids: contributors
       )
+
+    render layout: false
   end
 
   def destroy

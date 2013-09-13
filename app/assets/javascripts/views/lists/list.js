@@ -16,7 +16,8 @@ LiveTogether.Views.List = Backbone.View.extend({
     "click .new-item": "newItemForm",
     "click .all-lists": "allLists",
     "click #subscribe": "subscribe",
-    "click #unsubscribe": "unsubscribe"
+    "click #unsubscribe": "unsubscribe",
+    "click .button.secondary": "formModal"
   },
 
   render: function(){
@@ -64,6 +65,15 @@ LiveTogether.Views.List = Backbone.View.extend({
           that.addAll();
         }
       });
+    });
+  },
+
+  formModal: function(e){
+    console.log('event triggered');
+    e.preventDefault();
+    $.get("/new_from_grocery_list/"+this.model.id, function(response){
+      $('#myModal').html(response);
+      $('#myModal').foundation('reveal', 'open');
     });
   }
 
