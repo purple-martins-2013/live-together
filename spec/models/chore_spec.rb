@@ -15,15 +15,15 @@ describe Chore do
   describe "complete! method" do
     it { should respond_to(:complete!) }
 
-    it "should create a new CompletedChore" do
+    it "creates a new CompletedChore" do
       expect { chore.complete!(house.users.first, house) }.to change { CompletedChore.count }.by(1)
     end
 
-    it "should update the due date of the chore" do
+    it "updates the due date of the chore" do
       expect { chore.complete!(house.users.first, house) }.to change { chore.due_date }
     end
 
-    it "should update the last_completed field of the chore" do
+    it "updates the last_completed field of the chore" do
       expect { chore.complete!(house.users.first, house) }.to change { chore.last_completed }
     end
   end

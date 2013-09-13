@@ -14,13 +14,13 @@ describe InvitationsController do
         request.env["HTTP_REFERER"] = house_path(house)
       end
 
-      it "should create an invitation with valid information" do
+      it "creates an invitation with valid information" do
         expect do
           post :create, invitation: attributes_for(:invitation)
         end.to change { Invitation.count }.by(1)
       end
 
-      it "should not create an invitation with invalid information" do
+      it "does not create an invitation with invalid information" do
         expect do
           post :create, invitation: {email: ''}
         end.to raise_error(ArgumentError)
@@ -28,7 +28,7 @@ describe InvitationsController do
     end
 
     context "when not logged in" do
-      it "should redirect to the sign in page" do
+      it "redirects to the sign in page" do
         post :create
         expect(response).to redirect_to(new_user_session_path)
       end
@@ -43,12 +43,12 @@ describe InvitationsController do
         user.update_attributes(house_id: nil)
       end
 
-      it "should assign the correct invitation instance variable" do
+      it "assigns the correct invitation instance variable" do
         get :accept, id: invitation.id
         expect(assigns(:invitation)).to eq invitation
       end
 
-      it "should redirect to the correct house path" do
+      it "redirects to the correct house path" do
         get :accept, id: invitation.id
         expect(response).to redirect_to root_path
       end

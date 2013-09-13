@@ -10,7 +10,7 @@ describe HousesController do
     context "while logged in" do
 
       context "without a house assigned to the user" do
-        it "should redirect to the #new action" do
+        it "redirects to the #new action" do
           user_without_house = FactoryGirl.create(:user)
           sign_in user_without_house
           get :show, id: house.id
@@ -24,12 +24,12 @@ describe HousesController do
           sign_in user
         end
 
-        it "should render the show house view" do
+        it "renders the show house view" do
           get :show, id: house.id
           expect(response).to render_template 'houses/show'
         end
 
-        it "should assign the correct instance variables" do
+        it "assigns the correct instance variables" do
           get :show, id: house.id
           expect(assigns(:house)).not_to eq nil
           expect(assigns(:invitation)).not_to eq nil
@@ -38,7 +38,7 @@ describe HousesController do
     end
 
     context "while not logged in" do
-      it "should redirect to the login form" do
+      it "redirects to the login form" do
         get :show, id: house.id
         expect(response).to redirect_to(new_user_session_path)
       end
@@ -56,7 +56,7 @@ describe HousesController do
     end
 
     context "while not logged in" do
-      it "should redirect to the login form" do
+      it "redirects to the login form" do
         get :new
         expect(response).to redirect_to(new_user_session_path)
       end
@@ -66,16 +66,24 @@ describe HousesController do
   describe "#create" do
     context "while logged in" do
 
-      it "should create a new house" do
+      it "creates a new house" do
         sign_in user
         expect do
           post :create, house: FactoryGirl.attributes_for(:house)
         end.to change { House.count }.by(1)
       end
+
+      it "not increase House.count if improper attributes" do
+        sign_in user
+        expect do
+          post :create, { house: {name: '', address: '123 Street'}}
+        end.to change { House.count }.by(0)
+      end
+
     end
 
     context "while not logged in" do
-      it "should not create a new house" do
+      it "does not create a new house" do
         expect do
           post :create, house: FactoryGirl.attributes_for(:house)
         end.not_to change { House.count }
