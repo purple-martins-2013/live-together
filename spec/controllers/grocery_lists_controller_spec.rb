@@ -164,8 +164,36 @@ describe GroceryListsController do
 
       it "redirects to the grocery lists index" do
         delete :destroy, id: @grocery_list
+
         response.should redirect_to grocery_lists_path
       end
+    end
+
+    describe "#suscribe" do
+      before(:each) do
+        post :suscribe, id: grocery_list
+      end
+
+      it "adds user to grocery list users list" do
+        @user2 = create(:user)
+        grocery_list.users << @user2
+        grocery_list.users.should_not eq nil
+      end
+
+      it "redirects to grocery list show" do
+        response.should redirect_to grocery_list_path(grocery_list)
+      end
+    end
+
+    describe "#unsuscribe" do
+      before(:each) do
+        post :unsuscribe, id: grocery_list
+      end
+
+      it "redirects to grocey list show" do
+        response.should redirect_to grocery_list_path(grocery_list)
+      end
+
     end
   end
 
