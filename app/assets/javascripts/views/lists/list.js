@@ -69,7 +69,6 @@ LiveTogether.Views.List = Backbone.View.extend({
   },
 
   formModal: function(e){
-    console.log('event triggered');
     e.preventDefault();
     $.get("/new_from_grocery_list/"+this.model.id, function(response){
       $('#myModal').html(response);

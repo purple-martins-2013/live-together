@@ -13,6 +13,7 @@ class ExpensesController < ApplicationController
   def new
     @expense = current_user.expenses.new
     @contributors = current_house.users.reject {|user| user == current_user }
+    render layout: false
   end
 
   def create
