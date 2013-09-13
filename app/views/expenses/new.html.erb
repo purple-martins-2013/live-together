@@ -1,11 +1,11 @@
-<h1>New Expense List</h1>
+<h1>New Expense</h1>
 
 <%= form_for @expense do |f| %>
 
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :description %>
-  <%= f.text_field :description %>
+  <%= f.text_area :description %>
   <%= f.label :total %>
 
   <div class="row collapse">
@@ -20,15 +20,18 @@
   <%= f.date_field :purchased_on %>
   <br>
   <br>
+
+  <%= f.label :contributors %>
   <br>
-  <div class="contributors">
+  <ul>
     <% @contributors.each do |user| %>
-      <%= check_box_tag "expense[contributor_ids][]", user.id %>
-      <%= user.name%>
+      <li style="list-style-type: none;">
+        <p>
+          <%= check_box_tag "expense[contributor_ids][]", user.id %>
+          <%= user.name%>
+        </p>
+      </li>
     <% end %>
-
-  </div>
-
+  </ul>
   <%= f.submit "Submit", class: "button success" %>
-
 <% end %>

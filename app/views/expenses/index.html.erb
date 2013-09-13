@@ -1,8 +1,15 @@
 <% user_total = 0 %>
 <% house_total = 0 %>
-<h1>Expense List</h1>
-<h2>House Expenses</h2>
+<div class="row">
+  <div class="small-3 push-9 columns" style="padding-top: 15px"><button class="button success" id="newExpenseForm">New Expense</button></div>
+  <div class="small-9 pull-3 columns"><h1>Expenses</h1>
+</div>
+<hr>
 
+
+<div>
+<h3>House Expenses</h3>
+<br>
 <div class='row'>
   <div class="large-3 columns">
     <strong>Date</strong>
@@ -25,20 +32,23 @@
         <%= expense.name %>
       </div>
       <div class="large-3 columns">
-        <%= expense.total %>
+        $ <%= expense.total %>
       </div>
     </div>
   <% end %>
   <hr>
   <div class='row'>
-    <h4><center>$ <%= display_dollars(house_total) %></center></h4>
+    <div class="large-3 large-offset-8 columns">
+      <h4 style ="text-align: center">$ <%= display_dollars(house_total) %></h4>
+    </div>
   </div>
+</div>
 
 
 
-
-<h2>Your Expenses</h2>
-<p>Only expenses you are part of.</p>
+<h3 sytle="margin-bottom: 25px;">Your Expenses</h3>
+<br>
+<div>
 <div class='row'>
   <div class="large-3 columns">
     <strong>Date</strong>
@@ -67,8 +77,8 @@
   <% end %>
   <hr>
   <div class='row'>
-    <h4><center>$ <%= display_dollars(user_total) %></center></h4>
+    <div class="large-3 large-offset-8 columns">
+      <h4 style ="text-align: center">$ <%= display_dollars(user_total) %></h4>
+    </div>
   </div>
-
-  <button class="button small" id="newExpenseForm">New Expense</button>
-    <br>
+</div>
