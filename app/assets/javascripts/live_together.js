@@ -18,11 +18,7 @@ window.LiveTogether = {
     }, 2000);
 
     this.current_user = new LiveTogether.Models.CurrentUser();
-    this.current_user.fetch({
-      success: function(){
-        console.log(LiveTogether.current_user);
-      }
-    });
+    this.current_user.fetch();
   }
 };
 
