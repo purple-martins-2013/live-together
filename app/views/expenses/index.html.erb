@@ -1,16 +1,18 @@
 <% user_total = 0 %>
 <% house_total = 0 %>
 <div class="row">
-  <div class="small-3 push-9 columns" style="padding-top: 15px"><button class="button success" id="newExpenseForm">New Expense</button></div>
+  <div class="small-3 push-9 columns" style="padding-top: 20px"><button class="button success" id="newExpenseForm">New Expense</button></div>
   <div class="small-9 pull-3 columns"><h1>Expenses</h1>
 </div>
 <hr>
 
-<div class='flip-container'>
-  <div class="row flipper">
+<div class='flip-container' >
+  <div class="row flipper" >
     <div class="front small-12 columns">
+    <center><button class="toggleExpenseFlip button small round secondary">View your expenses</button></center>
     <h3 class="left">House Expenses</h3>
-    <button class="toggleExpenseFlip button small secondary right">View your expenses</button>
+    <!-- <div class="small-3 push-6 columns"> -->
+    <!-- </div> -->
     <div class="clearfix"></div>
     <br>
     <div class='row'>
@@ -49,8 +51,8 @@
 
 
     <div class="back small-12 columns">
+    <center><button class="toggleExpenseFlip button small secondary round ">View house expenses</button></center>
     <h3 style="margin-bottom: 25px;" class="left">Your Expenses</h3>
-    <button class="toggleExpenseFlip button small secondary right">View house expenses</button>
     <div class="clearfix"></div>
     <br>
     <div class='row'>
