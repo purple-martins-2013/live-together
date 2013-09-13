@@ -11,7 +11,7 @@ feature "user can invite another user", feature: true do
   end
 
   it "displays the invite roommates form" do
-    click_button "Invite user"
+    click_button "Invite another roomate"
     expect(page).to have_button "Invite"
   end
 
