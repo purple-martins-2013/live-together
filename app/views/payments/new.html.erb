@@ -1,4 +1,4 @@
-<h1>New Payment</h1>
+<center><h1>New Payment</h1></center>
 <%= form_for @payment do |f| %>
   <% if @payment.errors.any? %>
     <div>
@@ -10,15 +10,11 @@
       </ul>
     </div>
   <% end %>
-  <h3>You are paying :</h3>
   <div class="row">
-    <div class="large-2 large-offset-3 columns ">
       <center>
-        <img src="<%= @payment.lender.image %>" alt="">
+        <img class="roomate_avatar" src="<%= @payment.lender.image %>" alt="">
         <p><%= @payment.lender.name %></p>
       </center>
-    </div>
-    <div class="large-3 columns">
       <%= f.hidden_field :lender_id, :value => @payment.lender.id %>
       <%= f.label :description %>
       <%= f.text_area :description %>
@@ -34,14 +30,15 @@
       <%= f.label :date %>
       <%= f.date_field :date, :value => "2012-09-03" %>
       <%= f.label :method %>
-      <%= f.radio_button :method, "cash", :checked => 'checked' %>
-      <%= "Cash" %>
-      <%= f.radio_button :method, "deposit" %>
-      <%= "Deposit" %>
-      <%= f.submit "Submit", class: "button success" %>
-    </div>
-    <div class="large-3 columns">
-    </div>
+      <p>
+        <%= f.radio_button :method, "cash", :checked => 'checked' %>
+        <%= "Cash" %>
+        <%= f.radio_button :method, "deposit" %>
+        <%= "Deposit" %>
+      </p>
+      <br>
+      <center><%= f.submit "Submit", class: "button success" %></center>
+
   </div>
 <% end %>
 <hr>
