@@ -25,8 +25,11 @@ class User < ActiveRecord::Base
     user.email = auth['info']['email']
     user.name = auth['info']['name']
     user.image = auth['info']['image']
-    user.save
-    user.authentications.create(provider: auth['provider'], uid: auth['uid'], token: auth['credentials']['token'])
+    if user.save
+      user.authentications.create(provider: auth['provider'], uid: auth['uid'], token: auth['credentials']['token'])
+    else
+      p user.errors.full_messages
+    end
     user
   end
 
