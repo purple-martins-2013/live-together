@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
     user.email = auth['info']['email']
     user.name = auth['info']['name']
     user.image = auth['info']['image']
+    p auth['info']
     if user.save
       user.authentications.create(provider: auth['provider'], uid: auth['uid'], token: auth['credentials']['token'])
     else
