@@ -20,6 +20,6 @@ class UserMailer < ActionMailer::Base
     @borrower = borrower
     @balance =  "%.2f" % (lender.debt_with(borrower)/100.0)
     @url = "http://live-together.herokuapp.com"
-    mail(to: @borrower.email, subject: 'Roomate request')
+    mail(to: @borrower.email, subject: 'Roommate request')
   end
 end
